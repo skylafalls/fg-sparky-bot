@@ -16,7 +16,7 @@ client.once("clientReady", (client: Client<true>) => {
 });
 
 client.on("interactionCreate", async (interaction: Interaction) => {
-  if (interaction.isCommand()) {
+  if (interaction.isCommand() || interaction.isContextMenuCommand()) {
     await handleSlashCommand(client, interaction, Commands);
   }
 });
