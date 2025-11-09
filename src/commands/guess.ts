@@ -23,7 +23,7 @@ import type { ChatInputCommand } from "./types.ts";
 
 const hasher = new Bun.CryptoHasher("sha512");
 
-function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: NumberInfo): void {
+function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: NumberInfo): boolean | undefined {
   if (message.author.bot) return;
   const guess = message.content.toLowerCase();
   const hashedGuess = hasher.update(guess, "utf-8").digest("hex");
@@ -31,19 +31,33 @@ function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: 
   Logger.debug(`Hashed number: ${number.hashedNumber}`);
   if (hashedGuess === number.hashedNumber) {
     Logger.info("user guessed correctly");
-  } else {
-    Logger.info("user guessed incorrectly");
+    return true;
   }
+  Logger.info("user guessed incorrectly");
+  return false;
 }
 
 const Guess: ChatInputCommand = {
   async run(client: Client, interaction: ChatInputCommandInteraction): Promise<void> {
     const difficulty = interaction.options.get("difficulty", true).value as Difficulties;
     const number = findRandomNumber(difficulty);
-    await interaction.followUp({ content: `Guess the number, you have 60 seconds.`, files: [number.symbol] });
-    client.on("messageCreate", (message) => {
-      handlePlayerGuess(message, number);
-    });
+    await interaction.reply({ content: `Guess the number, you have 60 seconds.`, files: [number.symbol] });
+    Logger.debug("setting up timeout");
+    const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
+      if (message.channelId !== interaction.channelId) return;
+      if (handlePlayerGuess(message, number)) {
+        Logger.debug("user guessed correctly, replying and clearing timeout");
+        clearTimeout(timeout);
+        client.off("messageCreate", handler);
+        await message.reply({ content: "guessed correctly" });
+      }
+    };
+    const timeout = setTimeout(async () => {
+      Logger.info("user failed to guess in time");
+      await interaction.followUp({ content: "timed out", allowedMentions: { repliedUser: false } });
+      client.off("messageCreate", handler);
+    }, 60000);
+    client.on("messageCreate", handler);
   },
   description: "Generates a number that you have to guess.",
   name: "guess",

@@ -30,11 +30,9 @@ export async function handleSlashCommand(
   if (!slashCommand) {
     Logger.error(`User ${interaction.user.username} (${interaction.user.displayName})
       attempted to invoke a nonexistent command (/${interaction.commandName})`);
-    await interaction.followUp({ content: "An error has occurred" });
+    await interaction.reply({ content: "An error has occurred" });
     return;
   }
-
-  await interaction.deferReply();
 
   Logger.info(`Running command ${interaction.commandName}`);
   await slashCommand.run(client, interaction);

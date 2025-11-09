@@ -35,7 +35,7 @@ try {
 }
 
 const client = new Client({
-  intents: ["Guilds", "GuildMessages", "DirectMessages"],
+  intents: ["Guilds", "GuildMessages", "DirectMessages", "MessageContent"],
 });
 
 client.once("clientReady", (client: Client<true>) => {
