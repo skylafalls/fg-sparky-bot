@@ -28,7 +28,7 @@ function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: 
   const guess = message.content.toLowerCase();
   const hashedGuess = hasher.update(guess, "utf-8").digest("hex");
   Logger.debug(`User guessed: ${guess} (hashed: ${hashedGuess})`);
-  Logger.debug(`Hashed number: ${number.hashedNumber}`);
+  Logger.debug(`Number: ${number.number} (hashed: ${number.hashedNumber})`);
   if (hashedGuess === number.hashedNumber) {
     Logger.info("user guessed correctly");
     return true;
@@ -41,7 +41,7 @@ const Guess: ChatInputCommand = {
   async run(client: Client, interaction: ChatInputCommandInteraction): Promise<void> {
     const difficulty = interaction.options.get("difficulty", true).value as Difficulties;
     const number = findRandomNumber(difficulty);
-    await interaction.reply({ content: `Guess the number, you have 60 seconds.`, files: [number.symbol] });
+    await interaction.reply({ content: `Guess the number, you have ${(number.difficulty === "legendary" ? 60 : 40).toString()} seconds.`, files: [number.symbol] });
     Logger.debug("setting up timeout");
     const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
       if (message.channelId !== interaction.channelId) return;
