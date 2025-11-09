@@ -1,18 +1,51 @@
 {
+  "$schema": "./numbers.schema.json",
   "easy": [
-    { "name": "Endless", "image": "src/numbers/easy/endless.png" },
-    { "name": "Absolute Breakdown", "image": "src/numbers/easy/absolute-breakdown.png" },
-    { "name": "Absolute Infinity", "image": "src/numbers/easy/absolute-infinity.png" },
-    { "name": "Absolute Fictional Numbers", "image": "src/numbers/easy/absolute-fictional-numbers.png" },
-    { "name": "Too Much Massive Finity", "image": "src/numbers/easy/too-much-massive-finity.png" }
+    {
+      "name": "Endless",
+      "hashedName": "328e5bd06bf7513e6e395bcd5973b11c02ab51e4120507f48bac4dcec5de98518fcc81f2cb66cc56926b7624ba28559e04d7a4da70d7dec708cfbbb07c339660",
+      "image": "src/numbers/easy/endless.png"
+    },
+    {
+      "name": "Absolute Breakdown",
+      "hashedName": "ba95a74939004c811b05cc7e33496af6cab78b3b66a693d8622c5d4802cf6afd19fa6a659a8773edb14d9babe7ca413f34c74cc23e979d89bd2f474bf4116987",
+      "image": "src/numbers/easy/absolute-breakdown.png"
+    },
+    {
+      "name": "Absolute Infinity",
+      "hashedName": "d20099ab6a37bf176f8d28d6df594676643fe6a0dd795d5281e03923fc696b9ad50e67a6cd4f9051e3f1aa86866394e1a1738324c9ec3a7ce21af1728e8278d3",
+      "image": "src/numbers/easy/absolute-infinity.png"
+    },
+    {
+      "name": "Absolute Fictional Numbers",
+      "hashedName": "c83b190564210f64bb1bd10a6d665d2be6d768eec1cb230183858be9761837c333f2f496cbe64f7cea11f5f40edf23a57e9fcfea2724399c248fc7fdf1e33539",
+      "image": "src/numbers/easy/absolute-fictional-numbers.png"
+    },
+    {
+      "name": "Too Much Massive Finity",
+      "hashedName": "9180258e33f7f7eb979f269838e2d9e975cd5ce280e39bdf1de6383cb3f7bf373983202191b2de4aa01d7f15297cfd569707c4ce5aef617c97361d1df61edeb4",
+      "image": "src/numbers/easy/too-much-massive-finity.png"
+    }
   ],
   "medium": [
-    { "name": "placeholder", "image": "yay.png" }
+    {
+      "name": "placeholder",
+      "hashedName": "c8fd891c887d3c17167f824f859fa7395a9d78ef744e39149816f4e3f5ce058e914ff2ded9e6c6a60b4301b804f736e0dd98d1cdead99a20a85306415974089f",
+      "image": "src/numbers/easy/absolute-infinity.png"
+    }
   ],
   "hard": [
-    { "name": "placeholder", "image": "yay.png" }
+    {
+      "name": "placeholder",
+      "hashedName": "c8fd891c887d3c17167f824f859fa7395a9d78ef744e39149816f4e3f5ce058e914ff2ded9e6c6a60b4301b804f736e0dd98d1cdead99a20a85306415974089f",
+      "image": "src/numbers/easy/absolute-infinity.png"
+    }
   ],
   "legendary": [
-    { "name": "placeholder", "image": "yay.png" }
+    {
+      "name": "placeholder", 
+      "hashedName": "c8fd891c887d3c17167f824f859fa7395a9d78ef744e39149816f4e3f5ce058e914ff2ded9e6c6a60b4301b804f736e0dd98d1cdead99a20a85306415974089f",
+      "image": "src/numbers/easy/absolute-infinity.png"
+    }
   ]
 }

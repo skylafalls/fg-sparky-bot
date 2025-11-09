@@ -16,15 +16,34 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
-import { ApplicationCommandOptionType, type Client, type ContextMenuCommandInteraction } from "discord.js";
-import { findRandomNumber, type Difficulties } from "../numbers/get-random-number.ts";
-import type { ContextMenuCommand } from "./types.ts";
+import { ApplicationCommandOptionType, type ChatInputCommandInteraction, type Client, type Message, type OmitPartialGroupDMChannel } from "discord.js";
+import { findRandomNumber, type Difficulties, type NumberInfo } from "../numbers/get-random-number.ts";
+import { Logger } from "../utils/logger.ts";
+import type { ChatInputCommand } from "./types.ts";
 
-const Guess: ContextMenuCommand = {
-  async run(client: Client, interaction: ContextMenuCommandInteraction): Promise<void> {
+const hasher = new Bun.CryptoHasher("sha512");
+
+function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: NumberInfo): void {
+  if (message.author.bot) return;
+  const guess = message.content.toLowerCase();
+  const hashedGuess = hasher.update(guess, "utf-8").digest("hex");
+  Logger.debug(`User guessed: ${guess} (hashed: ${hashedGuess})`);
+  Logger.debug(`Hashed number: ${number.hashedNumber}`);
+  if (hashedGuess === number.hashedNumber) {
+    Logger.info("user guessed correctly");
+  } else {
+    Logger.info("user guessed incorrectly");
+  }
+}
+
+const Guess: ChatInputCommand = {
+  async run(client: Client, interaction: ChatInputCommandInteraction): Promise<void> {
     const difficulty = interaction.options.get("difficulty", true).value as Difficulties;
     const number = findRandomNumber(difficulty);
     await interaction.followUp({ content: `Guess the number, you have 60 seconds.`, files: [number.symbol] });
+    client.on("messageCreate", (message) => {
+      handlePlayerGuess(message, number);
+    });
   },
   description: "Generates a number that you have to guess.",
   name: "guess",

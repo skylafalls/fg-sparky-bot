@@ -4,6 +4,7 @@ export type Difficulties = "easy" | "medium" | "hard" | "random";
 
 export interface NumberInfo {
   number: string;
+  hashedNumber: string;
   symbol: string;
   difficulty: "easy" | "medium" | "hard" | "legendary";
 }
@@ -22,5 +23,5 @@ export function findRandomNumber(difficulty: Difficulties): NumberInfo {
   const number = numberPool[randomIndex];
   // Uh yeah same here
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  return { number: number!.name, symbol: number!.image, difficulty: actualDifficulty };
+  return { number: number!.name, hashedNumber: number!.hashedName, symbol: number!.image, difficulty: actualDifficulty };
 }

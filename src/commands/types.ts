@@ -16,16 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
-import type { ChatInputApplicationCommandData, ChatInputCommandInteraction, Client, CommandInteraction, ContextMenuCommandInteraction } from "discord.js";
+import type { ChatInputApplicationCommandData, ChatInputCommandInteraction, Client, CommandInteraction } from "discord.js";
 
 export interface Command extends ChatInputApplicationCommandData {
   run: (client: Client, interaction: CommandInteraction) => Promise<void>;
 }
 
-export interface ContextMenuCommand extends ChatInputApplicationCommandData {
-  run: (client: Client, interaction: ContextMenuCommandInteraction) => Promise<void>;
-}
-
-export interface ContextMenuCommand extends ChatInputApplicationCommandData {
+export interface ChatInputCommand extends ChatInputApplicationCommandData {
   run: (client: Client, interaction: ChatInputCommandInteraction) => Promise<void>;
 }
