@@ -56,7 +56,7 @@ const Guess: ChatInputCommand = {
       Logger.info("user failed to guess in time");
       await interaction.followUp({ content: "timed out", allowedMentions: { repliedUser: false } });
       client.off("messageCreate", handler);
-    }, 60000);
+    }, number.difficulty === "legendary" ? 60000 : 40000);
     client.on("messageCreate", handler);
   },
   description: "Generates a number that you have to guess.",
