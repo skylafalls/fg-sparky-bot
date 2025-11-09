@@ -2,9 +2,9 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class UserProfile {
-  @PrimaryGeneratedColumn()
-  user_id = "";
+  @PrimaryGeneratedColumn("identity")
+  user_id = 0n;
 
-  @Column()
+  @Column("integer")
   tokens = 0;
 }
