@@ -46,6 +46,7 @@ const Guess: ChatInputCommand = {
       return;
     }
     const number = findRandomNumber(difficulty);
+    Logger.info(`Player requested for number of difficulty ${difficulty}`);
     await interaction.reply({ content: `Guess the number, you have ${(number.difficulty === "legendary" ? 60 : 40).toString()} seconds.`, files: [number.symbol] });
     Logger.debug("setting up timeout");
     const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
