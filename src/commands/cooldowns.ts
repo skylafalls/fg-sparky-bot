@@ -18,11 +18,11 @@
  */
 import { Collection, type CommandInteraction, MessageFlags } from "discord.js";
 import { Logger } from "../utils/logger";
-import type { ChatInputCommand, Command } from "./types";
+import type { Command } from "./types";
 
 const cooldowns = new Collection<string, Collection<string, number>>();
 
-export async function enforceCooldown(command: Command | ChatInputCommand, interaction: CommandInteraction): Promise<boolean> {
+export async function enforceCooldown(command: Command, interaction: CommandInteraction): Promise<boolean> {
   if (!cooldowns.has(command.name)) {
     Logger.debug(`Command ${command.name} doesn't exist in cooldown collect, creating...`);
     cooldowns.set(command.name, new Collection());

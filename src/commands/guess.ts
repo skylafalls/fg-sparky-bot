@@ -16,10 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
-import { ApplicationCommandOptionType, type ChatInputCommandInteraction, type Client, type Message, type OmitPartialGroupDMChannel } from "discord.js";
+import { ApplicationCommandOptionType, type Client, type CommandInteraction, type Message, type OmitPartialGroupDMChannel } from "discord.js";
 import { findRandomNumber, type Difficulties, type NumberInfo } from "../numbers/get-random-number.ts";
 import { Logger } from "../utils/logger.ts";
-import type { ChatInputCommand } from "./types.ts";
+import type { Command } from "./types.ts";
 
 const hasher = new Bun.CryptoHasher("sha512");
 
@@ -37,8 +37,14 @@ function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: 
   return false;
 }
 
-const Guess: ChatInputCommand = {
-  async run(client: Client, interaction: ChatInputCommandInteraction): Promise<void> {
+const Guess: Command = {
+  async run(client: Client, interaction: CommandInteraction): Promise<void> {
+    if (!interaction.isChatInputCommand()) {
+      Logger.error(`Tried invoking command ${this.name} as something other then a slash command`);
+      await interaction.reply("This command must be run as a slash command (eg. as /guess)!");
+      return;
+    }
+
     const difficulty = interaction.options.get("difficulty", true).value as Difficulties;
     if (difficulty !== "easy" && difficulty !== "medium") {
       Logger.warn(`User specified the ${difficulty} difficulty but that is currently not implemented!`);

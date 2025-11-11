@@ -16,14 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
-import type { ChatInputApplicationCommandData, ChatInputCommandInteraction, Client, CommandInteraction } from "discord.js";
+import type { ChatInputApplicationCommandData, Client, CommandInteraction } from "discord.js";
 
 export interface Command extends ChatInputApplicationCommandData {
   run: (client: Client, interaction: CommandInteraction) => Promise<void>;
-  cooldown?: number | undefined;
-}
-
-export interface ChatInputCommand extends ChatInputApplicationCommandData {
-  run: (client: Client, interaction: ChatInputCommandInteraction) => Promise<void>;
   cooldown?: number | undefined;
 }
