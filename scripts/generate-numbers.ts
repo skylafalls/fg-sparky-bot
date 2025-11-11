@@ -28,8 +28,8 @@ interface NumberInfo {
 
 const numbers: NumberInfo[] = [];
 
-for (const fileName of files) {
-  // replacing _ with . is close enough, the only special case i can think of
+await Promise.all(files.map(async (fileName) => {
+// replacing _ with . is close enough, the only special case i can think of
   // is Positive_Negative Point which the _ should be replaced with /
   const fileExtension = fileName.slice(fileName.lastIndexOf("."));
   const number = (() => {
@@ -72,10 +72,11 @@ for (const fileName of files) {
     hashedName: hash,
     image: newFilePath,
   });
-}
+}));
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const originalJson = await Bun.file(`src/numbers/numbers.json`).json();
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 originalJson[difficulty] = numbers;
 
 await Bun.write(
