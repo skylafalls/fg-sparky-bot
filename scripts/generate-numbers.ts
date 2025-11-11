@@ -34,9 +34,31 @@ for (const fileName of files) {
   const fileExtension = fileName.slice(fileName.lastIndexOf("."));
   const number = (() => {
     const number = fileName.slice(0, fileName.lastIndexOf("."));
-    if (number === "The _(Super) End") return "The ?(Super) End";
-    if (number === "New-Alli-Meta-Ind_Finity") return "New-Alli-Meta-Ind/Finity";
-    return number;
+    switch (number) {
+      // Fix typos
+      case "Hexexitialifinity": {
+        return "Hexexitialfinity";
+      }
+      case "Nendifinity": {
+        return "nednifinity";
+      }
+      // Replace underscores with their intended special characters
+      case "The _(Super) End": {
+        return "The ?(Super) End";
+      }
+      case "New-Alli-Meta-Ind_Finity": {
+        return "New-Alli-Meta-Ind/Finity";
+      }
+      case "Real_Complex Point": {
+        return "Real/Complex Point";
+      }
+      case "Numeric End..._": {
+        return "Numeric End...?";
+      }
+      default: {
+        return number;
+      }
+    }
   })();
   const filePath = `${directoryPath}/${fileName}`;
   console.log(`Found file: ${filePath} (number: ${number})`);
