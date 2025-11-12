@@ -56,6 +56,9 @@ await Promise.all(files.map(async (fileName) => {
       case "Numeric End..._": {
         return "Numeric End...?";
       }
+      case "Absolute Numbertomin ___[20]": {
+        return "Absolute Numbertomin ???[20]";
+      }
       default: {
         return number;
       }
