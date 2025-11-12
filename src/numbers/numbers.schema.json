@@ -40,7 +40,7 @@
      	"items": {
         "type": "object",
         "properties": {
-          "name": { "type": "string" },
+          "name": { "type": "null" },
           "hashedName": { "type": "string" },
           "image": { "type": "string" }
         }
