@@ -48,7 +48,13 @@ const Guess: Command = {
     const difficulty = interaction.options.get("difficulty", true).value as Difficulties;
     const number = findRandomNumber(difficulty);
     Logger.info(`Player requested for number of difficulty ${difficulty}`);
-    await interaction.reply({ content: `Guess the number, you have ${(number.difficulty === "legendary" ? 60 : 40).toString()} seconds.`, files: [number.symbol] });
+    // The message that will be sent to the player, specifiying the difficulty,
+    // and the amount of time they get to guess it.
+    // THere's some special flair for legendary difficulties.
+    const content = number.difficulty === "legendary"
+      ? `**DIFFICULTY: LEGENDARY**\nGuess the number, you have **60** seconds.`
+      : `Difficulty: **${number.difficulty}**\nGuess the number, you have **40** seconds.`;
+    await interaction.reply({ content, files: [number.symbol] });
     Logger.debug("setting up timeout");
     const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
       if (message.channelId !== interaction.channelId) return;
