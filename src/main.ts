@@ -7,15 +7,20 @@ import { Logger } from "./utils/logger";
 const program = new Command()
   .version("0.6.2")
   .description("FG sparky bot as a cli")
-  .requiredOption("-t, --token <token>", "The discord bot token to login with")
-  .option("-l, --loglevel [loglevel]", "Logging level as a number");
+  .option("-t, --token <token>", "The discord bot token to login with (env variable: DISCORD_TOKEN)")
+  .option("-l, --loglevel [loglevel]", "Logging level as a number (env variable: LOG_LEVEL)");
 
 program.parse(process.argv);
 
-const { token, loglevel } = program.opts<{
-  token: string;
+const { token = process.env.DISCORD_TOKEN, loglevel = process.env.LOG_LEVEL } = program.opts<{
+  token?: string;
   loglevel?: number;
 }>();
+
+if (!token) {
+  Logger.error(`The bot token must be passed in via the --token / -t flag or the DISCORD_TOKEN environment variable.`);
+  process.exit(1);
+}
 
 const client: Client = new Client({
   intents: ["Guilds", "GuildMessages", "DirectMessages", "MessageContent"],
