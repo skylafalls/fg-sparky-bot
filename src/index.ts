@@ -16,40 +16,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
-import { Client, type Interaction } from "discord.js";
-import config from "../.config.json" with { type: "json" };
-import { Commands } from "./commands/commands.ts";
-import { handleSlashCommand, registerCommands } from "./commands/listener.ts";
-import { AppDataSource } from "./db.ts";
-import { formatter } from "./utils/formatter.ts";
-import { Logger } from "./utils/logger.ts";
+import type { Client } from "discord.js";
+import type { DataSource } from "typeorm";
+import { Logger } from "../scripts/logger";
+import { Commands } from "./commands/commands";
+import { registerCommands } from "./commands/listener";
+import { registerHandlers } from "./handlers";
 
-Logger.notice("Initializing database");
-try {
-  await AppDataSource.initialize();
-} catch (error) {
-  if (!Error.isError(error)) throw error;
-  Logger.error(`Failed to initialize database: ${error.message}`);
-  Logger.error(error.stack ?? "No stack trace available");
-  process.exit(1);
+export async function initClient(client: Client, token: string): Promise<void> {
+  registerHandlers(client);
+  registerCommands(client, Commands);
+
+  Logger.info("Logging in");
+  await client.login(token);
 }
 
-const client = new Client({
-  intents: ["Guilds", "GuildMessages", "DirectMessages", "MessageContent"],
-});
+export async function initDB(database: DataSource): Promise<void> {
+  Logger.notice("Initializing database");
 
-client.once("clientReady", (client: Client<true>) => {
-  const formattedDate = formatter.format(Date.now());
-  Logger.notice(`Bot running as ${client.user.username} (started at ${formattedDate})`);
-});
-
-client.on("interactionCreate", async (interaction: Interaction) => {
-  if (interaction.isCommand() || interaction.isContextMenuCommand()) {
-    await handleSlashCommand(client, interaction, Commands);
+  try {
+    await database.initialize();
+  } catch (error) {
+    if (!Error.isError(error)) throw error;
+    Logger.error(`Failed to initialize database: ${error.message}`);
+    Logger.error(error.stack ?? "No stack trace available");
+    throw error;
   }
-});
-
-registerCommands(client, Commands);
-
-Logger.info("Logging in");
-await client.login(config.DISCORD_TOKEN);
+}
