@@ -29,7 +29,7 @@ export interface NumberInfo {
 }
 
 function getRandomDifficulty(): "easy" | "medium" | "hard" | "legendary" {
-  if (Math.random() * 48 < 1) return "legendary";
+  if (Math.random() * 60 < 1) return "legendary";
   // uhh i kinda need the non-null assertion here cause it's not gonna be undefined
   const number = Math.floor(Math.random() * 3);
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
