@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
+import numbers from "../numbers/numbers.json" with { type: "json" };
 import { Logger } from "../utils/logger";
-import numbers from "./numbers.json" with { type: "json" };
 
 export type Difficulties = "easy" | "medium" | "hard" | "random";
 

@@ -17,9 +17,9 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 import { ApplicationCommandOptionType, type Client, type CommandInteraction, type Message, type OmitPartialGroupDMChannel } from "discord.js";
-import { findRandomNumber, type Difficulties, type NumberInfo } from "../numbers/get-random-number.ts";
 import { Logger } from "../utils/logger.ts";
 import { guessCooldowns } from "./cooldowns.ts";
+import { findRandomNumber, type Difficulties, type NumberInfo } from "./get-random-number.ts";
 import type { Command } from "./types.ts";
 
 const hasher = new Bun.CryptoHasher("sha512");
