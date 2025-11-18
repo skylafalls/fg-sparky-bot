@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
+import { CryptoHasher } from "bun";
+import type { Message, OmitPartialGroupDMChannel } from "discord.js";
 import numbers from "../numbers/numbers.json" with { type: "json" };
 import { Logger } from "../utils/logger";
 
@@ -46,4 +48,25 @@ export function findRandomNumber(difficulty: Difficulties): NumberInfo {
   // Uh yeah same here
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return { number: number?.name ?? null, hashedNumber: number!.hashedName, symbol: number!.image, difficulty: actualDifficulty };
+}
+
+const hasher = new CryptoHasher("sha512");
+
+export function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: NumberInfo): boolean | undefined {
+  if (message.author.bot) return;
+  // Normalize the player's guess to a standard form to avoid weird os issues
+  // like macos replacing "..." with "…" (elipis) or replacing ' with ’
+  const guess = message.content.toLowerCase()
+    .replaceAll(/’|‘/gu, "'") // Variants of single quotation marks
+    .replaceAll(/“|”/gu, "'") // Variants of double quotation marks
+    .replaceAll("…", "..."); // Ellipsis
+  const hashedGuess = hasher.update(guess, "utf-8").digest("hex");
+  Logger.debug(`User guessed: ${guess} (hashed: ${hashedGuess})`);
+  Logger.debug(`Number: ${number.number ?? "<hidden>"} (hashed: ${number.hashedNumber})`);
+  if (hashedGuess === number.hashedNumber) {
+    Logger.info("user guessed correctly");
+    return true;
+  }
+  Logger.info("user guessed incorrectly");
+  return false;
 }
