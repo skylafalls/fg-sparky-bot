@@ -16,22 +16,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
-import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 /**
  * This is a person's user profile.
  */
 @Entity()
-export class UserProfile extends BaseEntity {
+export class UserAchievement extends BaseEntity {
   /**
-   * The discord user id for the profile.
+   * Primary id. Not used.
    */
-  @PrimaryColumn("bigint")
-  id = 0n;
+  @PrimaryGeneratedColumn()
+  id = 0;
 
   /**
-   * The current terminus token count for the user.
+   * The id of the user.
    */
-  @Column("integer")
-  tokens = 0;
+  @Column()
+  userId = "";
+
+  /**
+   * The id of the achievement.
+   */
+  @Column()
+  achievementId = "";
 }

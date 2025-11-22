@@ -16,32 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
-import { ApplicationCommandOptionType, type Client, type CommandInteraction, type Message, type OmitPartialGroupDMChannel } from "discord.js";
-import { findRandomNumber, type Difficulties, type NumberInfo } from "../numbers/get-random-number.ts";
+import { ApplicationCommandOptionType, type Client, type CommandInteraction } from "discord.js";
+import { findRandomNumber, type Difficulties } from "../numbers/get-random-number.ts";
 import { Logger } from "../utils/logger.ts";
-import { guessCooldowns } from "./cooldowns.ts";
+import { handleResponse } from "./guess-handler.ts";
 import type { Command } from "./types.ts";
-
-const hasher = new Bun.CryptoHasher("sha512");
-
-function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: NumberInfo): boolean | undefined {
-  if (message.author.bot) return;
-  // Normalize the player's guess to a standard form to avoid weird os issues
-  // like macos replacing "..." with "…" (elipis) or replacing ' with ’
-  const guess = message.content.toLowerCase()
-    .replaceAll(/’|‘/gu, "'") // Variants of single quotation marks
-    .replaceAll(/“|”/gu, "'") // Variants of double quotation marks
-    .replaceAll("…", "..."); // Ellipsis
-  const hashedGuess = hasher.update(guess, "utf-8").digest("hex");
-  Logger.debug(`User guessed: ${guess} (hashed: ${hashedGuess})`);
-  Logger.debug(`Number: ${number.number ?? "<hidden>"} (hashed: ${number.hashedNumber})`);
-  if (hashedGuess === number.hashedNumber) {
-    Logger.info("user guessed correctly");
-    return true;
-  }
-  Logger.info("user guessed incorrectly");
-  return false;
-}
 
 const Guess: Command = {
   async run(client: Client, interaction: CommandInteraction): Promise<void> {
@@ -54,6 +33,7 @@ const Guess: Command = {
     const difficulty = interaction.options.get("difficulty", true).value as Difficulties;
     const number = findRandomNumber(difficulty);
     Logger.info(`Player requested for number of difficulty ${difficulty}`);
+
     // The message that will be sent to the player, specifiying the difficulty,
     // and the amount of time they get to guess it.
     // THere's some special flair for legendary difficulties.
@@ -61,25 +41,9 @@ const Guess: Command = {
       ? `**DIFFICULTY: LEGENDARY**\nGuess the number, you have **60** seconds.`
       : `Difficulty: ${number.difficulty}\nGuess the number, you have **40** seconds.`;
     await interaction.reply({ content, files: [number.symbol] });
+
     Logger.debug("setting up timeout");
-    const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
-      if (message.channelId !== interaction.channelId) return;
-      if (handlePlayerGuess(message, number)) {
-        Logger.debug("user guessed correctly, replying and clearing timeout");
-        clearTimeout(timeout);
-        client.off("messageCreate", handler);
-        await message.reply({ content: "hey you guessed correctly, nice job!" });
-        guessCooldowns.set(interaction.channelId, false);
-      }
-    };
-    const timeout = setTimeout(async () => {
-      const content = `no one guessed in time${number.number ? `, the correct answer was ${number.number}.` : "."}`;
-      Logger.info("user failed to guess in time");
-      await interaction.followUp({ content, allowedMentions: { repliedUser: false } });
-      client.off("messageCreate", handler);
-      guessCooldowns.set(interaction.channelId, false);
-    }, number.difficulty === "legendary" ? 60000 : 40000);
-    client.on("messageCreate", handler);
+    handleResponse(client, interaction, number);
   },
   description: "Generates a number that you have to guess.",
   name: "guess",

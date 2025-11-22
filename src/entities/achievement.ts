@@ -24,10 +24,10 @@ import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
 @Entity()
 export class UserProfile extends BaseEntity {
   /**
-   * The discord user id for the profile.
+   * The id of the achievement.
    */
-  @PrimaryColumn("bigint")
-  id = 0n;
+  @PrimaryColumn("string")
+  id = "";
 
   /**
    * The current terminus token count for the user.

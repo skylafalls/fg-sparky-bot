@@ -1,0 +1,48 @@
+import type { ChatInputCommandInteraction, Client, Message, OmitPartialGroupDMChannel } from "discord.js";
+import type { NumberInfo } from "../numbers/get-random-number";
+import { Logger } from "../utils/logger";
+import { guessCooldowns } from "./cooldowns";
+
+const hasher = new Bun.CryptoHasher("sha512");
+
+function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: NumberInfo): boolean | undefined {
+  if (message.author.bot) return;
+  // Normalize the player's guess to a standard form to avoid weird os issues
+  // like macos replacing "..." with "…" (elipis) or replacing ' with ’
+  const guess = message.content.toLowerCase()
+    .replaceAll(/’|‘/gu, "'") // Variants of single quotation marks
+    .replaceAll(/“|”/gu, "'") // Variants of double quotation marks
+    .replaceAll("…", "..."); // Ellipsis
+  const hashedGuess = hasher.update(guess, "utf-8").digest("hex");
+  Logger.debug(`User guessed: ${guess} (hashed: ${hashedGuess})`);
+  Logger.debug(`Number: ${number.number ?? "<hidden>"} (hashed: ${number.hashedNumber})`);
+  if (hashedGuess === number.hashedNumber) {
+    Logger.info("user guessed correctly");
+    return true;
+  }
+  Logger.info("user guessed incorrectly");
+  return false;
+}
+
+export function handleResponse(client: Client, interaction: ChatInputCommandInteraction, number: NumberInfo): void {
+  const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
+    if (message.channelId !== interaction.channelId) return;
+    if (handlePlayerGuess(message, number)) {
+      Logger.debug("user guessed correctly, replying and clearing timeout");
+      clearTimeout(timeout);
+      client.off("messageCreate", handler);
+      await message.reply({ content: "hey you guessed correctly, nice job!" });
+      guessCooldowns.set(interaction.channelId, false);
+    }
+  };
+
+  const timeout = setTimeout(async () => {
+    const content = `no one guessed in time${number.number ? `, the correct answer was ${number.number}.` : "."}`;
+    Logger.info("user failed to guess in time");
+    await interaction.followUp({ content, allowedMentions: { repliedUser: false } });
+    client.off("messageCreate", handler);
+    guessCooldowns.set(interaction.channelId, false);
+  }, number.difficulty === "legendary" ? 60000 : 40000);
+
+  client.on("messageCreate", handler);
+}
