@@ -1,5 +1,23 @@
 # changelog
 
+## 0.8.0 - November 23rd, 2025
+### BREAKING CHANGES:
+- **fix(entries)!**: do not strip backslashes while guessing \[[`b718dc88`](https://github.com/skylafalls/fg-sparky-bot/commit/b718dc88ff68bf11b03128121270f121b6a569a3)] by @skylafalls
+
+### features:
+- feat(cmds): implement better cooldown handling for /guess \[[`673b2ee2`](https://github.com/skylafalls/fg-sparky-bot/commit/673b2ee2b076f0f6eae19a5a3fce5bc4bbcfeed5)] ([#7](https://github.com/skylafalls/fg-sparky-bot/pull/7)) by @skylafalls
+- feat(entries): add new batch of hard numbers \[[`a1967e0c`](https://github.com/skylafalls/fg-sparky-bot/commit/a1967e0c850218ac33622b25513e697d02ac9cb5)] by @skylafalls
+- feat(entries): even more numbers \[[`a4c46551`](https://github.com/skylafalls/fg-sparky-bot/commit/a4c465510678887922244adc7ea7d9e063389be0)] ([#8](https://github.com/skylafalls/fg-sparky-bot/pull/8)) by @skylafalls
+- feat(entries): Add multiple batches of numbers \[[`72bf7158`](https://github.com/skylafalls/fg-sparky-bot/commit/72bf715843939debee59c186ab8497c66e8d54d2)] by @skylafalls
+
+### refactors:
+- refactor(guess): made legendaries rarer (1/48 -> 1/60) \[[`1ac61a91`](https://github.com/skylafalls/fg-sparky-bot/commit/1ac61a91c311c4004aa896cdebbdaf99319fadad)] by @skylafalls
+
+### bug fixes:
+- fix(entries): fix another easy number \[[`42fa49c3`](https://github.com/skylafalls/fg-sparky-bot/commit/42fa49c3621b9533a410060c294c3447c8825a3a)] by @skylafalls
+- fix(entries): fix a medium \[[`993fde0f`](https://github.com/skylafalls/fg-sparky-bot/commit/993fde0f3bd6761a93ef1d012a05bf991d1ce6a5)] by @skylafalls
+- fix(entries): fix a couple incorrect entries \[[`28b7721e`](https://github.com/skylafalls/fg-sparky-bot/commit/28b7721e38d02291720064f5c2c8ea2e95376321)] by @skylafalls
+
 ## 0.7.0 - November 14th, 2025
 ### BREAKING CHANGES:
 - **refactor(bot)!**: convert the bot into a cli app \[[`8ad9bbfd`](https://github.com/skylafalls/fg-sparky-bot/commit/8ad9bbfda83cbac7d32744dcd320870c2adfc583)] ([#5](https://github.com/skylafalls/fg-sparky-bot/pull/5)) by @skylafalls
