@@ -16,7 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
-import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from "typeorm";
+import { Achievement } from "./achievement";
 
 /**
  * This is a person's user profile.
@@ -34,4 +35,11 @@ export class UserProfile extends BaseEntity {
    */
   @Column("integer")
   tokens = 0;
+
+  /**
+   * Array of achievements that the user currently has.
+   */
+  @ManyToMany(() => Achievement)
+  @JoinTable()
+  achievements!: Achievement[];
 }

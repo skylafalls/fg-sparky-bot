@@ -17,6 +17,7 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 import { DataSource } from "typeorm";
+import { Achievement } from "./entities/achievement.ts";
 import { UserProfile } from "./entities/user-profile.ts";
 
 export const AppDataSource: DataSource = new DataSource({
@@ -24,7 +25,7 @@ export const AppDataSource: DataSource = new DataSource({
   database: "sparky-bot-db.sqlite",
   synchronize: true,
   logging: false,
-  entities: [UserProfile],
+  entities: [UserProfile, Achievement],
   migrations: [],
   subscribers: [],
 });

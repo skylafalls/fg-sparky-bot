@@ -19,19 +19,24 @@
 import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
 
 /**
- * This is a person's user profile.
+ * Type of a UUID.
+ */
+export type UUID = `${string}-${string}-${string}-${string}-${string}`;
+
+/**
+ * Entity that represents an achievement that user can get.
  */
 @Entity()
-export class UserProfile extends BaseEntity {
+export class Achievement extends BaseEntity {
   /**
    * The id of the achievement.
    */
-  @PrimaryColumn("string")
-  id = "";
+  @PrimaryColumn("uuid")
+  id!: UUID;
 
   /**
-   * The current terminus token count for the user.
+   * Name of the achievement.
    */
-  @Column("integer")
-  tokens = 0;
+  @Column("text")
+  name!: string;
 }
