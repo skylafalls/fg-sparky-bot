@@ -26,8 +26,8 @@ export class UserProfile extends BaseEntity {
   /**
    * The discord user id for the profile.
    */
-  @PrimaryColumn("integer")
-  id = 0n;
+  @PrimaryColumn("text")
+  id = "";
 
   /**
    * The current terminus token count for the user.

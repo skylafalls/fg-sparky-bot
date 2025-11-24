@@ -23,7 +23,7 @@ export const AppDataSource: DataSource = new DataSource({
   type: "sqlite",
   database: "sparky-bot-db.sqlite",
   synchronize: true,
-  logging: false,
+  logging: true,
   entities: [UserProfile],
   migrations: [],
   subscribers: [],

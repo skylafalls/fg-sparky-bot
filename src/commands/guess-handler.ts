@@ -42,8 +42,7 @@ function getGainFromDifficulty(difficulty: "easy" | "medium" | "hard" | "legenda
   }
 }
 
-export async function handleResponse(client: Client, interaction: ChatInputCommandInteraction, number: NumberInfo): void {
-  const user = await getUser(interaction.user.id);
+export function handleResponse(client: Client, interaction: ChatInputCommandInteraction, number: NumberInfo): void {
   const gain = getGainFromDifficulty(number.difficulty);
 
   const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
@@ -53,14 +52,20 @@ export async function handleResponse(client: Client, interaction: ChatInputComma
       clearTimeout(timeout);
       client.off("messageCreate", handler);
       guessCooldowns.set(interaction.channelId, false);
+
+      const user = await getUser(message.author.id);
+      Logger.debug(`tried looking up user ${message.author.id} (found: ${user ? "true" : "false"})`);
+
       if (user) {
+        Logger.debug(`user already exists, adding tokens`);
         user.tokens += gain;
-        await interaction.reply(`hey you guessed correctly, nice job! you also earned ${gain.toString()} tokens!`);
+        await message.reply(`hey you guessed correctly, nice job! you also earned ${gain.toString()} tokens!`);
         await user.save();
       } else {
-        const newUser = await createUser(interaction.user.id);
+        Logger.debug(`user not found, creating user and adding tokens`);
+        const newUser = await createUser(message.author.id);
         newUser.tokens += gain;
-        await interaction.reply(`hey you guessed correctly, nice job! i've also created a profile for you with ${gain.toString()} tokens.`);
+        await message.reply(`hey you guessed correctly, nice job! i've also created a profile for you with ${gain.toString()} tokens.`);
         await newUser.save();
       }
     }
