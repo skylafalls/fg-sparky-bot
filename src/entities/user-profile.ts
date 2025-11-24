@@ -26,7 +26,7 @@ export class UserProfile extends BaseEntity {
   /**
    * The discord user id for the profile.
    */
-  @PrimaryColumn("bigint")
+  @PrimaryColumn("integer")
   id = 0n;
 
   /**

@@ -19,5 +19,6 @@
 import Guess from "./guess.ts";
 import Hello from "./hello.ts";
 import type { Command } from "./types.ts";
+import User from "./users.ts";
 
-export const Commands: readonly Command[] = [Hello, Guess];
+export const Commands: readonly Command[] = [Hello, Guess, User];
