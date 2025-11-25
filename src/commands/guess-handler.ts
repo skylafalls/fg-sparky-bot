@@ -48,7 +48,6 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
   const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
     if (message.channelId !== interaction.channelId) return;
     if (handlePlayerGuess(message, number)) {
-      Logger.debug("user guessed correctly, replying and clearing timeout");
       clearTimeout(timeout);
       client.off("messageCreate", handler);
       guessCooldowns.set(interaction.channelId, false);
@@ -57,12 +56,12 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
       Logger.debug(`tried looking up user ${message.author.id} (found: ${user ? "true" : "false"})`);
 
       if (user) {
-        Logger.debug(`user already exists, adding tokens`);
+        Logger.info(`user already exists, adding tokens`);
         user.tokens += gain;
         await message.reply(`hey you guessed correctly, nice job! you also earned ${gain.toString()} tokens!`);
         await user.save();
       } else {
-        Logger.debug(`user not found, creating user and adding tokens`);
+        Logger.info(`user not found, creating user and adding tokens`);
         const newUser = await createUser(message.author.id);
         newUser.tokens += gain;
         await message.reply(`hey you guessed correctly, nice job! i've also created a profile for you with ${gain.toString()} tokens.`);

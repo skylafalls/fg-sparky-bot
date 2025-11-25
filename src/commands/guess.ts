@@ -32,7 +32,7 @@ const Guess: Command = {
 
     const difficulty = interaction.options.get("difficulty", true).value as Difficulties;
     const number = findRandomNumber(difficulty);
-    Logger.info(`Player requested for number of difficulty ${difficulty}`);
+    Logger.info(`Player requested for number of difficulty ${difficulty}, which has an id of ${number.uuid}`);
 
     // The message that will be sent to the player, specifiying the difficulty,
     // and the amount of time they get to guess it.
