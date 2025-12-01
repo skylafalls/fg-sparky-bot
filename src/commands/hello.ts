@@ -9,7 +9,7 @@ import type { Command } from "./types.ts";
 
 const Hello: Command = {
   async run(client: Client, interaction: CommandInteraction): Promise<void> {
-    await interaction.followUp("Hi chat");
+    await interaction.reply("Hi chat");
   },
   description: "Say hi to the bot",
   name: "hello",
