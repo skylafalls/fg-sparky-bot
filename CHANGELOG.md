@@ -1,5 +1,18 @@
 # changelog
 
+## 0.10.1 - December 1st, 2025
+### features:
+- \[[`8761d77b`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/8761d77b10122434cf6b944199a94e75598c4b4c)] - feat(profiles): add user leaderboard subcommand
+- \[[`d257bfa6`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/d257bfa69beaa17df5d7c11538f108735896aa1f)] - feat(cmds): use the terminus token emoji i uploaded
+- \[[`fa1979d0`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/fa1979d0b4c1e4beafa684e507aab40c855337bf)] - feat(guess): returns the current token amount on successful guess
+- \[[`e67fabdb`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/e67fabdb8fff5aa94fcb7058169227cec17a1f26)] - feat(cmds): add useful utility commands
+- \[[`d3e33f96`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/d3e33f963234f4d2adc4cce5d1d26cf4733d2de4)] - feat(cmds): improve restart command
+
+### fixes:
+- \[[`6479af52`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/6479af52adcb7fb25f7c3ad5c7bfde35d7eb54c3)] - fix(db): fix table name to prevent table splitting
+- \[[`b64fd6bc`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/b64fd6bc6b55715673a0b5007f60f4e2e87ebea9)] - fix(scripts): fix the path to the numbers.json
+- \[[`605c0e02`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/605c0e02af90f02133f8319b292713acbe31b7f5)] - fix(hello): interaction.reply not followUp
+
 ## 0.10.0 - November 30th, 2025
 ### features:
 - \[[`5c1755f0`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/5c1755f07d013f47f111f6bd25ca8cce0a5e68aa)] - feat(guess): omni oridnal
