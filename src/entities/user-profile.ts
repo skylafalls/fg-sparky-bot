@@ -26,6 +26,6 @@ export class UserProfile extends BaseEntity {
   /**
    * Array of unique entries the player has guessed.
    */
-  @Column("json")
+  @Column("json", { name: "guessed_entries" })
   guessedEntries: string[] = [];
 }
