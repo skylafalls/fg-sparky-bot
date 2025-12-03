@@ -22,4 +22,10 @@ export class UserProfile extends BaseEntity {
    */
   @Column("integer")
   tokens = 0;
+
+  /**
+   * Array of unique entries the player has guessed.
+   */
+  @Column("json")
+  guessedEntries: string[] = [];
 }
