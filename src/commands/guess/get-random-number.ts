@@ -4,8 +4,8 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import numbers from "../../numbers/numbers.json" with { type: "json" };
-import { Logger } from "../utils/logger";
+import numbers from "../../../numbers/numbers.json" with { type: "json" };
+import { Logger } from "../../utils/logger";
 
 export type Difficulties = "easy" | "medium" | "hard" | "random";
 

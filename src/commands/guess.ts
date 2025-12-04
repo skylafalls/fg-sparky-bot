@@ -6,8 +6,8 @@
  */
 import { ApplicationCommandOptionType, type Client, type CommandInteraction } from "discord.js";
 import { Logger } from "../utils/logger.ts";
-import { findRandomNumber, type Difficulties } from "./get-random-number.ts";
-import { handleResponse } from "./guess-handler.ts";
+import { findRandomNumber, type Difficulties } from "./guess/get-random-number.ts";
+import { handleResponse } from "./guess/handler.ts";
 import type { Command } from "./types.ts";
 
 const Guess: Command = {

@@ -4,95 +4,21 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { ApplicationCommandOptionType, type Client, type CommandInteraction, type User as DiscordUser } from "discord.js";
-import numbers from "../../numbers/numbers.json" with { type: "json" };
-import { UserProfile } from "../entities/user-profile.ts";
-import { getUser } from "../utils/user.ts";
+import { ApplicationCommandOptionType, type Client, type CommandInteraction } from "discord.js";
 import type { Command } from "./types.ts";
-
-function ordinalOf(number: number): `${number}${"st" | "nd" | "rd" | "th"}` {
-  const j = number % 10,
-    k = number % 100;
-  if (j === 1 && k !== 11) {
-    return `${number}st`;
-  }
-  if (j === 2 && k !== 12) {
-    return `${number}nd`;
-  }
-  if (j === 3 && k !== 13) {
-    return `${number}rd`;
-  }
-  return `${number}th`;
-}
-
-function countEntriesUnique(difficulty: "easy" | "medium" | "hard" | "legendary", entries: string[]): number {
-  const filtered = numbers[difficulty].filter((entry) => {
-    for (const uuid of entries) {
-      if (entry.uuid === uuid) return true;
-    }
-    return false;
-  });
-  return filtered.length;
-}
-
-function countEntriesTotal(difficulty: "easy" | "medium" | "hard" | "legendary", entries: string[]): number {
-  const filtered = entries.filter((uuid) => {
-    for (const entry of numbers[difficulty]) {
-      if (uuid === entry.uuid) return true;
-    }
-    return false;
-  });
-  return filtered.length;
-}
+import userLeaderboardDisplay from "./users/leaderboard.ts";
+import userShow from "./users/show.ts";
 
 const User: Command = {
   async run(client: Client, interaction: CommandInteraction): Promise<void> {
     if (!interaction.isChatInputCommand()) return;
     switch (interaction.options.getSubcommand()) {
       case "show": {
-        const userId = interaction.options.get("user", true).value as string;
-        const userInfo = await getUser(userId);
-        const discordUser = await client.users.fetch(userId);
-        if (userInfo) {
-          const { guessedEntries, uniqueGuessed } = userInfo;
-          const content = [
-            `## Profile information for ${discordUser.displayName} (${discordUser.username}`,
-            `terminus tokens: ${userInfo.tokens.toString()} <:terminusfinity:1444859277515690075>`,
-            `numbers guessed: ${guessedEntries.length.toString()} (total), ${uniqueGuessed.length.toString()} (unique)`,
-            `- easy numbers: ${countEntriesTotal("easy", guessedEntries).toString()} (total), ${countEntriesUnique("easy", uniqueGuessed).toString()} (unique)`,
-            `- medium numbers: ${countEntriesTotal("medium", guessedEntries).toString()} (total), ${countEntriesUnique("medium", uniqueGuessed).toString()} (unique)`,
-            `- hard numbers: ${countEntriesTotal("hard", guessedEntries).toString()} (total), ${countEntriesUnique("hard", uniqueGuessed).toString()} (unique)`,
-            `- legendary numbers: ${countEntriesTotal("legendary", guessedEntries).toString()} (total), ${countEntriesUnique("legendary", uniqueGuessed).toString()} (unique)`,
-          ];
-          await interaction.reply({
-            content: content.join("\n"),
-          });
-        } else {
-          await interaction.reply("sorry, fg sparky bot doesn't have data for this user");
-        }
+        await userShow(client, interaction);
         return;
       }
       case "leaderboard": {
-        const users = await UserProfile.find({ order: { tokens: "DESC" }, select: ["id", "tokens"] });
-        const discordUsers: DiscordUser[] = await Promise.all(
-          users.map(profile => client.users.fetch(profile.id)),
-        );
-        const content = `\
-        # User leaderboard: \n \
-        ${users.map((user, index) => {
-          if (index > (interaction.options.getNumber("amount", false) ?? 10) - 1) return "no";
-          const position = ordinalOf(index + 1);
-          // Sometimes an IIFE looks better then chaining ternaries
-          const header = ((index) => {
-            if (index === 0) return "##";
-            if (index === 1) return "###";
-            return "";
-          })(index);
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          return `${header} ${position}: ${discordUsers[index]!.displayName} (${user.tokens.toString()} <:terminusfinity:1444859277515690075>)`;
-        }).filter(value => value !== "no").join("\n")}
-        `;
-        await interaction.reply({ content });
+        await userLeaderboardDisplay(client, interaction);
         return;
       }
       default: {

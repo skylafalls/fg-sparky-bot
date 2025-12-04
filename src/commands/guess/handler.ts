@@ -5,9 +5,10 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import type { ChatInputCommandInteraction, Client, Message, OmitPartialGroupDMChannel } from "discord.js";
-import { Logger } from "../utils/logger";
-import { createUser, getUser } from "../utils/user";
-import { guessCooldowns } from "./cooldowns";
+import { Logger } from "../../utils/logger";
+import { getGainFromDifficulty } from "../../utils/numbers";
+import { createUser, getUser } from "../../utils/user";
+import { guessCooldowns } from "../cooldowns";
 import type { NumberInfo } from "./get-random-number";
 
 const hasher = new Bun.CryptoHasher("sha512");
@@ -29,23 +30,6 @@ function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: 
   }
   Logger.info("user guessed incorrectly");
   return false;
-}
-
-function getGainFromDifficulty(difficulty: "easy" | "medium" | "hard" | "legendary"): 10 | 25 | 50 | 500 {
-  switch (difficulty) {
-    case "easy": {
-      return 10;
-    }
-    case "medium": {
-      return 25;
-    }
-    case "hard": {
-      return 50;
-    }
-    case "legendary": {
-      return 500;
-    }
-  }
 }
 
 export function handleResponse(client: Client, interaction: ChatInputCommandInteraction, number: NumberInfo): void {
