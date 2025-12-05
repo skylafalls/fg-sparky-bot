@@ -6,7 +6,7 @@
  */
 import { Command } from "commander";
 import { Client } from "discord.js";
-import { initClient, initDB } from ".";
+import { initClient } from ".";
 import { AppDataSource } from "./db";
 import { Logger } from "./utils/logger";
 
@@ -18,7 +18,7 @@ const program = new Command()
 
 program.parse(process.argv);
 
-const { token = process.env.DISCORD_TOKEN, loglevel = process.env.LOG_LEVEL } = program.opts<{
+const { token = process.env.DISCORD_TOKEN, loglevel = Number(process.env.LOG_LEVEL ?? 0) } = program.opts<{
   token?: string;
   loglevel?: number;
 }>();
@@ -33,8 +33,9 @@ const client: Client = new Client({
 });
 
 try {
-  Logger.loglevel = loglevel ?? 0;
-  await initDB(AppDataSource);
+  Logger.loglevel = loglevel;
+  Logger.notice("Initializing database");
+  await AppDataSource.initialize();
   await initClient(client, token);
 } catch (error) {
   if (!Error.isError(error)) throw error;
