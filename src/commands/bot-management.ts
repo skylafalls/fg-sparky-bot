@@ -31,7 +31,7 @@ export const Restart: Command = {
     }
     await interaction.reply("Restarting...");
     if (interaction.options.getBoolean("rebuild", false)) await Bun.$`/home/linuxbrew/.linuxbrew/bin/bun run build`;
-    process.exit(3);
+    process.exit(0);
   },
   description: "Restarts the bot",
   name: "restart",
