@@ -5,6 +5,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import type { ChatInputCommandInteraction, Client, Message, OmitPartialGroupDMChannel } from "discord.js";
+import { assert } from "../../utils/assert";
 import { Logger } from "../../utils/logger";
 import { getGainFromDifficulty } from "../../utils/numbers";
 import { createUser, getUser } from "../../utils/user";
@@ -34,9 +35,12 @@ function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: 
 
 export function handleResponse(client: Client, interaction: ChatInputCommandInteraction, number: NumberInfo): void {
   const gain = getGainFromDifficulty(number.difficulty);
+  assert(interaction.inGuild());
 
   const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
     if (message.channelId !== interaction.channelId) return;
+    assert(message.inGuild());
+
     if (number.uuid === "c380c246-8cb9-4d78-8e5c-2de6d0fd9aad" && message.content.match(/omni oridnal/mu)) {
       await message.reply("omni oridnal");
       return;
@@ -46,7 +50,7 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
       client.off("messageCreate", handler);
       guessCooldowns.set(interaction.channelId, false);
 
-      const user = await getUser(message.author.id);
+      const user = await getUser(message.author.id, message.guildId);
       Logger.debug(`tried looking up user ${message.author.id} (found: ${user ? "true" : "false"})`);
 
       if (user) {
@@ -61,7 +65,7 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
         await user.save();
       } else {
         Logger.info(`user not found, creating user and adding tokens`);
-        const newUser = await createUser(message.author.id);
+        const newUser = await createUser(message.author.id, message.guildId);
         newUser.tokens += gain;
         newUser.guessedEntries.push(number.uuid);
         // this is a fresh new profile which means it is guaranteed to have zero unique guesses.

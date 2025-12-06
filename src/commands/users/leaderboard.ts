@@ -1,9 +1,11 @@
 import type { ChatInputCommandInteraction, Client, User as DiscordUser } from "discord.js";
 import { UserProfile } from "../../entities/user-profile";
+import { assert } from "../../utils/assert";
 import { Logger } from "../../utils/logger";
 import { ordinalOf } from "../../utils/numbers";
 
 export default async function userLeaderboardDisplay(client: Client, interaction: ChatInputCommandInteraction): Promise<void> {
+  assert(interaction.inGuild());
   await interaction.deferReply();
 
   const displayAmount = (interaction.options.getNumber("amount", false) ?? 10);
@@ -16,6 +18,7 @@ export default async function userLeaderboardDisplay(client: Client, interaction
   const users = await UserProfile.find({
     order: { tokens: "DESC" },
     select: ["id", "tokens"],
+    where: { guildId: interaction.guildId },
     take: displayAmount,
   });
   console.timeEnd("/user-leaderboard: fetch user data from db");

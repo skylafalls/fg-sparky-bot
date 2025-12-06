@@ -6,15 +6,17 @@
  */
 import { UserProfile } from "../entities/user-profile";
 
-export async function getUser(id: string): Promise<UserProfile | null> {
+export async function getUser(id: string, guildId: string): Promise<UserProfile | null> {
   return await UserProfile.findOneBy({
     id,
+    guildId,
   });
 }
 
-export async function createUser(id: string): Promise<UserProfile> {
+export async function createUser(id: string, guildId: string): Promise<UserProfile> {
   const user = new UserProfile();
   user.id = id;
+  user.guildId = guildId;
   await user.save();
   return user;
 }

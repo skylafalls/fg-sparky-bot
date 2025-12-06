@@ -18,6 +18,12 @@ export class UserProfile extends BaseEntity {
   id = "";
 
   /**
+   * User guild they belong in.
+   */
+  @PrimaryColumn("text")
+  guildId = "";
+
+  /**
    * The current terminus token count for the user.
    */
   @Column("integer")

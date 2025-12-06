@@ -1,10 +1,12 @@
 import type { ChatInputCommandInteraction, Client } from "discord.js";
+import { assert } from "../../utils/assert";
 import { countEntriesTotal, countEntriesUnique } from "../../utils/numbers";
 import { getUser } from "../../utils/user";
 
 export default async function userShow(client: Client, interaction: ChatInputCommandInteraction): Promise<void> {
+  assert(interaction.inGuild());
   const userId = interaction.options.get("user", true).value as string;
-  const userInfo = await getUser(userId);
+  const userInfo = await getUser(userId, interaction.guildId);
   const discordUser = await client.users.fetch(userId);
   if (userInfo) {
     const { guessedEntries, uniqueGuessed } = userInfo;
