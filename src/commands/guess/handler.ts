@@ -5,7 +5,6 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import type { ChatInputCommandInteraction, Client, Message, OmitPartialGroupDMChannel } from "discord.js";
-import { assert } from "../../utils/assert";
 import { Logger } from "../../utils/logger";
 import { getGainFromDifficulty } from "../../utils/numbers";
 import { createUser, getUser } from "../../utils/user";
@@ -38,7 +37,6 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
 
   const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
     if (message.channelId !== interaction.channelId || message.author.bot) return;
-    assert(message.inGuild());
 
     if (number.uuid === "c380c246-8cb9-4d78-8e5c-2de6d0fd9aad" && message.content.match(/omni oridnal/mu)) {
       await message.reply("omni oridnal");
@@ -49,6 +47,8 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
       client.off("messageCreate", handler);
       guessCooldowns.set(interaction.channelId, false);
 
+      // @ts-expect-error: assertion fails for some reason even though the bot can only
+      // be installed in a guild
       const user = await getUser(message.author.id, message.guildId);
       Logger.debug(`tried looking up user ${message.author.id} (found: ${user ? "true" : "false"})`);
 
@@ -67,6 +67,8 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
         await user.save();
       } else {
         Logger.info(`user not found, creating user and adding tokens`);
+        // @ts-expect-error: assertion fails for some reason even though the bot can only
+        // be installed in a guild
         const newUser = await createUser(message.author.id, message.guildId);
         newUser.tokens += gain;
         newUser.guessedEntries.push(number.uuid);
