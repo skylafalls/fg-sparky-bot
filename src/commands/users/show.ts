@@ -11,7 +11,7 @@ export default async function userShow(client: Client, interaction: ChatInputCom
   if (userInfo) {
     const { guessedEntries, uniqueGuessed } = userInfo;
     const content = [
-      `## Profile information for ${discordUser.displayName} (${discordUser.username}`,
+      `## Profile information for ${discordUser.displayName} (${discordUser.username})`,
       `terminus tokens: ${userInfo.tokens.toString()} <:terminusfinity:1444859277515690075>`,
       `numbers guessed: ${guessedEntries.length.toString()} (total), ${uniqueGuessed.length.toString()} (unique)`,
       `- easy numbers: ${countEntriesTotal("easy", guessedEntries).toString()} (total), ${countEntriesUnique("easy", uniqueGuessed).toString()} (unique)`,
