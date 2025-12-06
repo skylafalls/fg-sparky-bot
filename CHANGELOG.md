@@ -1,5 +1,9 @@
 # changelog
 
+## 0.11.1 - December 5th, 2025
+### fixes:
+- \[[`7e1927eb`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/7e1927eb88b6a90b51df2a7218b6ee5d018974cc)] - fix(users/show): add missing paranthesis
+
 ## 0.11.0 - December 5th, 2025
 ### BREAKING CHANGES:
 - \[[`ca3b0b20`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/ca3b0b201638fedc36c0572ae3488ca22754acc4)] - refactor(users)!: scope profiles information to their servers
