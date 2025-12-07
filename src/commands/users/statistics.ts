@@ -1,5 +1,7 @@
 import type { Client } from "discord.js";
 import { UserProfile } from "../../entities/user-profile";
+import { UNIQUE_EASY_ENTRIES, UNIQUE_ENTRIES, UNIQUE_HARD_ENTRIES, UNIQUE_LEGENDARY_ENTRIES, UNIQUE_MEDIUM_ENTRIES } from "../../utils/constants";
+import { formatPercent } from "../../utils/formatter";
 import { countEntriesTotal, countEntriesUnique } from "../../utils/numbers";
 import type { ServerSlashCommandInteraction } from "../types";
 
@@ -45,17 +47,24 @@ export default async function serverStatisticsDisplay(_: Client, interaction: Se
         unique: countEntriesUnique("legendary", uniqueAcrossUsers).toString(),
       },
     },
+    numberPercentages: {
+      total: formatPercent(uniqueAcrossUsers.length / UNIQUE_ENTRIES),
+      easy: formatPercent(countEntriesUnique("easy", uniqueAcrossUsers) / UNIQUE_EASY_ENTRIES),
+      medium: formatPercent(countEntriesUnique("medium", uniqueAcrossUsers) / UNIQUE_MEDIUM_ENTRIES),
+      hard: formatPercent(countEntriesUnique("hard", uniqueAcrossUsers) / UNIQUE_HARD_ENTRIES),
+      legendary: formatPercent(countEntriesUnique("legendary", uniqueAcrossUsers) / UNIQUE_LEGENDARY_ENTRIES),
+    },
   };
 
   const content = [
     `# Server statistics for ${thisServer}:`,
     `- users that have played: ${calculatedStatistics.totalUsers}`,
     `- total terminus tokens across the servers: ${calculatedStatistics.totalTokens}`,
-    `- numbers guessed: ${calculatedStatistics.numbersGuessed.total} (total), ${calculatedStatistics.numbersGuessed.unique} (unique),`,
-    `  - easy numbers: ${calculatedStatistics.numbersGuessed.easy.total} (total), ${calculatedStatistics.numbersGuessed.easy.unique} (unique)`,
-    `  - medium numbers: ${calculatedStatistics.numbersGuessed.medium.total} (total), ${calculatedStatistics.numbersGuessed.medium.unique} (unique)`,
-    `  - hard numbers: ${calculatedStatistics.numbersGuessed.hard.total} (total), ${calculatedStatistics.numbersGuessed.hard.unique} (unique)`,
-    `  - legendary numbers: ${calculatedStatistics.numbersGuessed.legendary.total} (total), ${calculatedStatistics.numbersGuessed.legendary.unique} (unique)`,
+    `- numbers guessed: ${calculatedStatistics.numbersGuessed.total} (total), ${calculatedStatistics.numbersGuessed.unique} (unique) [${calculatedStatistics.numberPercentages.total}]`,
+    `  - easy numbers: ${calculatedStatistics.numbersGuessed.easy.total} (total), ${calculatedStatistics.numbersGuessed.easy.unique} (unique) [${calculatedStatistics.numberPercentages.easy}]`,
+    `  - medium numbers: ${calculatedStatistics.numbersGuessed.medium.total} (total), ${calculatedStatistics.numbersGuessed.medium.unique} (unique) [${calculatedStatistics.numberPercentages.medium}]`,
+    `  - hard numbers: ${calculatedStatistics.numbersGuessed.hard.total} (total), ${calculatedStatistics.numbersGuessed.hard.unique} (unique) [${calculatedStatistics.numberPercentages.hard}]`,
+    `  - legendary numbers: ${calculatedStatistics.numbersGuessed.legendary.total} (total), ${calculatedStatistics.numbersGuessed.legendary.unique} (unique) [${calculatedStatistics.numberPercentages.legendary}]`,
   ];
 
   await interaction.reply({ content: content.join("\n") });
