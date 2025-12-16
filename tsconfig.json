@@ -27,7 +27,7 @@
     "strict": true,
     "target": "esnext",
     "verbatimModuleSyntax": true,
-    "types": ["bun"],
+    "types": ["bun", "node"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
