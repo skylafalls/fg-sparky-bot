@@ -1,5 +1,17 @@
 # changelog
 
+## 0.11.5 - December 17th, 2025
+### refactors:
+- \[[`50de82ae`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/50de82ae1f99721b29e5822054482cf98dea7f2d)] - refactor(guess): split out special handler to separate function
+
+### fixes:
+- \[[`b26d3117`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/b26d311756bca7232b34af99eed8c5a2b62b2ba3)] - fix(meta): add editorconfig
+- \[[`95b47aac`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/95b47aacf15ed22b295b8e0b3f7058949be903f7)] - fix(build): don't compile to a binary file
+
+### chores:
+- \[[`cb141eee`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/cb141eee71b461a2cc33dff824515b3396f71783)] - chore(ts): add node to types in tsconfig
+- \[[`0de56889`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/0de568894866055caecee5c0beebc4f8683980ed)] - chore(deps): update deps
+
 ## 0.11.4 - December 14th, 2025
 ### features:
 - \[[`6547b9ed`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/6547b9edd6dfdfdf31efe8055755ba38732fcb87)] - feat(users/lb): add lb option for other stats
