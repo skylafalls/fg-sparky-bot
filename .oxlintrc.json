@@ -15,8 +15,7 @@
     "promise",
     "node",
     "jsx-a11y",
-    "vue",
-    "regex"
+    "vue"
   ],
   "env": {
     "builtin": true,
