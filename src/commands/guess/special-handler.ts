@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import type { Message, OmitPartialGroupDMChannel } from "discord.js";
-import { joinStringArray } from "../../utils/string";
+import { joinStringArray } from "../../utils/string" with { type: "comptime" };
 import type { NumberInfo } from "./get-random-number";
 
 /**
