@@ -9,6 +9,7 @@ import { handlePlayerGuess } from "../numberdex/handler.ts";
 import { baker } from "../numberdex/index.ts";
 import { spawnNumberhuman } from "../numberdex/utils.ts";
 import { Logger } from "../utils/logger.ts";
+import { getRandomRange } from "../utils/numbers.ts";
 import { joinStringArray } from "../utils/string.ts";
 import { createUser, getUser } from "../utils/user.ts";
 import type { Command } from "./types.ts";
@@ -27,7 +28,9 @@ const Numberdex: Command = {
           name: `numberdex-channel-${channel.id}`,
           cron: "@every_20_minutes",
           async callback(): Promise<void> {
-            Logger.info(`spawning numberhuman in channel ${channel.id}`);
+            const timeoutDuration = getRandomRange(0, 1200);
+            Logger.info(`spawning numberhuman in channel ${channel.id} after ${timeoutDuration.toFixed(0)} seconds`);
+            await Bun.sleep(timeoutDuration);
             const number = await spawnNumberhuman(channel);
             if (number.isOk()) {
               const [okNumber, sentMessage] = number.unwrap();
