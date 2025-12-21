@@ -2,221 +2,221 @@
 
 ## 0.12.0 - December 20th, 2025
 ### features:
-- \[[`707866e3`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/707866e36d7d70c692539ee05c6004dd3953e2ed)] - feat: numberdex game
+- \[[`707866e3`](https://github.com/skylafalls/fg-sparky-bot/commit/707866e36d7d70c692539ee05c6004dd3953e2ed)] - feat: numberdex game
 
 ### fixes:
-- \[[`3b5e853f`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/3b5e853fc10875afe61742515f6fad6f6e8ec772)] - fix(build): fix oxlint
-- \[[`cf08f401`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/cf08f401c0ba6a45963fca0ba103f1cdde6b8ae8)] - fix(deps): isolated linker like pnpm
-- \[[`eb2f0276`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/eb2f0276ee41fa29aabb96ea506d27359367a6a4)] - fix(guess): warn on dev
+- \[[`3b5e853f`](https://github.com/skylafalls/fg-sparky-bot/commit/3b5e853fc10875afe61742515f6fad6f6e8ec772)] - fix(build): fix oxlint
+- \[[`cf08f401`](https://github.com/skylafalls/fg-sparky-bot/commit/cf08f401c0ba6a45963fca0ba103f1cdde6b8ae8)] - fix(deps): isolated linker like pnpm
+- \[[`eb2f0276`](https://github.com/skylafalls/fg-sparky-bot/commit/eb2f0276ee41fa29aabb96ea506d27359367a6a4)] - fix(guess): warn on dev
 
 ### chores:
-- \[[`797ba313`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/797ba313ba4383330855e8f194445d189cd26a6c)] - chore(deps): update deps
+- \[[`797ba313`](https://github.com/skylafalls/fg-sparky-bot/commit/797ba313ba4383330855e8f194445d189cd26a6c)] - chore(deps): update deps
 
 ## 0.11.6 - December 18th, 2025
 ### fixes:
-- \[[`707866e3`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/707866e36d7d70c692539ee05c6004dd3953e2ed)] - fix(guess/handler): don't skip parsing guess if there's no easter egg
+- \[[`707866e3`](https://github.com/skylafalls/fg-sparky-bot/commit/707866e36d7d70c692539ee05c6004dd3953e2ed)] - fix(guess/handler): don't skip parsing guess if there's no easter egg
 
 ### refactors:
-- \[[`72b3a744`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/72b3a744c017c137c2b3bc8fb16d5511f4a48ecc)] - refactor(build): add comptime plugin
-- \[[`a75d605d`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/a75d605d97a893aaf020f5768b9959f999c4812f)] - refactor: actually use comptime and util functions
+- \[[`72b3a744`](https://github.com/skylafalls/fg-sparky-bot/commit/72b3a744c017c137c2b3bc8fb16d5511f4a48ecc)] - refactor(build): add comptime plugin
+- \[[`a75d605d`](https://github.com/skylafalls/fg-sparky-bot/commit/a75d605d97a893aaf020f5768b9959f999c4812f)] - refactor: actually use comptime and util functions
 
 ## 0.11.5 - December 17th, 2025
 ### refactors:
-- \[[`50de82ae`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/50de82ae1f99721b29e5822054482cf98dea7f2d)] - refactor(guess): split out special handler to separate function
+- \[[`50de82ae`](https://github.com/skylafalls/fg-sparky-bot/commit/50de82ae1f99721b29e5822054482cf98dea7f2d)] - refactor(guess): split out special handler to separate function
 
 ### fixes:
-- \[[`b26d3117`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/b26d311756bca7232b34af99eed8c5a2b62b2ba3)] - fix(meta): add editorconfig
-- \[[`95b47aac`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/95b47aacf15ed22b295b8e0b3f7058949be903f7)] - fix(build): don't compile to a binary file
+- \[[`b26d3117`](https://github.com/skylafalls/fg-sparky-bot/commit/b26d311756bca7232b34af99eed8c5a2b62b2ba3)] - fix(meta): add editorconfig
+- \[[`95b47aac`](https://github.com/skylafalls/fg-sparky-bot/commit/95b47aacf15ed22b295b8e0b3f7058949be903f7)] - fix(build): don't compile to a binary file
 
 ### chores:
-- \[[`cb141eee`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/cb141eee71b461a2cc33dff824515b3396f71783)] - chore(ts): add node to types in tsconfig
-- \[[`0de56889`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/0de568894866055caecee5c0beebc4f8683980ed)] - chore(deps): update deps
+- \[[`cb141eee`](https://github.com/skylafalls/fg-sparky-bot/commit/cb141eee71b461a2cc33dff824515b3396f71783)] - chore(ts): add node to types in tsconfig
+- \[[`0de56889`](https://github.com/skylafalls/fg-sparky-bot/commit/0de568894866055caecee5c0beebc4f8683980ed)] - chore(deps): update deps
 
 ## 0.11.4 - December 14th, 2025
 ### features:
-- \[[`6547b9ed`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/6547b9edd6dfdfdf31efe8055755ba38732fcb87)] - feat(users/lb): add lb option for other stats
+- \[[`6547b9ed`](https://github.com/skylafalls/fg-sparky-bot/commit/6547b9edd6dfdfdf31efe8055755ba38732fcb87)] - feat(users/lb): add lb option for other stats
 
 ### fixes:
-- \[[`4896db9e`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/4896db9e6b7d8dcba80209ef51a93148732d671a)] - fix: change logger imports to the correct file
-- \[[`9ed74d32`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/9ed74d326183f93a83c9fb0a3d4549d617afcdc8)] - fix(user/stats): filter unique entries out of the unique array
+- \[[`4896db9e`](https://github.com/skylafalls/fg-sparky-bot/commit/4896db9e6b7d8dcba80209ef51a93148732d671a)] - fix: change logger imports to the correct file
+- \[[`9ed74d32`](https://github.com/skylafalls/fg-sparky-bot/commit/9ed74d326183f93a83c9fb0a3d4549d617afcdc8)] - fix(user/stats): filter unique entries out of the unique array
 
 ### chores:
-- \[[`56f09f15`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/56f09f15ba1350a501407b47bd96c0f5cc63f71a)] - chore(entries): bump constant values
-- \[[`528b4a51`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/528b4a5196e7e72432062cfb181c6c3238a605dc)] - chore(constants): more like statics less like constants
+- \[[`56f09f15`](https://github.com/skylafalls/fg-sparky-bot/commit/56f09f15ba1350a501407b47bd96c0f5cc63f71a)] - chore(entries): bump constant values
+- \[[`528b4a51`](https://github.com/skylafalls/fg-sparky-bot/commit/528b4a5196e7e72432062cfb181c6c3238a605dc)] - chore(constants): more like statics less like constants
 
 ## 0.11.3 - December 7th, 2025
 ### fixes:
-- \[[`e31bcbd3`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/e31bcbd38c5121faae798df710821fdd557205a9)] - fix(deps): use better-sqlite3 and revert back to bun@1.3.3
+- \[[`e31bcbd3`](https://github.com/skylafalls/fg-sparky-bot/commit/e31bcbd38c5121faae798df710821fdd557205a9)] - fix(deps): use better-sqlite3 and revert back to bun@1.3.3
 
 ## 0.11.2 - December 7th, 2025
 ### features:
-- \[[`4fab8fef`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/4fab8fef5612b08492b0fe0e42a126c54d248503)] - feat(guess): a jet2 holiday
-- \[[`1557ac2d`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/1557ac2deda7424cb8238d180749d20ba662adf9)] - feat(users/statistics): show a percentage of how many entries guessed
+- \[[`4fab8fef`](https://github.com/skylafalls/fg-sparky-bot/commit/4fab8fef5612b08492b0fe0e42a126c54d248503)] - feat(guess): a jet2 holiday
+- \[[`1557ac2d`](https://github.com/skylafalls/fg-sparky-bot/commit/1557ac2deda7424cb8238d180749d20ba662adf9)] - feat(users/statistics): show a percentage of how many entries guessed
 
 ### fixes:
-- \[[`499a7db5`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/499a7db59558df8ac08bbf68e0e119c7629b141d)] - fix(guess): don't respond to bot messages
-- \[[`484b6b0a`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/484b6b0aa2aa36ae5d2f5fdca4b526f89ef60f29)] - fix(guess): remove assertion to prevent bot from shitting itself
-- \[[`2d90df43`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/2d90df43a03e0e3f99662d3d016c7b2f7c5846ee)] - fix(scripts): update path to numbers.json
-- \[[`16b531bd`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/16b531bd9e9f6a13f53cca83981616b4d6f131bd)] - fix(guess): remove /guess assertions
-- \[[`cb78e4ad`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/cb78e4adb849d5cd79f91833a3158b22bf48e9ab)] - fix(handlers): only invoke commands in actual servers
-- \[[`979063d0`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/979063d0728d9549b50a46754cb794c5e639cd75)] - fix(cmds): ensure commands are run in a server
-- \[[`0b6b4616`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/0b6b4616d12233a811ae7ca57a531c07a2897c86)] - fix(restart): exit with code 0 not 3
-- \[[`2b0df315`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/2b0df31548c0c463581cdee338d1d9391ec27c96)] - fix(scripts): dont replace every _ with .
+- \[[`499a7db5`](https://github.com/skylafalls/fg-sparky-bot/commit/499a7db59558df8ac08bbf68e0e119c7629b141d)] - fix(guess): don't respond to bot messages
+- \[[`484b6b0a`](https://github.com/skylafalls/fg-sparky-bot/commit/484b6b0aa2aa36ae5d2f5fdca4b526f89ef60f29)] - fix(guess): remove assertion to prevent bot from shitting itself
+- \[[`2d90df43`](https://github.com/skylafalls/fg-sparky-bot/commit/2d90df43a03e0e3f99662d3d016c7b2f7c5846ee)] - fix(scripts): update path to numbers.json
+- \[[`16b531bd`](https://github.com/skylafalls/fg-sparky-bot/commit/16b531bd9e9f6a13f53cca83981616b4d6f131bd)] - fix(guess): remove /guess assertions
+- \[[`cb78e4ad`](https://github.com/skylafalls/fg-sparky-bot/commit/cb78e4adb849d5cd79f91833a3158b22bf48e9ab)] - fix(handlers): only invoke commands in actual servers
+- \[[`979063d0`](https://github.com/skylafalls/fg-sparky-bot/commit/979063d0728d9549b50a46754cb794c5e639cd75)] - fix(cmds): ensure commands are run in a server
+- \[[`0b6b4616`](https://github.com/skylafalls/fg-sparky-bot/commit/0b6b4616d12233a811ae7ca57a531c07a2897c86)] - fix(restart): exit with code 0 not 3
+- \[[`2b0df315`](https://github.com/skylafalls/fg-sparky-bot/commit/2b0df31548c0c463581cdee338d1d9391ec27c96)] - fix(scripts): dont replace every _ with .
 
 ### chores:
-- \[[`f00a2132`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/f00a2132c67ebde244cd6da3be40f3739f8c2052)] - chore(scripts): build with sourcemap cause easier debugging
-- \[[`1b539e0f`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/1b539e0f4f9072d9af0dec8f74714119b185b700)] - chore: bump package manager version
+- \[[`f00a2132`](https://github.com/skylafalls/fg-sparky-bot/commit/f00a2132c67ebde244cd6da3be40f3739f8c2052)] - chore(scripts): build with sourcemap cause easier debugging
+- \[[`1b539e0f`](https://github.com/skylafalls/fg-sparky-bot/commit/1b539e0f4f9072d9af0dec8f74714119b185b700)] - chore: bump package manager version
   
 ## 0.11.1 - December 5th, 2025
 ### fixes:
-- \[[`7e1927eb`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/7e1927eb88b6a90b51df2a7218b6ee5d018974cc)] - fix(users/show): add missing paranthesis
+- \[[`7e1927eb`](https://github.com/skylafalls/fg-sparky-bot/commit/7e1927eb88b6a90b51df2a7218b6ee5d018974cc)] - fix(users/show): add missing paranthesis
 
 ## 0.11.0 - December 5th, 2025
 ### BREAKING CHANGES:
-- \[[`ca3b0b20`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/ca3b0b201638fedc36c0572ae3488ca22754acc4)] - refactor(users)!: scope profiles information to their servers
+- \[[`ca3b0b20`](https://github.com/skylafalls/fg-sparky-bot/commit/ca3b0b201638fedc36c0572ae3488ca22754acc4)] - refactor(users)!: scope profiles information to their servers
   
 ### features:
-- \[[`27fb6cc6`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/27fb6cc6ef177b160c5c3a5aefe3f25b1103337c)] - feat(users): add server statistics subcommand
+- \[[`27fb6cc6`](https://github.com/skylafalls/fg-sparky-bot/commit/27fb6cc6ef177b160c5c3a5aefe3f25b1103337c)] - feat(users): add server statistics subcommand
 
 ### refactors:
-- \[[`e53da13e`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/e53da13e2796e123f4568de532d35b8b2409b589)] - refcator(cmds): move specific and utility functions to separate files
-- \[[`794aca74`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/794aca748bcc8017e5d7f0e3a13ee482ae533cc2)] - refactor(utils): add assertions and move formatters
+- \[[`e53da13e`](https://github.com/skylafalls/fg-sparky-bot/commit/e53da13e2796e123f4568de532d35b8b2409b589)] - refcator(cmds): move specific and utility functions to separate files
+- \[[`794aca74`](https://github.com/skylafalls/fg-sparky-bot/commit/794aca748bcc8017e5d7f0e3a13ee482ae533cc2)] - refactor(utils): add assertions and move formatters
 
 ### performance improvements:
-- \[[`cfbacbc3`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/cfbacbc330e5f0695b64d08541905393d5b3bf9e)] - perf(user/lb): only take the selected amount from db
+- \[[`cfbacbc3`](https://github.com/skylafalls/fg-sparky-bot/commit/cfbacbc330e5f0695b64d08541905393d5b3bf9e)] - perf(user/lb): only take the selected amount from db
   
 ### fixes:
-- \[[`bc978942`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/bc9789425a4cd9ff888ab53251fd3e81d98516d3)] - fix(stats): use different filtering for total/unique stats
-- \[[`4fdc4ee8`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/4fdc4ee84746ca6305f6917d9527552da3780861)] - fix(users/lb): defer the reply to avoid interaction errors
-- \[[`185ca499`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/185ca499db8f293be60f892e34ea54485f68f28a)] - fix(users/lb): reply with multiple message for large amounts
+- \[[`bc978942`](https://github.com/skylafalls/fg-sparky-bot/commit/bc9789425a4cd9ff888ab53251fd3e81d98516d3)] - fix(stats): use different filtering for total/unique stats
+- \[[`4fdc4ee8`](https://github.com/skylafalls/fg-sparky-bot/commit/4fdc4ee84746ca6305f6917d9527552da3780861)] - fix(users/lb): defer the reply to avoid interaction errors
+- \[[`185ca499`](https://github.com/skylafalls/fg-sparky-bot/commit/185ca499db8f293be60f892e34ea54485f68f28a)] - fix(users/lb): reply with multiple message for large amounts
 
 ### chores:
-- \[[`4fe3615b`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/4fe3615ba322a54195ab203842eeaa2bc6dc0e50)] - chore(cli): no indrection in init pls
+- \[[`4fe3615b`](https://github.com/skylafalls/fg-sparky-bot/commit/4fe3615ba322a54195ab203842eeaa2bc6dc0e50)] - chore(cli): no indrection in init pls
 
 ## 0.10.2 - December 3rd, 2025
 ### features:
-- \[[`abeeaa46`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/abeeaa4645a74250fbbeb2bb57f59eb3ab7fe0fd)] - feat(users): track unique guesses for statistics ([#3](https://codeberg.org/skylafalls/fg-sparky-bot/issues/3))
-- \[[`feb1f8b2`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/feb1f8b24a46d8eda4b6b2c80a5e8d0202d1a41d)] - feat(users): also show unique entries
+- \[[`abeeaa46`](https://github.com/skylafalls/fg-sparky-bot/commit/abeeaa4645a74250fbbeb2bb57f59eb3ab7fe0fd)] - feat(users): track unique guesses for statistics ([#3](https://github.com/skylafalls/fg-sparky-bot/issues/3))
+- \[[`feb1f8b2`](https://github.com/skylafalls/fg-sparky-bot/commit/feb1f8b24a46d8eda4b6b2c80a5e8d0202d1a41d)] - feat(users): also show unique entries
 
 ### fixes:
-- \[[`82423ebf`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/82423ebfa379ebec8efab2facaaaf6a167bfef84)] - fix(users): fix leaderboard options parsing
-- \[[`79bc13bb`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/79bc13bbb3187d75778bf885d7acf70354c03150)] - fix(users): fix stats incorrectly being shown as unique
-- \[[`93b32a0d`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/93b32a0df2287c1e53b67e0f958eb302c4e135a3)] - fix(guess): no it'll be fine your stats will save
+- \[[`82423ebf`](https://github.com/skylafalls/fg-sparky-bot/commit/82423ebfa379ebec8efab2facaaaf6a167bfef84)] - fix(users): fix leaderboard options parsing
+- \[[`79bc13bb`](https://github.com/skylafalls/fg-sparky-bot/commit/79bc13bbb3187d75778bf885d7acf70354c03150)] - fix(users): fix stats incorrectly being shown as unique
+- \[[`93b32a0d`](https://github.com/skylafalls/fg-sparky-bot/commit/93b32a0df2287c1e53b67e0f958eb302c4e135a3)] - fix(guess): no it'll be fine your stats will save
 
 ### chores:
-- \[[`772af81e`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/772af81e25a0d52f03f1ed1c7acc564c4b0f02b6)] - chore(deps): update linters and typeorm
+- \[[`772af81e`](https://github.com/skylafalls/fg-sparky-bot/commit/772af81e25a0d52f03f1ed1c7acc564c4b0f02b6)] - chore(deps): update linters and typeorm
 
 ## 0.10.1 - December 1st, 2025
 ### features:
-- \[[`8761d77b`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/8761d77b10122434cf6b944199a94e75598c4b4c)] - feat(profiles): add user leaderboard subcommand
-- \[[`d257bfa6`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/d257bfa69beaa17df5d7c11538f108735896aa1f)] - feat(cmds): use the terminus token emoji i uploaded
-- \[[`fa1979d0`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/fa1979d0b4c1e4beafa684e507aab40c855337bf)] - feat(guess): returns the current token amount on successful guess
-- \[[`e67fabdb`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/e67fabdb8fff5aa94fcb7058169227cec17a1f26)] - feat(cmds): add useful utility commands
-- \[[`d3e33f96`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/d3e33f963234f4d2adc4cce5d1d26cf4733d2de4)] - feat(cmds): improve restart command
+- \[[`8761d77b`](https://github.com/skylafalls/fg-sparky-bot/commit/8761d77b10122434cf6b944199a94e75598c4b4c)] - feat(profiles): add user leaderboard subcommand
+- \[[`d257bfa6`](https://github.com/skylafalls/fg-sparky-bot/commit/d257bfa69beaa17df5d7c11538f108735896aa1f)] - feat(cmds): use the terminus token emoji i uploaded
+- \[[`fa1979d0`](https://github.com/skylafalls/fg-sparky-bot/commit/fa1979d0b4c1e4beafa684e507aab40c855337bf)] - feat(guess): returns the current token amount on successful guess
+- \[[`e67fabdb`](https://github.com/skylafalls/fg-sparky-bot/commit/e67fabdb8fff5aa94fcb7058169227cec17a1f26)] - feat(cmds): add useful utility commands
+- \[[`d3e33f96`](https://github.com/skylafalls/fg-sparky-bot/commit/d3e33f963234f4d2adc4cce5d1d26cf4733d2de4)] - feat(cmds): improve restart command
 
 ### fixes:
-- \[[`6479af52`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/6479af52adcb7fb25f7c3ad5c7bfde35d7eb54c3)] - fix(db): fix table name to prevent table splitting
-- \[[`b64fd6bc`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/b64fd6bc6b55715673a0b5007f60f4e2e87ebea9)] - fix(scripts): fix the path to the numbers.json
-- \[[`605c0e02`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/605c0e02af90f02133f8319b292713acbe31b7f5)] - fix(hello): interaction.reply not followUp
+- \[[`6479af52`](https://github.com/skylafalls/fg-sparky-bot/commit/6479af52adcb7fb25f7c3ad5c7bfde35d7eb54c3)] - fix(db): fix table name to prevent table splitting
+- \[[`b64fd6bc`](https://github.com/skylafalls/fg-sparky-bot/commit/b64fd6bc6b55715673a0b5007f60f4e2e87ebea9)] - fix(scripts): fix the path to the numbers.json
+- \[[`605c0e02`](https://github.com/skylafalls/fg-sparky-bot/commit/605c0e02af90f02133f8319b292713acbe31b7f5)] - fix(hello): interaction.reply not followUp
 
 ## 0.10.0 - November 30th, 2025
 ### features:
-- \[[`5c1755f0`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/5c1755f07d013f47f111f6bd25ca8cce0a5e68aa)] - feat(guess): omni oridnal
-- \[[`303411c5`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/303411c505f78e32ef362b9a59539b2ad137abe2)] - feat(entries): another 600 entries
+- \[[`5c1755f0`](https://github.com/skylafalls/fg-sparky-bot/commit/5c1755f07d013f47f111f6bd25ca8cce0a5e68aa)] - feat(guess): omni oridnal
+- \[[`303411c5`](https://github.com/skylafalls/fg-sparky-bot/commit/303411c505f78e32ef362b9a59539b2ad137abe2)] - feat(entries): another 600 entries
 
 ### fixes:
-- \[[`9fb77c3a`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/9fb77c3a149be45d29f50730a770fead7358804b)] - fix(entries): fix an easy
-- \[[`303411c5`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/303411c505f78e32ef362b9a59539b2ad137abe2)] - fix(entries): fix earthifinity
-- \[[`afd73ab2`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/afd73ab2f5b33b120ab2ebfcd97355af48aa71a8)] - fix(entries): fix the misspelled entries again ([#12](https://github.com/skylafalls/fg-sparky-bot/pull/12))
+- \[[`9fb77c3a`](https://github.com/skylafalls/fg-sparky-bot/commit/9fb77c3a149be45d29f50730a770fead7358804b)] - fix(entries): fix an easy
+- \[[`303411c5`](https://github.com/skylafalls/fg-sparky-bot/commit/303411c505f78e32ef362b9a59539b2ad137abe2)] - fix(entries): fix earthifinity
+- \[[`afd73ab2`](https://github.com/skylafalls/fg-sparky-bot/commit/afd73ab2f5b33b120ab2ebfcd97355af48aa71a8)] - fix(entries): fix the misspelled entries again ([#12](https://github.com/skylafalls/fg-sparky-bot/pull/12))
 
 ### refactors:
-- \[[`365cd0d9`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/365cd0d918430cf43903e3d5c5b69d4b2cef85af)] - refactor(entries): move the entries to a separate directory
-- \[[`a8eda4cd`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/a8eda4cd1665ab4509afcd987fdd54be5b2418f2)] - refactor(entries): stop committing the entries to git
+- \[[`365cd0d9`](https://github.com/skylafalls/fg-sparky-bot/commit/365cd0d918430cf43903e3d5c5b69d4b2cef85af)] - refactor(entries): move the entries to a separate directory
+- \[[`a8eda4cd`](https://github.com/skylafalls/fg-sparky-bot/commit/a8eda4cd1665ab4509afcd987fdd54be5b2418f2)] - refactor(entries): stop committing the entries to git
 
 ### chores:
-- \[[`57057c45`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/57057c45605a1718a60ab987f9498680df23d0c0)] - chore: shorten license header to use spdx 
+- \[[`57057c45`](https://github.com/skylafalls/fg-sparky-bot/commit/57057c45605a1718a60ab987f9498680df23d0c0)] - chore: shorten license header to use spdx 
 
 ## 0.9.0 - November 25th, 2025
 ### features:
-- \[[`18b3eef1`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/18b3eef1ce2315cf2c9947c79566b0460a9e78ff)] - feat: add user profiles ([#11](https://github.com/skylafalls/fg-sparky-bot/pull/11))
+- \[[`18b3eef1`](https://github.com/skylafalls/fg-sparky-bot/commit/18b3eef1ce2315cf2c9947c79566b0460a9e78ff)] - feat: add user profiles ([#11](https://github.com/skylafalls/fg-sparky-bot/pull/11))
 
 ### refactors:
-- \[[`311cb502`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/311cb5025fd7176efcf556175c7c6496534d6646)] - refactor(cmds): move /guess response logic to different file
-- \[[`a5137ead`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/a5137eaddaae0fc1244a2c23c56e75f8834fdb65)] - refactor(entries): migrate to UUIDs to point to numbers
-- \[[`69fc1db1`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/69fc1db1339c1311c5849320580bbcd80d2c3c45)] - refactor(cmds): slightly improve logging
+- \[[`311cb502`](https://github.com/skylafalls/fg-sparky-bot/commit/311cb5025fd7176efcf556175c7c6496534d6646)] - refactor(cmds): move /guess response logic to different file
+- \[[`a5137ead`](https://github.com/skylafalls/fg-sparky-bot/commit/a5137eaddaae0fc1244a2c23c56e75f8834fdb65)] - refactor(entries): migrate to UUIDs to point to numbers
+- \[[`69fc1db1`](https://github.com/skylafalls/fg-sparky-bot/commit/69fc1db1339c1311c5849320580bbcd80d2c3c45)] - refactor(cmds): slightly improve logging
 
 ### fixes:
-- \[[`1591cf20`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/1591cf2017ea1927690ccb8a113f4aa1b43903a2)] - fix(entries): fix paths for batches of numbers
-- \[[`8d74ee98`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/8d74ee98e1169f4945184e5e1bfda0a9aae6cc39)] - fix(guess): fix race conditions
+- \[[`1591cf20`](https://github.com/skylafalls/fg-sparky-bot/commit/1591cf2017ea1927690ccb8a113f4aa1b43903a2)] - fix(entries): fix paths for batches of numbers
+- \[[`8d74ee98`](https://github.com/skylafalls/fg-sparky-bot/commit/8d74ee98e1169f4945184e5e1bfda0a9aae6cc39)] - fix(guess): fix race conditions
 
 ## chores:
-- \[[`faf9b6ee`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/faf9b6ee53d8a151bc63d2ac6083ca120305defa)] - chore(deps): update linters
+- \[[`faf9b6ee`](https://github.com/skylafalls/fg-sparky-bot/commit/faf9b6ee53d8a151bc63d2ac6083ca120305defa)] - chore(deps): update linters
 
 ## 0.8.1 - November 23rd, 2025
 ### chores:
-- chore(deps): update deps lol \[[`6c1595fa`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/6c1595fa67b3e3de864a6d058926fc40ad68afc4)]
+- chore(deps): update deps lol \[[`6c1595fa`](https://github.com/skylafalls/fg-sparky-bot/commit/6c1595fa67b3e3de864a6d058926fc40ad68afc4)]
 
 ## 0.8.0 - November 23rd, 2025
 ### BREAKING CHANGES:
-- **fix(entries)!**: do not strip backslashes while guessing \[[`b718dc88`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/b718dc88ff68bf11b03128121270f121b6a569a3)]
+- **fix(entries)!**: do not strip backslashes while guessing \[[`b718dc88`](https://github.com/skylafalls/fg-sparky-bot/commit/b718dc88ff68bf11b03128121270f121b6a569a3)]
 
 ### features:
-- feat(cmds): implement better cooldown handling for /guess \[[`673b2ee2`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/673b2ee2b076f0f6eae19a5a3fce5bc4bbcfeed5)] ([#7](https://github.com/skylafalls/fg-sparky-bot/pull/7))
-- feat(entries): add new batch of hard numbers \[[`a1967e0c`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/a1967e0c850218ac33622b25513e697d02ac9cb5)]
-- feat(entries): even more numbers \[[`a4c46551`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/a4c465510678887922244adc7ea7d9e063389be0)] ([#8](https://github.com/skylafalls/fg-sparky-bot/pull/8))
-- feat(entries): Add multiple batches of numbers \[[`72bf7158`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/72bf715843939debee59c186ab8497c66e8d54d2)]
+- feat(cmds): implement better cooldown handling for /guess \[[`673b2ee2`](https://github.com/skylafalls/fg-sparky-bot/commit/673b2ee2b076f0f6eae19a5a3fce5bc4bbcfeed5)] ([#7](https://github.com/skylafalls/fg-sparky-bot/pull/7))
+- feat(entries): add new batch of hard numbers \[[`a1967e0c`](https://github.com/skylafalls/fg-sparky-bot/commit/a1967e0c850218ac33622b25513e697d02ac9cb5)]
+- feat(entries): even more numbers \[[`a4c46551`](https://github.com/skylafalls/fg-sparky-bot/commit/a4c465510678887922244adc7ea7d9e063389be0)] ([#8](https://github.com/skylafalls/fg-sparky-bot/pull/8))
+- feat(entries): Add multiple batches of numbers \[[`72bf7158`](https://github.com/skylafalls/fg-sparky-bot/commit/72bf715843939debee59c186ab8497c66e8d54d2)]
 
 ### refactors:
-- refactor(guess): made legendaries rarer (1/48 -> 1/60) \[[`1ac61a91`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/1ac61a91c311c4004aa896cdebbdaf99319fadad)]
+- refactor(guess): made legendaries rarer (1/48 -> 1/60) \[[`1ac61a91`](https://github.com/skylafalls/fg-sparky-bot/commit/1ac61a91c311c4004aa896cdebbdaf99319fadad)]
 
 ### bug fixes:
-- fix(entries): fix another easy number \[[`42fa49c3`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/42fa49c3621b9533a410060c294c3447c8825a3a)]
-- fix(entries): fix a medium \[[`993fde0f`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/993fde0f3bd6761a93ef1d012a05bf991d1ce6a5)]
-- fix(entries): fix a couple incorrect entries \[[`28b7721e`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/28b7721e38d02291720064f5c2c8ea2e95376321)]
+- fix(entries): fix another easy number \[[`42fa49c3`](https://github.com/skylafalls/fg-sparky-bot/commit/42fa49c3621b9533a410060c294c3447c8825a3a)]
+- fix(entries): fix a medium \[[`993fde0f`](https://github.com/skylafalls/fg-sparky-bot/commit/993fde0f3bd6761a93ef1d012a05bf991d1ce6a5)]
+- fix(entries): fix a couple incorrect entries \[[`28b7721e`](https://github.com/skylafalls/fg-sparky-bot/commit/28b7721e38d02291720064f5c2c8ea2e95376321)]
 
 ## 0.7.0 - November 14th, 2025
 ### BREAKING CHANGES:
-- **refactor(bot)!**: convert the bot into a cli app \[[`8ad9bbfd`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/8ad9bbfda83cbac7d32744dcd320870c2adfc583)] ([#5](https://github.com/skylafalls/fg-sparky-bot/pull/5))
+- **refactor(bot)!**: convert the bot into a cli app \[[`8ad9bbfd`](https://github.com/skylafalls/fg-sparky-bot/commit/8ad9bbfda83cbac7d32744dcd320870c2adfc583)] ([#5](https://github.com/skylafalls/fg-sparky-bot/pull/5))
 
 ## 0.6.2 - November 13th, 2025
 ### bug fixes:
-- fix(guess): Replace unicode characters with their ASCII variants before processing guess \[[`ac43893f`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/ac43893fc66d3f316075be7604f49cd46ad72445)]
-- fix(entries): fix an easy number \[[`84c1b876`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/84c1b87616091723debce68f140c3a509ca645ba)]
+- fix(guess): Replace unicode characters with their ASCII variants before processing guess \[[`ac43893f`](https://github.com/skylafalls/fg-sparky-bot/commit/ac43893fc66d3f316075be7604f49cd46ad72445)]
+- fix(entries): fix an easy number \[[`84c1b876`](https://github.com/skylafalls/fg-sparky-bot/commit/84c1b87616091723debce68f140c3a509ca645ba)]
 
 ## 0.6.1 - November 13th, 2025
 ### refactors:
-- refactor: add binary build script \[[`ddf536ef`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/ddf536ef7df740fc3b841df3182d65cb99a9dde5)]
+- refactor: add binary build script \[[`ddf536ef`](https://github.com/skylafalls/fg-sparky-bot/commit/ddf536ef7df740fc3b841df3182d65cb99a9dde5)]
 
 ## 0.6.0 - November 13th, 2025
 ### features:
-- feat(entries): add support for randomized and hard difficulties \[[`3fb36bff`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/3fb36bff73a949800477295caace22e2a8adc618)] ([#4](https://github.com/skylafalls/fg-sparky-bot/pull/4))
+- feat(entries): add support for randomized and hard difficulties \[[`3fb36bff`](https://github.com/skylafalls/fg-sparky-bot/commit/3fb36bff73a949800477295caace22e2a8adc618)] ([#4](https://github.com/skylafalls/fg-sparky-bot/pull/4))
 
 ## 0.5.4 - November 12th, 2025
 
 ### fixes
-- fix(entries): rename some incorrect entries \[[`7057fb31`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/7057fb31313039584cb786813d364f03cd11e179)] ([#3](https://github.com/skylafalls/fg-sparky-bot/pull/3))
+- fix(entries): rename some incorrect entries \[[`7057fb31`](https://github.com/skylafalls/fg-sparky-bot/commit/7057fb31313039584cb786813d364f03cd11e179)] ([#3](https://github.com/skylafalls/fg-sparky-bot/pull/3))
 
 ## 0.5.3 - November 11th, 2025
 
 ### features:
-- feat(entries): add the last batch of mediums \[[`27587ac4`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/27587ac40c51ece3438da4ec7b54240d1b9d4c8f)\]
+- feat(entries): add the last batch of mediums \[[`27587ac4`](https://github.com/skylafalls/fg-sparky-bot/commit/27587ac40c51ece3438da4ec7b54240d1b9d4c8f)\]
 
 ### refactors:
-- refactor: update deps and improve scripts \[[`d656a7bb`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/d656a7bba2facfa383676d9b9f2046bd3691f215)\]
+- refactor: update deps and improve scripts \[[`d656a7bb`](https://github.com/skylafalls/fg-sparky-bot/commit/d656a7bba2facfa383676d9b9f2046bd3691f215)\]
 
 ## 0.5.2 - November 11th, 2025
-- feat(entries): add new medium \[[`4201a57d`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/4201a57d0cd29124036b12834584a1c246f3a347)\]
+- feat(entries): add new medium \[[`4201a57d`](https://github.com/skylafalls/fg-sparky-bot/commit/4201a57d0cd29124036b12834584a1c246f3a347)\]
 
 ## 0.5.1 - November 11th, 2025
 
 ### features
-- feat(entries): add new easy ([`8cde98b181`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/8cde98b181aa82f407550efd757b649d7241612c))
+- feat(entries): add new easy ([`8cde98b181`](https://github.com/skylafalls/fg-sparky-bot/commit/8cde98b181aa82f407550efd757b649d7241612c))
 
 ### refactors
-- refactor(scripts): convince linter to shut ([`525c6f1db2`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/525c6f1db23dacd3df219fea2db89d114e874a71))
+- refactor(scripts): convince linter to shut ([`525c6f1db2`](https://github.com/skylafalls/fg-sparky-bot/commit/525c6f1db23dacd3df219fea2db89d114e874a71))
 
 ### fixes
-- fix(release): try fixing commit links ([`246d5ee0dc`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/246d5ee0dc4887cd813a151fa49344ff773cc75a))
+- fix(release): try fixing commit links ([`246d5ee0dc`](https://github.com/skylafalls/fg-sparky-bot/commit/246d5ee0dc4887cd813a151fa49344ff773cc75a))
 
 ## 0.5.0 - November 10th, 2025
 
@@ -241,17 +241,17 @@
 - chore(deps): update oxlint and remove temporal polyfill [f5ed87ba1345638426bc231b3f4c9744f9dad470]
 
 ## 0.4.0 - November 9th, 2025
-- fix(entries): phreezium and unending pint was wrong ([d3d5709](https://codeberg.org/skylafalls/fg-sparky-bot/commit/d3d5709c22c89e7783589ca6911d8d77184b9a78))
-- fix(cmds): also the medium difficulty is partially implemented ([f0f423b](https://codeberg.org/skylafalls/fg-sparky-bot/commit/f0f423b7911774fb91d00f4f9d0fe5dcb0975bda))
-- fix(entries): renamed second earthifinity to tierrafinity ([e87eda7](https://codeberg.org/skylafalls/fg-sparky-bot/commit/e87eda7c8051724e32b063d440b7e7d3a6cc56ee))
-- refactor(cmds): one more logging statement ([ebbccaf](https://codeberg.org/skylafalls/fg-sparky-bot/commit/ebbccaf65abbd24f87ce7415488c1a641aec0de5))
-- fix(entries): fix rotated entry ([afc7a0b](https://codeberg.org/skylafalls/fg-sparky-bot/commit/afc7a0b4b28f568a0e3d0d7747daf4dcd84e6b9f))
-- fix(entries): fix number names ([9d61a88](https://codeberg.org/skylafalls/fg-sparky-bot/commit/9d61a88969730b826764b7c66ba41b226b24aaa4))
-- feat(cmds): implement cooldowns to prevent spamming ([0ccc586](https://codeberg.org/skylafalls/fg-sparky-bot/commit/0ccc5865dc72ff87dc8aba971578d0c18ac0cf1d))
-- feat(guess): improve reply messages ([9c410ea](https://codeberg.org/skylafalls/fg-sparky-bot/commit/9c410eafc53b3430e424d6e4e3c1e5d5e180f76a))
+- fix(entries): phreezium and unending pint was wrong ([d3d5709](https://github.com/skylafalls/fg-sparky-bot/commit/d3d5709c22c89e7783589ca6911d8d77184b9a78))
+- fix(cmds): also the medium difficulty is partially implemented ([f0f423b](https://github.com/skylafalls/fg-sparky-bot/commit/f0f423b7911774fb91d00f4f9d0fe5dcb0975bda))
+- fix(entries): renamed second earthifinity to tierrafinity ([e87eda7](https://github.com/skylafalls/fg-sparky-bot/commit/e87eda7c8051724e32b063d440b7e7d3a6cc56ee))
+- refactor(cmds): one more logging statement ([ebbccaf](https://github.com/skylafalls/fg-sparky-bot/commit/ebbccaf65abbd24f87ce7415488c1a641aec0de5))
+- fix(entries): fix rotated entry ([afc7a0b](https://github.com/skylafalls/fg-sparky-bot/commit/afc7a0b4b28f568a0e3d0d7747daf4dcd84e6b9f))
+- fix(entries): fix number names ([9d61a88](https://github.com/skylafalls/fg-sparky-bot/commit/9d61a88969730b826764b7c66ba41b226b24aaa4))
+- feat(cmds): implement cooldowns to prevent spamming ([0ccc586](https://github.com/skylafalls/fg-sparky-bot/commit/0ccc5865dc72ff87dc8aba971578d0c18ac0cf1d))
+- feat(guess): improve reply messages ([9c410ea](https://github.com/skylafalls/fg-sparky-bot/commit/9c410eafc53b3430e424d6e4e3c1e5d5e180f76a))
 
 ## 0.3.0 - November 9th, 2025
-- feat(entries): Add a bunch of mediums ([8fc7dcf](https://codeberg.org/skylafalls/fg-sparky-bot/commit/8fc7dcf69be4950b293225376fe5b69d16fd7717))
+- feat(entries): Add a bunch of mediums ([8fc7dcf](https://github.com/skylafalls/fg-sparky-bot/commit/8fc7dcf69be4950b293225376fe5b69d16fd7717))
 
 ## 0.2.1 - November 9th, 2025
 - fix: warn on unsupported difficulties
