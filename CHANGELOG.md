@@ -1,5 +1,17 @@
 # changelog
 
+## 0.12.0 - December 20th, 2025
+### features:
+- \[[`707866e3`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/707866e36d7d70c692539ee05c6004dd3953e2ed)] - feat: numberdex game
+
+### fixes:
+- \[[`3b5e853f`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/3b5e853fc10875afe61742515f6fad6f6e8ec772)] - fix(build): fix oxlint
+- \[[`cf08f401`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/cf08f401c0ba6a45963fca0ba103f1cdde6b8ae8)] - fix(deps): isolated linker like pnpm
+- \[[`eb2f0276`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/eb2f0276ee41fa29aabb96ea506d27359367a6a4)] - fix(guess): warn on dev
+
+### chores:
+- \[[`797ba313`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/797ba313ba4383330855e8f194445d189cd26a6c)] - chore(deps): update deps
+
 ## 0.11.6 - December 18th, 2025
 ### fixes:
 - \[[`707866e3`](https://codeberg.org/skylafalls/fg-sparky-bot/commit/707866e36d7d70c692539ee05c6004dd3953e2ed)] - fix(guess/handler): don't skip parsing guess if there's no easter egg
