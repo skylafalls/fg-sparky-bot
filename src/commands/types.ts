@@ -10,7 +10,7 @@ import type { ChatInputApplicationCommandData, ChatInputCommandInteraction, Clie
  * The object structure that represents a slash command.
  */
 export interface Command extends ChatInputApplicationCommandData {
-  run: (client: Client, interaction: CommandInteraction<"raw" | "cached">) => Promise<void>;
+  run: (client: Client, interaction: CommandInteraction<"raw" | "cached">) => void | Promise<void>;
   cooldown?: number | undefined;
 }
 

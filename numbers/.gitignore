@@ -2,4 +2,7 @@ easy/*
 medium/*
 hard/*
 legendary/*
-numbers.json
+humans/*/*
+!humans/*
+*.json
+!*.schema.json

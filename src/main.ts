@@ -8,6 +8,7 @@ import { Command } from "commander";
 import { Client } from "discord.js";
 import { initClient } from ".";
 import { AppDataSource } from "./db";
+import { baker, setupCronJobs } from "./numberdex";
 import { Logger } from "./utils/logger";
 
 const program = new Command()
@@ -32,11 +33,23 @@ const client: Client = new Client({
   intents: ["Guilds", "GuildMessages", "DirectMessages", "MessageContent"],
 });
 
+declare global {
+  namespace globalThis {
+    var client: Client;
+  }
+}
+
+globalThis.client = client;
+
 try {
   Logger.loglevel = loglevel;
   Logger.notice("Initializing database");
   await AppDataSource.initialize();
   await initClient(client, token);
+  await setupCronJobs(client, baker);
+  process.on("beforeExit", async () => {
+    await baker.saveState();
+  });
 } catch (error) {
   if (!Error.isError(error)) throw error;
   Logger.error(`Failed to initalize bot client: ${error.message}`);
