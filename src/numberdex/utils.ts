@@ -59,7 +59,7 @@ export async function spawnNumberhuman(channel: SendableChannels): Promise<Resul
 export function setupCallback(job: ICron, channel: SendableChannels): ICron {
   if (/numberdex-channel-[0-9]+/.test(job.name)) {
     job.callback = async () => {
-      const timeoutDuration = getRandomRange(0, 1200);
+      const timeoutDuration = getRandomRange(0, 1200) * 1000;
       Logger.info(`spawning numberhuman in channel ${channel.id} after ${timeoutDuration.toFixed(0)} seconds`);
       await Bun.sleep(timeoutDuration);
       const number = await spawnNumberhuman(channel);
