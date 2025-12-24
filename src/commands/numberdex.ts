@@ -28,9 +28,9 @@ const Numberdex: Command = {
           name: `numberdex-channel-${channel.id}`,
           cron: "@every_20_minutes",
           async callback(): Promise<void> {
-            const timeoutDuration = getRandomRange(0, 1200) * 1000;
+            const timeoutDuration = getRandomRange(0, 1200);
             Logger.info(`spawning numberhuman in channel ${channel.id} after ${timeoutDuration.toFixed(0)} seconds`);
-            await Bun.sleep(timeoutDuration);
+            Bun.sleepSync(timeoutDuration * 1000);
             const number = await spawnNumberhuman(channel);
             if (number.isOk()) {
               const [okNumber, sentMessage] = number.unwrap();
