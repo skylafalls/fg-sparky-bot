@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import { comptime } from "comptime.ts" with { type: "comptime" };
-import { ApplicationCommandOptionType, type Client, type CommandInteraction } from "discord.js";
+import { ApplicationCommandOptionType, AttachmentBuilder, type Client, type CommandInteraction } from "discord.js";
 import { Logger } from "../utils/logger.ts";
 import { findRandomNumber, type Difficulties } from "./guess/get-random-number.ts";
 import { handleResponse } from "./guess/handler.ts";
@@ -29,10 +29,14 @@ const Guess: Command = {
     const content = number.difficulty === "legendary"
       ? `**DIFFICULTY: LEGENDARY**\nGuess the number, you have **60** seconds.`
       : `Difficulty: ${number.difficulty}\nGuess the number, you have **40** seconds.`;
+    const image = new AttachmentBuilder(Buffer.from(await Bun.file(number.symbol).bytes()))
+      .setName(number.symbol.slice(number.symbol.lastIndexOf("/") + 1))
+      .setSpoiler(number.uuid === "d828f344-b134-47a1-93c9-56e25d5c9e61");
+
     await interaction.reply({ content: content + comptime(
       process.env.NODE_ENV === "development"
         ? "\n-# NOTE: you're running on dev, your data probably won't save."
-        : ""), files: [number.symbol] });
+        : ""), files: [image] });
 
     Logger.debug("setting up timeout");
     handleResponse(client, interaction, number);
