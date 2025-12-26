@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import type { ChatInputCommandInteraction, Client, Message, OmitPartialGroupDMChannel } from "discord.js";
+import { Collection, type ChatInputCommandInteraction, type Client, type Message, type OmitPartialGroupDMChannel } from "discord.js";
 import { Logger } from "../../utils/logger";
 import { joinStringArray } from "../../utils/string";
 import { createUser, getUser } from "../../utils/user";
@@ -14,7 +14,7 @@ import handleSpecialGuess from "./special-handler";
 import StreakCollection from "./streaks";
 
 const hasher = new Bun.CryptoHasher("sha512");
-const streakCollection = new StreakCollection();
+const streakCollectionCollection = new Collection<string, StreakCollection>();
 
 function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: NumberInfo): boolean | undefined {
   if (message.author.bot) return;
@@ -36,6 +36,14 @@ function handlePlayerGuess(message: OmitPartialGroupDMChannel<Message>, number: 
 }
 
 export function handleResponse(client: Client, interaction: ChatInputCommandInteraction, number: NumberInfo): void {
+  const streakCollection = (() => {
+    if (streakCollectionCollection.get(interaction.channelId)) {
+      return streakCollectionCollection.get(interaction.channelId);
+    }
+    streakCollectionCollection.set(interaction.channelId, new StreakCollection());
+    return streakCollectionCollection.get(interaction.channelId)!;
+  })();
+
   const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
     if (message.channelId !== interaction.channelId || message.author.bot) return;
 
