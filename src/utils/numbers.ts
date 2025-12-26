@@ -4,7 +4,11 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
+import numberhumans from "../../numbers/numberhumans.json" with { type: "json" };
 import numbers from "../../numbers/numbers.json" with { type: "json" };
+import type { Rarity } from "../numberdex/utils";
+
+type Difficulties = "easy" | "medium" | "hard" | "legendary";
 
 export function getGainFromDifficulty(difficulty: "easy" | "medium" | "hard" | "legendary"): 10 | 25 | 50 | 500 {
   switch (difficulty) {
@@ -38,7 +42,7 @@ export function ordinalOf(number: number): `${number}${"st" | "nd" | "rd" | "th"
   return `${number}th`;
 }
 
-export function countEntriesUnique(difficulty: "easy" | "medium" | "hard" | "legendary", entries: string[]): number {
+export function countEntriesUnique(difficulty: Difficulties, entries: string[]): number {
   const filtered = numbers[difficulty].filter((entry) => {
     for (const uuid of entries) {
       if (entry.uuid === uuid) return true;
@@ -48,9 +52,29 @@ export function countEntriesUnique(difficulty: "easy" | "medium" | "hard" | "leg
   return filtered.length;
 }
 
-export function countEntriesTotal(difficulty: "easy" | "medium" | "hard" | "legendary", entries: string[]): number {
+export function countEntriesTotal(difficulty: Difficulties, entries: string[]): number {
   const filtered = entries.filter((uuid) => {
     for (const entry of numbers[difficulty]) {
+      if (uuid === entry.uuid) return true;
+    }
+    return false;
+  });
+  return filtered.length;
+}
+
+export function countHumansUnique(rarity: Rarity, entries: string[]): number {
+  const filtered = numberhumans[rarity].filter((entry) => {
+    for (const uuid of entries) {
+      if (entry.uuid === uuid) return true;
+    }
+    return false;
+  });
+  return filtered.length;
+}
+
+export function countHumansTotal(rarity: Rarity, entries: string[]): number {
+  const filtered = entries.filter((uuid) => {
+    for (const entry of numberhumans[rarity]) {
       if (uuid === entry.uuid) return true;
     }
     return false;

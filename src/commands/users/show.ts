@@ -10,7 +10,7 @@ export default async function userShow(client: Client, interaction: ServerSlashC
   const userInfo = await getUser(userId, interaction.guildId);
   const discordUser = await client.users.fetch(userId);
   if (userInfo) {
-    const { guessedEntries, uniqueGuessed } = userInfo;
+    const { guessedEntries, uniqueGuessed, numberhumansGuessed, numberhumansGuessedUnique } = userInfo;
     const percentage = {
       all: uniqueGuessed.length / UNIQUE_ENTRIES,
       easy: countEntriesUnique("easy", uniqueGuessed) / UNIQUE_EASY_ENTRIES,
@@ -19,13 +19,17 @@ export default async function userShow(client: Client, interaction: ServerSlashC
       legendary: countEntriesUnique("legendary", uniqueGuessed) / UNIQUE_LEGENDARY_ENTRIES,
     };
     const content = [
-      `## Profile information for ${discordUser.displayName} (${discordUser.username})`,
+      `# Profile information for ${discordUser.displayName} (${discordUser.username})`,
+      "## fg sparky:",
       `terminus tokens: ${userInfo.tokens.toString()} <:terminusfinity:1444859277515690075>`,
       `numbers guessed: ${guessedEntries.length.toString()} (total), ${uniqueGuessed.length.toString()} (unique) [${formatPercent(percentage.all)}]`,
       `- easy numbers: ${countEntriesTotal("easy", guessedEntries).toString()} (total), ${countEntriesUnique("easy", uniqueGuessed).toString()} (unique) [${formatPercent(percentage.easy)}]`,
       `- medium numbers: ${countEntriesTotal("medium", guessedEntries).toString()} (total), ${countEntriesUnique("medium", uniqueGuessed).toString()} (unique) [${formatPercent(percentage.medium)}]`,
       `- hard numbers: ${countEntriesTotal("hard", guessedEntries).toString()} (total), ${countEntriesUnique("hard", uniqueGuessed).toString()} (unique) [${formatPercent(percentage.hard)}]`,
       `- legendary numbers: ${countEntriesTotal("legendary", guessedEntries).toString()} (total), ${countEntriesUnique("legendary", uniqueGuessed).toString()} (unique) [${formatPercent(percentage.legendary)}]`,
+      "",
+      "## numberdex:",
+      `numberhumans caught: ${numberhumansGuessed.toString()} (total), ${numberhumansGuessedUnique.toString()} unique`,
     ];
     await interaction.reply({
       content: content.join("\n"),
