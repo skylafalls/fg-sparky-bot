@@ -1,5 +1,6 @@
 import type { ICron } from "cronbake";
 import type { Message, OmitPartialGroupDMChannel, SendableChannels } from "discord.js";
+import { NUMBERDEX_FLEE_DELAY } from "../utils/constants";
 import { Logger } from "../utils/logger";
 import { getRandomRange } from "../utils/numbers";
 import { joinStringArray } from "../utils/string";
@@ -43,7 +44,7 @@ export function setupCallback(job: ICron, channel: SendableChannels): ICron {
 
           const content = `the numberhuman fled.`;
           await sentMessage.reply({ content, allowedMentions: { repliedUser: false } });
-        }, getRandomRange(30000, 60000));
+        }, NUMBERDEX_FLEE_DELAY);
 
         const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
           if (message.channelId !== channel.id || message.author.bot) return;

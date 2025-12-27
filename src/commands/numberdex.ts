@@ -8,6 +8,7 @@ import { ApplicationCommandOptionType, ChannelType, PermissionFlagsBits, type Cl
 import { handlePlayerGuess } from "../numberdex/handler.ts";
 import { baker } from "../numberdex/index.ts";
 import { spawnNumberhuman } from "../numberdex/utils.ts";
+import { NUMBERDEX_FLEE_DELAY } from "../utils/constants.ts";
 import { Logger } from "../utils/logger.ts";
 import { getRandomRange } from "../utils/numbers.ts";
 import { joinStringArray } from "../utils/string.ts";
@@ -40,7 +41,7 @@ const Numberdex: Command = {
 
                 const content = `the numberhuman fled.`;
                 await sentMessage.reply({ content, allowedMentions: { repliedUser: false } });
-              }, Math.floor(Math.random() * 20000));
+              }, NUMBERDEX_FLEE_DELAY);
 
               const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
                 if (message.channelId !== channel.id || message.author.bot) return;

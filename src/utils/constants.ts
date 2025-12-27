@@ -15,3 +15,6 @@ export const UNIQUE_HARD_ENTRIES: number = numbers.hard.length;
 export const UNIQUE_LEGENDARY_ENTRIES: number = numbers.legendary.length;
 export const UNIQUE_ENTRIES: number = comptime(UNIQUE_EASY_ENTRIES + UNIQUE_MEDIUM_ENTRIES + UNIQUE_HARD_ENTRIES + UNIQUE_LEGENDARY_ENTRIES);
 export const NUMBERDEX_SPAWN_MESSAGES: string[] = numberdexInfo.responses;
+
+/* Constant constants */
+export const NUMBERDEX_FLEE_DELAY: number = 5 * 60 * 1000;
