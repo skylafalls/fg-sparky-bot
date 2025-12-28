@@ -608,5 +608,128 @@
     "THIS IS A VERY LONG PHRASE THAT HOPEFULLY IS NOT IN ANY NUMBERDEX SPAWN",
     "MRL 🍇 M THO mmm 🕊️ yep yep yep !!\" yippee ilove grapes 🧵 🧵"
   ],
-  "numberhumans": []
+  "numberhumans": [
+    {
+      "uuid": "5dc22487-292f-41be-9a8b-3dc7cfbde124",
+      "name": "Absiorcadinary",
+      "rarity": "common",
+      "hashedName": "7598c28af29e80153d1edc5a0cc02eb0d86c329c43697d63fee0551d24de621e7706812ae047afe6458e47dbc726855a6d6f6776f85a809cc957a7db92027c47",
+      "image": "numbers/humans/common/5dc22487-292f-41be-9a8b-3dc7cfbde124.webp",
+      "baseHP": 130,
+      "baseATK": 110,
+      "ability": {
+        "id": "ac5497fc-7539-4432-90ac-9164fbd8ef3a",
+        "name": "Spear",
+        "description": "Absiorcadinary's spear can either stun an opponent for 2 turns or deal damage (will handle later)"
+      }
+    },
+    {
+      "uuid": "c96a5604-62e5-4da7-9579-261470b498b5",
+      "name": "Thirteen",
+      "rarity": "common",
+      "hashedName": "0ccf80575ca125003fead3f2c4ef7e09868d9a7fb48f74de277f0f91bd63d0ce326f4ae5f6f688d13bb28462ef49c1825ceea759665a7a5ba6457ad439807d76",
+      "image": "numbers/humans/common/c96a5604-62e5-4da7-9579-261470b498b5.webp",
+      "baseHP": 100,
+      "baseATK": 80,
+      "ability": {
+        "id": "845d70c9-95d7-4ea0-925e-486333ef967e",
+        "name": "Unlucky Charm",
+        "description": "When any finite number is in battle with Thirteen, all of their attacks have a 50% chance to be less effective, with 20% of attacks not doing anything at all."
+      }
+    },
+    {
+      "uuid": "7bcdd7a0-122a-47f3-9912-3819c6be13d6",
+      "name": "Twenty-Four",
+      "rarity": "common",
+      "hashedName": "730344afd801b550dd64c2e385a02f637d4a8b8bf313ea1c0779bc8c68e8b4c2bee000877cb0c770e7cca3d714d5f873bf3f4a4ac6d32273967f9efa4a6bffec",
+      "image": "numbers/humans/common/7bcdd7a0-122a-47f3-9912-3819c6be13d6.webp",
+      "baseHP": 120,
+      "baseATK": 120,
+      "ability": {
+        "id": "c5296d2e-7306-47f8-9019-d4d7268d3e81",
+        "name": "Celestial Beams",
+        "description": "Twenty-Four has different attacks depending on the time of day. They both work like rapid fire beams she can shoot out of her hand, and deal 10 HP of damage per hit."
+      }
+    },
+    {
+      "uuid": "7dcb0b13-9f2d-46f0-95f7-8d9ea07c751c",
+      "name": "Salad Number",
+      "rarity": "rare",
+      "hashedName": "4c5a64321ba8a8e1b90c5bb7d448706a549a2006992f1efc02638ec14b6f5e2508e492a3b7d833150bd9a0a8258e0da3bae891830a9c7e7390fb256da719f299",
+      "image": "numbers/humans/rare/7dcb0b13-9f2d-46f0-95f7-8d9ea07c751c.webp",
+      "baseHP": 300,
+      "baseATK": 20,
+      "ability": {
+        "id": "123b7511-c6eb-4469-aa1f-65a54699888d",
+        "name": "Healthy Salad",
+        "description": "Salad Number can provide numbers with healthy salad that can heal between 30% to 60% of HP depending on how big or small the number is."
+      }
+    },
+    {
+      "uuid": "59d91db0-62ce-416a-8c30-a8cca0f96395",
+      "name": "Millom",
+      "rarity": "common",
+      "hashedName": "c3d00293b4f63a9e62f6df0381297271698d797117b8b3e689814fd723855c24396084ef436d08f70e54b8f6974ac98b8aeec01626b81e4a315db5be89f56c30",
+      "image": "numbers/humans/common/59d91db0-62ce-416a-8c30-a8cca0f96395.webp",
+      "baseHP": 150,
+      "baseATK": 20,
+      "ability": {
+        "id": "1b3211be-af06-4f12-9437-bbba935083ef",
+        "name": "Repeated Function",
+        "description": "Millom heals 10% of all team members' HP every turn. There cannot be more than one Millom in a team."
+      }
+    },
+    {
+      "uuid": "7f841122-8bac-409c-a2e7-2867ab09d6d9",
+      "name": "Low-Endic Eternity",
+      "rarity": "rare",
+      "hashedName": "af0fd0b5a1c3ab498137c3eb38e8077aee8abbc1e2e772365686704a4ed0ba75739b397dad95f7ba0267994e912cc3ae0bb86426e96543720ce3288de8c20206",
+      "image": "numbers/humans/rare/7f841122-8bac-409c-a2e7-2867ab09d6d9.webp",
+      "baseHP": 225,
+      "baseATK": 135,
+      "ability": {
+        "id": "30cd4ae9-2a32-42f0-83fd-77329af24883",
+        "name": "Universe Teleporter",
+        "description": "Low-Endic Eternity can teleport objects from any universe. She can only teleport objects that are smaller than or as big as herself."
+      }
+    },
+    {
+      "uuid": "e24e50f1-7cbd-404c-aca4-31e6e42976c8",
+      "name": "The End of Numbers",
+      "rarity": "epic",
+      "hashedName": "5b43b8a37f1fda96c1544dc08589997085488db3ebd0f79eefa0b7a9de932bda9985efe1117701b791f52a74259462b135e539a95f697b1e585ba4e132dd76be",
+      "image": "numbers/humans/epic/e24e50f1-7cbd-404c-aca4-31e6e42976c8.webp",
+      "baseHP": 767,
+      "baseATK": 733,
+      "ability": null
+    },
+    {
+      "uuid": "68d4a46c-e3e3-4355-8d92-75de3e22e3ae",
+      "name": "Limit of Extending",
+      "rarity": "rare",
+      "hashedName": "c3a5bc4af949e060021c84c1cadfefa4446499627c5dcbeb7324beefc56ad5a41c53bfcc1adf261ee0b177d83c516dfe9a115c5e00be0a5e65d44d90787c4366",
+      "image": "numbers/humans/rare/68d4a46c-e3e3-4355-8d92-75de3e22e3ae.webp",
+      "baseHP": 245,
+      "baseATK": 200,
+      "ability": {
+        "id": "8dbfbc0a-738a-454a-aa59-ecb39849d2b4",
+        "name": "Limiting",
+        "description": "For numbers below Limit of Extending, their attacks are limited to only work for 1 second."
+      }
+    },
+    {
+      "uuid": "b573fed6-be38-4eb9-9c32-a650705d92db",
+      "name": "Absolute Fictional Numbers",
+      "rarity": "epic",
+      "hashedName": "50dc4cd56bcaf96a2ec906bf03a294fbdf7dce1f4009b05884b80bc8cb34a2ec14eade114a1250e158518ac653ece4bdf87f194441000d3ef936a0d05c8efc77",
+      "image": "numbers/humans/epic/b573fed6-be38-4eb9-9c32-a650705d92db.webp",
+      "baseHP": 833,
+      "baseATK": 1000,
+      "ability": {
+        "id": "a5ea8abe-3ce3-433d-ab08-29e59617e71d",
+        "name": "Delete Health",
+        "description": "Absolute Fictional Numbers can use the command panel to modify the entity however they wish. They cannot deal more than 30% damage per turn."
+      }
+    }
+  ]
 }

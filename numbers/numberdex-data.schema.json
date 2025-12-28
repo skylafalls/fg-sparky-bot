@@ -3,7 +3,7 @@
   "type": "object",
   "definitions": {
     "numberhumanAbility": {
-      "type": "object",
+      "type": ["object", "null"],
       "properties": {
         "id": { "type": "string" },
         "name": { "type": "string" },

@@ -1,12 +1,12 @@
 import { Command } from "commander";
+import { copyFile } from "node:fs/promises";
 
 const command = new Command()
   .requiredOption("-r, --rarity <rarity>")
-  .requiredOption("-a, --artist <artist>")
   .requiredOption("-h, --hp <hp>")
-  .requiredOption("-A, --attack <atk>")
-  .requiredOption("--ability-name <name>")
-  .requiredOption("--ability-description <description>")
+  .requiredOption("-a, --attack <atk>")
+  .option("--ability-name <name>")
+  .option("--ability-description <description>")
   .argument("<file>");
 
 command.parse(process.argv);
@@ -16,8 +16,8 @@ const args = command.opts<{
   artist: string;
   hp: string;
   attack: string;
-  abilityName: string;
-  abilityDescription: string;
+  abilityName?: string;
+  abilityDescription?: string;
 }>();
 
 interface NumberhumanData {
@@ -32,36 +32,48 @@ interface NumberhumanData {
     id: string;
     name: string;
     description: string;
-  };
+  } | null;
 }
 
 const file = command.processedArgs[0] as string;
-const numberhumanName = file.slice(file.lastIndexOf("/")).slice(0, -5);
+
+const fileExtension = file.slice(file.lastIndexOf("."));
+const directoryPath = file.slice(0, file.lastIndexOf("/"));
+const numberUUID = crypto.randomUUID();
+const newFilePath = `${directoryPath}/${args.rarity}/${numberUUID}${fileExtension}`;
+await copyFile(file, newFilePath);
+await Bun.file(file).delete();
+
+const numberhumanName = file.slice(file.lastIndexOf("/") + 1).slice(0, -5);
 
 const hasher = new Bun.CryptoHasher("blake2b512");
 hasher.update(numberhumanName.toLowerCase());
 
+const ability = (args.abilityName && args.abilityDescription
+  ? {
+      id: crypto.randomUUID(),
+      name: args.abilityName,
+      description: args.abilityDescription,
+    }
+  : null);
+
 const numberhumanData: NumberhumanData = {
-  uuid: crypto.randomUUID(),
+  uuid: numberUUID,
   name: numberhumanName,
   rarity: args.rarity,
   hashedName: hasher.digest("hex"),
-  image: file,
+  image: newFilePath,
   baseHP: Number.parseInt(args.hp, 10),
   baseATK: Number.parseInt(args.attack, 10),
-  ability: {
-    id: crypto.randomUUID(),
-    name: args.abilityName,
-    description: args.abilityDescription,
-  },
+  ability,
 };
 
-const json = await Bun.file("numbers/numberhumans.json").json() as {
+const json = await Bun.file("numbers/numberdex-data.json").json() as {
   numberhumans: NumberhumanData[];
   responses: string[];
 };
 json.numberhumans.push(numberhumanData);
 
-await Bun.write("numbers/numberhumans.json", JSON.stringify(json, null, 2));
+await Bun.write("numbers/numberdex-data.json", JSON.stringify(json, null, 2));
 
-console.log(`Added numberhuman ${numberhumanData.name} into numberhumans.json`);
+console.log(`Added numberhuman ${numberhumanData.name} into numberdex-data.json`);
