@@ -1,9 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
-  "type": "array",
-  "items": {
-    "$ref": "#/definitions/numberhuman"
-  },
+  "type": "object",
   "definitions": {
     "numberhumanAbility": {
       "type": "object",
@@ -29,6 +26,20 @@
         "ability": {
           "$ref": "#/definitions/numberhumanAbility"
         }
+      }
+    }
+  },
+  "properties": {
+    "numberhumans": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/numberhuman"
+      }
+    },
+    "responses": {
+      "type": "array",
+      "items": {
+        "type": "string"
       }
     }
   }
