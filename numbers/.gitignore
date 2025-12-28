@@ -6,3 +6,4 @@ humans/*/*
 !humans/*
 *.json
 !*.schema.json
+*.tmp
