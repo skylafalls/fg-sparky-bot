@@ -1,0 +1,18 @@
+{
+  "name": "@fg-sparky/server",
+  "description": "Data-handling server for the FG sparky bot",
+  "private": true,
+  "packageManager": "bun@1.3.5",
+  "license": "GPL-3.0-or-later",
+  "version": "0.13.0",
+  "scripts": {
+    "dev": "bun run build && bun run --watch dist/main.js",
+    "build": "bun run scripts/bundle.ts"
+  },
+  "dependencies": {
+    "better-sqlite3": "catalog:db",
+    "reflect-metadata": "catalog:db",
+    "typeorm": "catalog:db",
+    "@fg-sparky/utils": "workspace:*"
+  }
+}

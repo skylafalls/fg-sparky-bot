@@ -1,0 +1,13 @@
+{
+  "name": "@fg-sparky/client",
+  "description": "Discord bot client side of FG sparky bot",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "version": "0.13.0",
+  "dependencies": {
+    "bufferutil": "catalog:discord",
+    "discord.js": "catalog:discord",
+    "@fg-sparky/server": "workspace:*",
+    "@fg-sparky/utils": "workspace:*"
+  }
+}
