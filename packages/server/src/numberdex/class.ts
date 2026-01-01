@@ -10,33 +10,33 @@ import { Numberhumans as NumbersJsonSchema, type NumberhumanInfo } from "./schem
 
 export type Rarities = "common" | "rare" | "epic";
 
-export class Numberhumans {
+export class NumberhumanStore {
   /**
-   * Constructs the {@link Numberhumans} class. Because constructors cannot be asynchronous,
+   * Constructs the {@link NumberhumanStore} class. Because constructors cannot be asynchronous,
    * this is private and one of the static `load*` methods is used to construct the class.
    * @param data The numbers to load.
    */
   private constructor(private readonly data: Record<Rarities, NumberhumanInfo[]>) {}
 
   /**
-   * Reads the data from the file path specified and constructs the Numberhumans class.
+   * Reads the data from the file path specified and constructs the NumberhumanStore class.
    * @param filePath The path to the numbers.json data.
-   * @returns An instance of the {@link Numberhumans} class.
+   * @returns An instance of the {@link NumberhumanStore} class.
    */
-  static async loadFile(filePath: string): Promise<Numberhumans> {
+  static async loadFile(filePath: string): Promise<NumberhumanStore> {
     const file = Bun.file(filePath);
     const validatedData = NumbersJsonSchema.parse(await file.json());
-    return new Numberhumans(validatedData);
+    return new NumberhumanStore(validatedData);
   }
 
   /**
-   * Validates and parses the JSON data and constructs the Numberhumans class for use.
+   * Validates and parses the JSON data and constructs the NumberhumanStore class for use.
    * @param filePath The path to the numbers.json data.
-   * @returns An instance of the {@link Numberhumans} class.
+   * @returns An instance of the {@link NumberhumanStore} class.
    */
-  static loadJSON(fileData: unknown): Numberhumans {
+  static loadJSON(fileData: unknown): NumberhumanStore {
     const validatedData = NumbersJsonSchema.parse(fileData);
-    return new Numberhumans(validatedData);
+    return new NumberhumanStore(validatedData);
   }
 
   /**

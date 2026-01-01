@@ -6,20 +6,7 @@
  */
 import { Err, Ok, type Result } from "@fg-sparky/utils";
 import { DiscordjsError, type Message, type SendableChannels } from "discord.js";
-
-export type Rarity = "common" | "uncommon" | "rare" | "epic" | "legendary" | "mythical";
-
-export interface NumberhumanInfo {
-  number: string;
-  hashedNumber: string;
-  image: string;
-  uuid: string;
-  rarity: Rarity;
-}
-
-function getRandomRarity(): Rarity {
-  return "common";
-}
+import type { NumberhumanInfo } from "./schema.ts";
 
 export function findRandomNumber(): NumberhumanInfo {
   const rarity = getRandomRarity();

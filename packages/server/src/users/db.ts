@@ -7,7 +7,7 @@
 import { DataSource } from "typeorm";
 import { UserProfile } from "./user-profile.ts";
 
-export const AppDB: DataSource = new DataSource({
+export const UsersDB: DataSource = new DataSource({
   type: "sqlite",
   database: "sparky-bot-db.sqlite",
   synchronize: true,

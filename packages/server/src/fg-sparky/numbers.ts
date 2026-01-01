@@ -10,33 +10,33 @@ import { Numbers as NumbersJsonSchema, type NumberInfo } from "./schema.ts";
 
 export type Difficulties = "easy" | "medium" | "hard" | "legendary";
 
-export class Numbers {
+export class NumberStore {
   /**
-   * Constructs the {@link Numbers} class. Because constructors cannot be asynchronous,
+   * Constructs the {@link NumberStore} class. Because constructors cannot be asynchronous,
    * this is private and one of the static `load*` methods is used to construct the class.
    * @param data The numbers to load.
    */
   private constructor(private readonly data: Record<Difficulties, NumberInfo[]>) {}
 
   /**
-   * Reads the data from the file path specified and constructs the Numbers class.
+   * Reads the data from the file path specified and constructs the NumberStore class.
    * @param filePath The path to the numbers.json data.
-   * @returns An instance of the {@link Numbers} class.
+   * @returns An instance of the {@link NumberStore} class.
    */
-  static async loadFile(filePath: string): Promise<Numbers> {
+  static async loadFile(filePath: string): Promise<NumberStore> {
     const file = Bun.file(filePath);
     const validatedData = NumbersJsonSchema.parse(await file.json());
-    return new Numbers(validatedData);
+    return new NumberStore(validatedData);
   }
 
   /**
-   * Validates and parses the JSON data and constructs the Numbers class for use.
+   * Validates and parses the JSON data and constructs the NumberStore class for use.
    * @param filePath The path to the numbers.json data.
-   * @returns An instance of the {@link Numbers} class.
+   * @returns An instance of the {@link NumberStore} class.
    */
-  static loadJSON(fileData: unknown): Numbers {
+  static loadJSON(fileData: unknown): NumberStore {
     const validatedData = NumbersJsonSchema.parse(fileData);
-    return new Numbers(validatedData);
+    return new NumberStore(validatedData);
   }
 
   /**
