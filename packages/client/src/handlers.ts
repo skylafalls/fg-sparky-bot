@@ -1,0 +1,27 @@
+/**
+ * @license
+ * fg-sparky-bot - Guess the FG number based on its symbol
+ * Copyright (C) 2025 Skylafalls
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+import type { Client, Interaction } from "discord.js";
+import { Commands } from "./commands/commands";
+import { handleSlashCommand } from "./commands/listener";
+import { baker } from "./numberdex";
+import { loginFormatter } from "./utils/formatter";
+import { Logger } from "./utils/logger";
+
+export function registerHandlers(client: Client): void {
+  client.once("clientReady", (client: Client<true>) => {
+    const formattedDate = loginFormatter.format(Date.now());
+    Logger.notice(`Bot running as ${client.user.username} (started at ${formattedDate})`);
+    Logger.notice(`Starting cron jobs...`);
+    baker.bakeAll();
+  });
+
+  client.on("interactionCreate", async (interaction: Interaction) => {
+    if (interaction.isCommand()) {
+      await handleSlashCommand(client, interaction, Commands);
+    }
+  });
+}

@@ -7,9 +7,10 @@
   "dependencies": {
     "chalk": "catalog:utils",
     "commander": "catalog:utils",
+    "comptime.ts": "catalog:utils",
     "cronbake": "catalog:utils",
     "rust-optionals": "catalog:utils",
-    "comptime.ts": "catalog:utils"
+    "zod": "catalog:types"
   },
   "exports": {
     ".": {

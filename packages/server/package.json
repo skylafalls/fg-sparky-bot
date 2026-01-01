@@ -13,6 +13,7 @@
     "better-sqlite3": "catalog:db",
     "reflect-metadata": "catalog:db",
     "typeorm": "catalog:db",
+    "discord.js": "catalog:discord",
     "@fg-sparky/utils": "workspace:*"
   }
 }

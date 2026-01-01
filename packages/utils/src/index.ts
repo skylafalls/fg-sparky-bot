@@ -1,7 +1,8 @@
 export { Command } from "commander";
 export * from "comptime.ts";
-export { Cron, type Logger as CronLogger } from "cronbake";
+export { Baker, Cron, FilePersistenceProvider, type Logger as CronLogger, type ICron } from "cronbake";
 export * from "rust-optionals";
+export * from "zod";
 export * from "./assert.ts";
 export * from "./constants.ts";
 export * from "./formatter.ts";
