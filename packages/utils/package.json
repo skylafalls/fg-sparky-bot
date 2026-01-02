@@ -1,0 +1,20 @@
+{
+  "name": "@fg-sparky/utils",
+  "description": "Utilities for FG sparky bot",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "version": "0.13.0",
+  "dependencies": {
+    "@sapphire/result": "catalog:utils",
+    "chalk": "catalog:utils",
+    "comptime.ts": "catalog:utils",
+    "cronbake": "catalog:utils",
+    "discord.js": "catalog:discord",
+    "zod": "catalog:types"
+  },
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    }
+  }
+}
