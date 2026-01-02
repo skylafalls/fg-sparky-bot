@@ -20,7 +20,7 @@ catalogs:
       specifier: ^4.1.0
       version: 4.1.0
     discord.js:
-      specifier: ^14.25.1
+      specifier: 14.25.1
       version: 14.25.1
   linting:
     '@stylistic/eslint-plugin':

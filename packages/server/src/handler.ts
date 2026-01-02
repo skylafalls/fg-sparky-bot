@@ -2,7 +2,7 @@ import { Logger } from "@fg-sparky/utils";
 import type { Message, OmitPartialGroupDMChannel } from "discord.js";
 
 export interface GuessObject {
-  number: string;
+  number: string | null;
   hashedNumber: string;
 }
 
@@ -20,7 +20,7 @@ export function createGuessHandler<T extends GuessObject>(hashAlgo: Bun.Supporte
       .replaceAll("…", "...");
     const hashedGuess = hasher.update(guess, "utf-8").digest("hex");
     Logger.debug(`User guessed: ${guess} (hashed: ${hashedGuess})`);
-    Logger.debug(`Numberhuman: ${number.number} (hashed: ${number.hashedNumber})`);
+    Logger.debug(`Numberhuman: ${number.number ?? "<unknown>"} (hashed: ${number.hashedNumber})`);
     if (hashedGuess === number.hashedNumber) {
       Logger.info("user guessed correctly");
       return true;

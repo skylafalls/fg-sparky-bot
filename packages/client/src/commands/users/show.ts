@@ -1,9 +1,6 @@
+import { getUser } from "@fg-sparky/server";
+import { countEntriesTotal, countEntriesUnique, formatPercent, type ServerSlashCommandInteraction } from "@fg-sparky/utils";
 import type { Client } from "discord.js";
-import { UNIQUE_EASY_ENTRIES, UNIQUE_ENTRIES, UNIQUE_HARD_ENTRIES, UNIQUE_LEGENDARY_ENTRIES, UNIQUE_MEDIUM_ENTRIES } from "../../utils/constants";
-import { formatPercent } from "../../utils/formatter";
-import { countEntriesTotal, countEntriesUnique } from "../../utils/numbers";
-import { getUser } from "../../utils/user";
-import type { ServerSlashCommandInteraction } from "../types";
 
 export default async function userShow(client: Client, interaction: ServerSlashCommandInteraction): Promise<void> {
   const userId = interaction.options.get("user", true).value as string;
@@ -12,7 +9,7 @@ export default async function userShow(client: Client, interaction: ServerSlashC
   if (userInfo) {
     const { guessedEntries, uniqueGuessed, numberhumansGuessed, numberhumansGuessedUnique } = userInfo;
     const percentage = {
-      all: uniqueGuessed.length / UNIQUE_ENTRIES,
+      all: uniqueGuessed.length / NumberStore.UNIQUE_ENTRIES,
       easy: countEntriesUnique("easy", uniqueGuessed) / UNIQUE_EASY_ENTRIES,
       medium: countEntriesUnique("medium", uniqueGuessed) / UNIQUE_MEDIUM_ENTRIES,
       hard: countEntriesUnique("hard", uniqueGuessed) / UNIQUE_HARD_ENTRIES,

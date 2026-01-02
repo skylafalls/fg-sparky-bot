@@ -22,5 +22,7 @@ export async function setupCronJobs(client: Client, baker: Baker): Promise<void>
       if (!channel || !channel.isSendable()) return;
       return setupCallback(job, channel);
     }
+
+    return job;
   });
 }

@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { None, Some, type Option } from "@fg-sparky/utils";
+import { None, Some, type Difficulties, type Option, type StoredNumberInfo } from "@fg-sparky/utils";
 import { randomDifficulty } from "../helpers.ts";
 import { Numbers as NumbersJsonSchema, type NumberInfo } from "./schema.ts";
 
@@ -19,7 +19,7 @@ export class NumberStore {
    * this is private and one of the static `load*` methods is used to construct the class.
    * @param data The numbers to load.
    */
-  private constructor(private readonly data: Record<Difficulties, NumberInfo[]>) {
+  constructor(private readonly data: Record<Difficulties, NumberInfo[]>) {
     this.UNIQUE_EASY_ENTRIES = this.data.easy.length;
     this.UNIQUE_MEDIUM_ENTRIES = this.data.medium.length;
     this.UNIQUE_HARD_ENTRIES = this.data.hard.length;
@@ -63,8 +63,8 @@ export class NumberStore {
    */
   getRandomByDifficulty(difficulty: Difficulties): StoredNumberInfo {
     const numbers = this.data[difficulty];
-    const number = numbers[Math.floor(Math.random() * numbers.length)]!
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const number = numbers[Math.floor(Math.random() * numbers.length)]!;
+
     return {
       number: number.name ?? "<unknown>",
       hashedNumber: number.hashedName,

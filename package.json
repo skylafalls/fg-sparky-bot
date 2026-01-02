@@ -2,7 +2,7 @@
   "name": "fg-sparky-bot",
   "description": "Source code for the FG sparky bot, inspired by the GD discord sparky bot",
   "private": true,
-  "packageManager": "pnpm@10.26.2",
+  "packageManager": "pnpm@10.27.0",
   "license": "GPL-3.0-or-later",
   "version": "0.13.0",
   "scripts": {

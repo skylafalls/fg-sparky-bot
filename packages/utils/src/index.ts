@@ -1,5 +1,6 @@
 export * from "comptime.ts";
 export { Baker, Cron, FilePersistenceProvider, type Logger as CronLogger, type ICron } from "cronbake";
+export { Collection } from "discord.js";
 export * from "rust-optionals";
 export * from "zod";
 export * from "./assert.ts";

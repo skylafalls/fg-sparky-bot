@@ -1,9 +1,7 @@
-import { Collection } from "discord.js";
-import { Logger } from "../../utils/logger";
-import { getGainFromDifficulty } from "../../utils/numbers";
-import { getUser } from "../../utils/user";
+import { Collection, getGainFromDifficulty, Logger } from "@fg-sparky/utils";
+import { getUser } from "./helpers.ts";
 
-export default class StreakCollection extends Collection<string, number> {
+export class StreakCollection extends Collection<string, number> {
   appendStreak(id: string, guildId: string): this {
     // just checked if the key exists
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

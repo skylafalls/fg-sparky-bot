@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { z, type ZodType } from "@fg-sparky/utils";
+import { z, type Difficulties, type ZodType } from "@fg-sparky/utils";
 
 export interface NumberInfo {
   uuid: string;
@@ -14,6 +14,17 @@ export interface NumberInfo {
    * possibly null because of legendaries
    */
   name: string | null;
+}
+
+export interface StoredNumberInfo {
+  uuid: string;
+  image: string;
+  hashedNumber: string;
+  /**
+   * possibly null because of legendaries
+   */
+  number: string | null;
+  difficulty: Difficulties;
 }
 
 export interface Numbers {

@@ -4,8 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import type { Difficulties } from "./fg-sparky/numbers";
-import type { Rarities } from "./numberdex/class";
+import type { Difficulties, Rarities } from "@fg-sparky/utils";
 import { UserProfile } from "./users/user-profile.ts";
 
 export function randomDifficulty(): Difficulties {
