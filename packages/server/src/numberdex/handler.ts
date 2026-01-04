@@ -1,17 +1,33 @@
-import { Logger, NUMBERDEX_FLEE_DELAY, getRandomRange, joinStringArray, type ICron } from "@fg-sparky/utils";
-import type { Message, OmitPartialGroupDMChannel, SendableChannels } from "discord.js";
-import { createGuessHandler, type GuessObject, type HandlerFunction } from "../handler.ts";
-import { createUser, getUser } from "../helpers.ts";
+import { Logger, NUMBERDEX_FLEE_DELAY, type ICron } from "@fg-sparky/utils";
+import { ComponentType, TextInputStyle, type Interaction, type ModalComponentData, type SendableChannels } from "discord.js";
+import { createGuessHandler } from "../handler.ts";
 import type { NumberhumanStore } from "./class.ts";
-import { spawnNumberhuman } from "./utils.ts";
+import { createButtonRow, spawnNumberhuman, updateUserStats } from "./utils.ts";
 
-export const handlePlayerGuess: HandlerFunction<GuessObject> = createGuessHandler("blake2b512");
+const createGuessModal = (channelId: string): ModalComponentData => ({
+  title: "yeah",
+  id: channelId,
+  customId: `numberhuman-guess-modal-${channelId}`,
+  components: [{
+    id: 0,
+    label: "what's the human's name?",
+    type: ComponentType.Label,
+    component: {
+      customId: `numberhuman-guess-input-${channelId}`,
+      style: TextInputStyle.Short,
+      type: ComponentType.TextInput,
+    },
+  }],
+});
+
+const handlePlayerGuess = createGuessHandler("blake2b512");
 
 export function setupCallback(store: NumberhumanStore, job: ICron, channel: SendableChannels): ICron {
   if (/numberdex-channel-[0-9]+/.test(job.name)) {
     Logger.debug(`setting up callback for cron job ${job.name}`);
     job.callback = async () => {
-      const timeoutDuration = getRandomRange(0, 1200);
+      // const timeoutDuration = getRandomRange(0, 1200);
+      const timeoutDuration = 0;
       Logger.info(`spawning numberhuman in channel ${channel.id} after ${timeoutDuration.toFixed(0)} seconds`);
       await Bun.sleep(timeoutDuration * 1000);
       const number = await spawnNumberhuman(store, channel);
@@ -19,58 +35,36 @@ export function setupCallback(store: NumberhumanStore, job: ICron, channel: Send
         const [okNumber, sentMessage] = number.unwrap();
         const timeout = setTimeout(async () => {
           Logger.info("user failed to catch in time");
-          client.off("messageCreate", handler);
+          client.off("interactionCreate", handler);
 
           const content = `the numberhuman fled.`;
+          await sentMessage.edit({ components: [createButtonRow(true)] });
           await sentMessage.reply({ content, allowedMentions: { repliedUser: false } });
         }, NUMBERDEX_FLEE_DELAY);
 
-        const handler = async (message: OmitPartialGroupDMChannel<Message>) => {
-          if (message.channelId !== channel.id || message.author.bot) return;
-          if (handlePlayerGuess(message, okNumber)) {
-            client.off("messageCreate", handler);
-            clearTimeout(timeout);
-
-            // @ts-expect-error: assertion fails for some reason even though the bot can only
-            // be installed in a guild
-            const user = await getUser(message.author.id, message.guildId);
-            Logger.debug(`tried looking up user ${message.author.id} (found: ${user ? "true" : "false"})`);
-
-            if (user) {
-              Logger.info(`user already exists, adding the numberhuman to their collection`);
-              // update the player stats first...
-              user.numberhumansGuessed.push(okNumber.uuid);
-              if (user.numberhumansGuessedUnique.includes(okNumber.uuid)) {
-                await message.reply(joinStringArray([
-                  `hey, you managed to ~~kidnap~~ catch **${okNumber.number}**!`,
-                ]));
-              } else {
-                user.numberhumansGuessedUnique.push(okNumber.uuid);
-                await message.reply(joinStringArray([
-                  `hey, you managed to ~~kidnap~~ catch **${okNumber.number}**!`,
-                  "woah is that a new numberhuman you caught??",
-                ]));
-              }
-              // and saves.
-              await user.save();
-            } else {
-              Logger.info(`user not found, creating user and adding the numberhuman`);
-              // @ts-expect-error: assertion fails for some reason even though the bot can only
-              // be installed in a guild
-              const newUser = await createUser(message.author.id, message.guildId);
-              newUser.numberhumansGuessed.push(okNumber.uuid);
-              // this is a fresh new profile which means it is guaranteed to have zero unique guesses.
-              // so we can add it without checking.
-              newUser.numberhumansGuessedUnique.push(okNumber.uuid);
-              await message.reply(joinStringArray([
-                `hey, you managed to ~~kidnap~~ catch **${okNumber.number}**!`,
-                `i've also created a profile for you with that numberhuman.`,
-              ]));
-              await newUser.save();
+        const handler = async (interaction: Interaction) => {
+          if (interaction.channelId !== channel.id) return;
+          if (interaction.isButton()) {
+            Logger.debug(`User ${interaction.user.displayName} clicked the button`);
+            await interaction.showModal(createGuessModal(interaction.channelId));
+          } else if (interaction.inGuild() && interaction.isModalSubmit() && interaction.isFromMessage()
+            && interaction.customId === `numberhuman-guess-modal-${interaction.channelId}`) {
+            Logger.debug(`User ${interaction.user.displayName} submitted the numberhuman, verifying it's correct...`);
+            await interaction.update({
+              components: [createButtonRow(true)],
+            });
+            const guess = interaction.fields.getTextInputValue(`numberhuman-guess-input-${interaction.channelId}`);
+            if (handlePlayerGuess(guess, { number: okNumber.name, hashedNumber: okNumber.hashedName })) {
+              client.off("interactionCreate", handler);
+              clearTimeout(timeout);
+              await updateUserStats(interaction, okNumber);
             }
           }
         };
-        client.on("messageCreate", handler);
+
+        client.on("interactionCreate", handler);
+      } else {
+        Logger.error(`Failed to spawn numberhuman: ${number.unwrapErr()}`);
       }
     };
   }

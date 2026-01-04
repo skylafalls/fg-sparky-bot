@@ -45,6 +45,8 @@ try {
   Logger.loglevel = loglevel;
   Logger.notice("Loading entries from numbers.json");
   await Numbers.loadFile("numbers/numbers.json");
+  Logger.notice("Loading entries from numberdex-data.json");
+  Numberhumans.loadJSON((await Bun.file("numbers/numberdex-data.json").json()).numberhumans);
 
   Logger.notice("Initializing database");
   await UsersDB.initialize();
