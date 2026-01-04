@@ -1,7 +1,7 @@
-import { createGuessHandler, createUser, getUser, NumberhumanInfo, type NumberhumanStore } from "@fg-sparky/server";
-import { joinStringArray, Logger, NUMBERDEX_FLEE_DELAY, type ICron } from "@fg-sparky/utils";
-import { bold, ComponentType, TextInputStyle, userMention, type Interaction, type ModalComponentData, type ModalMessageModalSubmitInteraction, type SendableChannels } from "discord.js";
-import { createButtonRow, spawnNumberhuman } from "./utils.ts";
+import { createGuessHandler, type NumberhumanStore } from "@fg-sparky/server";
+import { Logger, NUMBERDEX_FLEE_DELAY, type ICron } from "@fg-sparky/utils";
+import { ComponentType, TextInputStyle, type Interaction, type ModalComponentData, type SendableChannels } from "discord.js";
+import { createButtonRow, spawnNumberhuman, updateUserStats } from "./utils.ts";
 
 const guessModal: ModalComponentData = {
   title: "yeah",
@@ -19,45 +19,6 @@ const guessModal: ModalComponentData = {
 };
 
 const handlePlayerGuess = createGuessHandler("blake2b512");
-
-async function updateUserStats(
-  interaction: ModalMessageModalSubmitInteraction<"cached" | "raw">,
-  number: NumberhumanInfo,
-) {
-  const user = await getUser(interaction.user.id, interaction.guildId);
-  Logger.debug(`tried looking up user ${interaction.user.id} (found: ${user ? "true" : "false"})`);
-
-  if (user) {
-    Logger.info(`user already exists, adding the numberhuman to their collection`);
-    // update the player stats first...
-    user.numberhumansGuessed.push(number.uuid);
-    if (user.numberhumansGuessedUnique.includes(number.uuid)) {
-      await interaction.followUp(joinStringArray([
-        `hey, you managed to ~~kidnap~~ catch ${bold(number.name)} ${userMention(interaction.user.id)}!`,
-      ]));
-    } else {
-      user.numberhumansGuessedUnique.push(number.uuid);
-      await interaction.followUp(joinStringArray([
-        `hey, you managed to ~~kidnap~~ catch ${bold(number.name)} ${userMention(interaction.user.id)}!`,
-        "woah is that a new numberhuman you caught??",
-      ]));
-    }
-    // and saves.
-    await user.save();
-  } else {
-    Logger.info(`user not found, creating user and adding the numberhuman`);
-    const newUser = await createUser(interaction.user.id, interaction.guildId);
-    newUser.numberhumansGuessed.push(number.uuid);
-    // this is a fresh new profile which means it is guaranteed to have zero unique guesses.
-    // so we can add it without checking.
-    newUser.numberhumansGuessedUnique.push(number.uuid);
-    await interaction.followUp(joinStringArray([
-      `hey, you managed to ~~kidnap~~ catch ${bold(number.name)} ${userMention(interaction.user.id)}!`,
-      `i've also created a profile for you with that numberhuman.`,
-    ]));
-    await newUser.save();
-  }
-}
 
 export function setupCallback(store: NumberhumanStore, job: ICron, channel: SendableChannels): ICron {
   if (/numberdex-channel-[0-9]+/.test(job.name)) {

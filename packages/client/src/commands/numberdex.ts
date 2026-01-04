@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import { NumberdexBaker } from "@fg-sparky/server";
-import { type Command } from "@fg-sparky/utils";
+import type { Command } from "@fg-sparky/utils";
 import { ApplicationCommandOptionType, ChannelType, PermissionFlagsBits, type Client, type CommandInteraction } from "discord.js";
 import { setupCallback } from "../numberdex/handler.ts";
 import { Numberhumans } from "../stores.ts";
