@@ -11,11 +11,11 @@
     "build": "bun run scripts/bundle.ts"
   },
   "dependencies": {
-    "better-sqlite3": "catalog:db",
-    "reflect-metadata": "catalog:db",
-    "typeorm": "catalog:db",
+    "@fg-sparky/utils": "workspace:*",
     "discord.js": "catalog:discord",
-    "@fg-sparky/utils": "workspace:*"
+    "reflect-metadata": "catalog:db",
+    "sqlite3": "catalog:db",
+    "typeorm": "catalog:db"
   },
   "exports": {
     ".": {

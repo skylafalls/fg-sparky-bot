@@ -182,4 +182,6 @@ numbers/humans/**
 !numbers/humans/epic
 *.tmp
 numbers/numberdex-cron-jobs.json
+*.sqlite-*
+build
 

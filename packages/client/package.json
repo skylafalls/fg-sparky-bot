@@ -6,7 +6,8 @@
   "license": "GPL-3.0-or-later",
   "version": "0.13.0",
   "scripts": {
-    "build": "rolldown -c"
+    "build": "rolldown -c && pnpm run postbuild",
+    "postbuild": "rm -rf ../../dist ../../build && cp -r ../server/node_modules/sqlite3/build/ dist/ ../.."
   },
   "dependencies": {
     "@fg-sparky/server": "workspace:*",

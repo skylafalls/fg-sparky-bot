@@ -9,6 +9,7 @@ catalogs:
   db:
     better-sqlite3: ^12.5.0
     reflect-metadata: ^0.2.2
+    sqlite3: ^5.1.7
     typeorm: ^0.3.28
   discord:
     bufferutil: ^4.1.0
@@ -33,3 +34,11 @@ catalogs:
     cronbake: ^0.4.0
 
 minimumReleaseAge: 7280
+
+onlyBuiltDependencies:
+  - better-sqlite3
+  - bufferutil
+  - esbuild
+  - sqlite3
+
+shamefullyHoist: true

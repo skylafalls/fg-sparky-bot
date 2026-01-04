@@ -41,7 +41,7 @@ export const NumberInfo: ZodType<NumberInfo> = z.strictObject({
   name: z.string().nullable(),
 });
 
-export const Numbers: ZodType<Numbers> = z.strictObject({
+export const Numbers: ZodType<Numbers> = z.object({
   easy: NumberInfo.array(),
   medium: NumberInfo.array(),
   hard: NumberInfo.array(),

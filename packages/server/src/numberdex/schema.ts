@@ -26,7 +26,7 @@ export const NumberhumanInfo: ZodType<NumberhumanInfo> = z.strictObject({
   number: z.string(),
 });
 
-export const Numberhumans: ZodType<Numberhumans> = z.strictObject({
+export const Numberhumans: ZodType<Numberhumans> = z.object({
   common: NumberhumanInfo.array(),
   rare: NumberhumanInfo.array(),
   epic: NumberhumanInfo.array(),
