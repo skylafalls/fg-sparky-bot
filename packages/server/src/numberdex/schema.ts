@@ -14,7 +14,7 @@ export interface NumberhumanInfo {
   image: string;
   baseHP: number;
   baseATK: number;
-  ability: string;
+  ability: string | null;
 }
 
 export const NumberhumanInfo: ZodType<NumberhumanInfo[]> = z.strictObject({
@@ -25,5 +25,5 @@ export const NumberhumanInfo: ZodType<NumberhumanInfo[]> = z.strictObject({
   image: z.string(),
   baseHP: z.int(),
   baseATK: z.int(),
-  ability: z.string(),
+  ability: z.string().nullable(),
 }).array();

@@ -617,11 +617,7 @@
       "image": "numbers/humans/common/5dc22487-292f-41be-9a8b-3dc7cfbde124.webp",
       "baseHP": 130,
       "baseATK": 110,
-      "ability": {
-        "id": "ac5497fc-7539-4432-90ac-9164fbd8ef3a",
-        "name": "Spear",
-        "description": "Absiorcadinary's spear can either stun an opponent for 2 turns or deal damage (will handle later)"
-      }
+      "ability": "spear"
     },
     {
       "uuid": "c96a5604-62e5-4da7-9579-261470b498b5",
@@ -631,11 +627,7 @@
       "image": "numbers/humans/common/c96a5604-62e5-4da7-9579-261470b498b5.webp",
       "baseHP": 100,
       "baseATK": 80,
-      "ability": {
-        "id": "845d70c9-95d7-4ea0-925e-486333ef967e",
-        "name": "Unlucky Charm",
-        "description": "When any finite number is in battle with Thirteen, all of their attacks have a 50% chance to be less effective, with 20% of attacks not doing anything at all."
-      }
+      "ability": "unlucky-charm"
     },
     {
       "uuid": "7bcdd7a0-122a-47f3-9912-3819c6be13d6",
@@ -645,11 +637,7 @@
       "image": "numbers/humans/common/7bcdd7a0-122a-47f3-9912-3819c6be13d6.webp",
       "baseHP": 120,
       "baseATK": 120,
-      "ability": {
-        "id": "c5296d2e-7306-47f8-9019-d4d7268d3e81",
-        "name": "Celestial Beams",
-        "description": "Twenty-Four has different attacks depending on the time of day. They both work like rapid fire beams she can shoot out of her hand, and deal 10 HP of damage per hit."
-      }
+      "ability": "celestial-beams"
     },
     {
       "uuid": "7dcb0b13-9f2d-46f0-95f7-8d9ea07c751c",
@@ -659,11 +647,7 @@
       "image": "numbers/humans/rare/7dcb0b13-9f2d-46f0-95f7-8d9ea07c751c.webp",
       "baseHP": 300,
       "baseATK": 20,
-      "ability": {
-        "id": "123b7511-c6eb-4469-aa1f-65a54699888d",
-        "name": "Healthy Salad",
-        "description": "Salad Number can provide numbers with healthy salad that can heal between 30% to 60% of HP depending on how big or small the number is."
-      }
+      "ability": "healthy-salad"
     },
     {
       "uuid": "59d91db0-62ce-416a-8c30-a8cca0f96395",
@@ -673,11 +657,7 @@
       "image": "numbers/humans/common/59d91db0-62ce-416a-8c30-a8cca0f96395.webp",
       "baseHP": 150,
       "baseATK": 20,
-      "ability": {
-        "id": "1b3211be-af06-4f12-9437-bbba935083ef",
-        "name": "Repeated Function",
-        "description": "Millom heals 10% of all team members' HP every turn. There cannot be more than one Millom in a team."
-      }
+      "ability": "repeated-function"
     },
     {
       "uuid": "7f841122-8bac-409c-a2e7-2867ab09d6d9",
@@ -687,11 +667,7 @@
       "image": "numbers/humans/rare/7f841122-8bac-409c-a2e7-2867ab09d6d9.webp",
       "baseHP": 225,
       "baseATK": 135,
-      "ability": {
-        "id": "30cd4ae9-2a32-42f0-83fd-77329af24883",
-        "name": "Universe Teleporter",
-        "description": "Low-Endic Eternity can teleport objects from any universe. She can only teleport objects that are smaller than or as big as herself."
-      }
+      "ability": "universe-teleporter"
     },
     {
       "uuid": "e24e50f1-7cbd-404c-aca4-31e6e42976c8",
@@ -711,11 +687,7 @@
       "image": "numbers/humans/rare/68d4a46c-e3e3-4355-8d92-75de3e22e3ae.webp",
       "baseHP": 245,
       "baseATK": 200,
-      "ability": {
-        "id": "8dbfbc0a-738a-454a-aa59-ecb39849d2b4",
-        "name": "Limiting",
-        "description": "For numbers below Limit of Extending, their attacks are limited to only work for 1 second."
-      }
+      "ability": "limiting"
     },
     {
       "uuid": "b573fed6-be38-4eb9-9c32-a650705d92db",
@@ -725,11 +697,7 @@
       "image": "numbers/humans/epic/b573fed6-be38-4eb9-9c32-a650705d92db.webp",
       "baseHP": 833,
       "baseATK": 1000,
-      "ability": {
-        "id": "a5ea8abe-3ce3-433d-ab08-29e59617e71d",
-        "name": "Delete Health",
-        "description": "Absolute Fictional Numbers can use the command panel to modify the entity however they wish. They cannot deal more than 30% damage per turn."
-      }
+      "ability": "delete-helath"
     }
   ],
   "abilities": [

@@ -61,8 +61,8 @@ export class NumberhumanStore {
    * @returns The entry.
    */
   getRandomByRarity(rarity: Rarities): Option<NumberhumanInfo> {
-    return Option.from(this.data.filter(value => value.rarity === rarity)
-      .at(Math.floor(Math.random() * this.data.length)));
+    const filteredData = this.data.filter(value => value.rarity === rarity);
+    return Option.from(filteredData.at(Math.floor(Math.random() * filteredData.length)));
   }
 
   /**

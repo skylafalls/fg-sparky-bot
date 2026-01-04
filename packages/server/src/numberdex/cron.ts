@@ -1,7 +1,7 @@
 import { Baker, FilePersistenceProvider, Logger } from "@fg-sparky/utils";
 import type { Client } from "discord.js";
+import { setupCallback } from "../../../client/src/numberdex/handler.ts";
 import type { NumberhumanStore } from "./class.ts";
-import { setupCallback } from "./handler.ts";
 
 export const baker: Baker = Baker.create({
   logger: Logger,

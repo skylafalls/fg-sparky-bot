@@ -24,7 +24,7 @@
         "baseHP": { "type": "integer" },
         "baseATK": { "type": "integer" },
         "ability": {
-          "type": "string"
+          "type": ["string", "null"]
         }
       }
     }
