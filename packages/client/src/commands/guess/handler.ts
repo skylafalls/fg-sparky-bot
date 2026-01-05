@@ -30,7 +30,7 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
     if (await handleSpecialGuess(message, number, "pre-parse")) {
       return;
     }
-    if (handlePlayerGuess(message, number)) {
+    if (handlePlayerGuess(message.content, number)) {
       clearTimeout(timeout);
       client.off("messageCreate", handler);
       guessCooldowns.set(interaction.channelId, false);
