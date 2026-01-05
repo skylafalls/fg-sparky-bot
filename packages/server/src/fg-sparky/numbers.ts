@@ -90,7 +90,7 @@ export class NumberStore {
     const number = numbers[Math.floor(Math.random() * numbers.length)]!;
 
     return {
-      number: number.name ?? "<unknown>",
+      number: number.name,
       hashedNumber: number.hashedName,
       image: number.image,
       uuid: number.uuid,
