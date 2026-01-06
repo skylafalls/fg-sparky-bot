@@ -17,7 +17,7 @@ export interface NumberhumanInfo {
   ability: string | null;
 }
 
-export const NumberhumanInfo: ZodType<NumberhumanInfo[]> = z.strictObject({
+export const NumberhumanInfo: ZodType<NumberhumanInfo> = z.strictObject({
   uuid: z.uuid(),
   name: z.string(),
   rarity: z.enum(["common", "rare", "epic"]),
@@ -26,4 +26,4 @@ export const NumberhumanInfo: ZodType<NumberhumanInfo[]> = z.strictObject({
   baseHP: z.int(),
   baseATK: z.int(),
   ability: z.string().nullable(),
-}).array();
+});

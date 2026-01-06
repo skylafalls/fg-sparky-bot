@@ -8,8 +8,8 @@ import { formatPercent, getRandomRange, joinStringArray, Logger, NUMBERDEX_SPAWN
 import { ActionRowBuilder, bold, ButtonBuilder, ButtonStyle, ComponentType, userMention, type Message, type ModalMessageModalSubmitInteraction, type SendableChannels } from "discord.js";
 import { createUser, getUser } from "../helpers.ts";
 import { NumberhumanData } from "../users/numberhuman.ts";
-import type { NumberhumanStore } from "./class";
 import type { NumberhumanInfo } from "./schema";
+import type { NumberhumanStore } from "./store.ts";
 
 export function createButtonRow(disabled?: boolean): ActionRowBuilder<ButtonBuilder> {
   const button = ButtonBuilder.from({
