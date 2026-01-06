@@ -20,7 +20,7 @@ export interface Command extends ChatInputApplicationCommandData {
 export type ServerSlashCommandInteraction = ChatInputCommandInteraction<"cached" | "raw">;
 
 export interface StoredNumberInfo {
-  number: string;
+  number: string | null;
   hashedNumber: string;
   image: string;
   uuid: string;

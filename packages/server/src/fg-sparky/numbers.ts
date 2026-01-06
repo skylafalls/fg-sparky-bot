@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import type { Difficulties, StoredNumberInfo } from "@fg-sparky/utils";
+import { Option, type Difficulties, type None, type StoredNumberInfo } from "@fg-sparky/utils";
 import { randomDifficulty } from "../helpers.ts";
 import { DataStore } from "../store.ts";
 import { NumberInfo } from "./schema.ts";
@@ -22,19 +22,19 @@ export class NumberStore extends DataStore<NumberInfo> {
   }
 
   get UNIQUE_EASY_ENTRIES(): number {
-    return this.data.easy.length;
+    return this.data.filter(value => value.difficulty === "easy").length;
   }
 
   get UNIQUE_MEDIUM_ENTRIES(): number {
-    return this.data.medium.length;
+    return this.data.filter(value => value.difficulty === "medium").length;
   }
 
   get UNIQUE_HARD_ENTRIES(): number {
-    return this.data.hard.length;
+    return this.data.filter(value => value.difficulty === "hard").length;
   }
 
   get UNIQUE_LEGENDARY_ENTRIES(): number {
-    return this.data.legendary.length;
+    return this.data.filter(value => value.difficulty === "legendary").length;
   }
 
   /**
@@ -49,7 +49,7 @@ export class NumberStore extends DataStore<NumberInfo> {
    * Returns a random entry from the collection of entries.
    * @returns The entry.
    */
-  getRandom(): StoredNumberInfo {
+  getRandom(): Option<StoredNumberInfo> {
     const difficultyPool = randomDifficulty();
     return this.getRandomByDifficulty(difficultyPool);
   }
@@ -58,17 +58,19 @@ export class NumberStore extends DataStore<NumberInfo> {
    * Returns a random entry from the specified difficulty pool.
    * @returns The entry.
    */
-  getRandomByDifficulty(difficulty: Difficulties): StoredNumberInfo {
+  getRandomByDifficulty(difficulty: Difficulties): Option<StoredNumberInfo> {
     const reducedPool = this.data.filter(value => value.difficulty === difficulty);
-    const number = reducedPool[Math.floor(Math.random() * reducedPool.length)]!;
+    const number = reducedPool[Math.floor(Math.random() * reducedPool.length)];
 
-    return {
+    if (!number) return Option.none as None<StoredNumberInfo>;
+
+    return Option.from({
       number: number.name,
       hashedNumber: number.hashedName,
       image: number.image,
       uuid: number.uuid,
       difficulty,
-    };
+    });
   }
 
   /**
