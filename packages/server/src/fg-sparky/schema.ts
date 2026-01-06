@@ -14,24 +14,7 @@ export interface NumberInfo {
    * possibly null because of legendaries
    */
   name: string | null;
-}
-
-export interface StoredNumberInfo {
-  uuid: string;
-  image: string;
-  hashedNumber: string;
-  /**
-   * possibly null because of legendaries
-   */
-  number: string | null;
   difficulty: Difficulties;
-}
-
-export interface Numbers {
-  easy: NumberInfo[];
-  medium: NumberInfo[];
-  hard: NumberInfo[];
-  legendary: NumberInfo[];
 }
 
 export const NumberInfo: ZodType<NumberInfo> = z.strictObject({
@@ -39,11 +22,5 @@ export const NumberInfo: ZodType<NumberInfo> = z.strictObject({
   image: z.string(),
   hashedName: z.hash("sha512"),
   name: z.string().nullable(),
-});
-
-export const Numbers: ZodType<Numbers> = z.object({
-  easy: NumberInfo.array(),
-  medium: NumberInfo.array(),
-  hard: NumberInfo.array(),
-  legendary: NumberInfo.array(),
+  difficulty: z.enum(["easy", "medium", "hard", "legendary"]),
 });
