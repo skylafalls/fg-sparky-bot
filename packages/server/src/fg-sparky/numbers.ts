@@ -4,17 +4,18 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { type Difficulties, Option, type StoredNumberInfo } from "@fg-sparky/utils";
+import type { Difficulties, StoredNumberInfo } from "@fg-sparky/utils";
 import { randomDifficulty } from "../helpers.ts";
-import { type NumberInfo, Numbers as NumbersJsonSchema } from "./schema.ts";
+import { DataStore } from "../store.ts";
+import { NumberInfo } from "./schema.ts";
 
-export class NumberStore {
+export class NumberStore extends DataStore<NumberInfo> {
   /**
-   * Constructs the {@link NumberStore} class. Because constructors cannot be asynchronous,
-   * this is private and one of the static `load*` methods is used to construct the class.
-   * @param data The numbers to load.
+   * Constructs the {@link NumberStore} class, passing in a JSON file path as a backing storage.
    */
-  constructor(private readonly file: string, private data: Record<Difficulties, NumberInfo[]>) {}
+  constructor(file: string) {
+    super(file, NumberInfo);
+  }
 
   get UNIQUE_ENTRIES(): number {
     return this.UNIQUE_EASY_ENTRIES + this.UNIQUE_MEDIUM_ENTRIES + this.UNIQUE_HARD_ENTRIES + this.UNIQUE_LEGENDARY_ENTRIES;
@@ -41,31 +42,7 @@ export class NumberStore {
    * @returns An empty instance.
    */
   static create(file: string): NumberStore {
-    return new NumberStore(file, {
-      easy: [],
-      medium: [],
-      hard: [],
-      legendary: [],
-    });
-  }
-
-  /**
-    * Validates and parses the data from the file passed in.
-    * @returns The fully initialized class.
-    */
-  async load(): Promise<this> {
-    const fileJSON = await Bun.file(this.file).json() as unknown;
-    const validatedData = NumbersJsonSchema.parse(fileJSON);
-    this.data = validatedData;
-    return this;
-  }
-
-  /**
-    * Saves the file data to local disk.
-    */
-  async save(): Promise<void> {
-    const data = JSON.stringify(this.data, undefined, 2);
-    await Bun.write(this.file, data);
+    return new NumberStore(file);
   }
 
   /**
@@ -82,8 +59,8 @@ export class NumberStore {
    * @returns The entry.
    */
   getRandomByDifficulty(difficulty: Difficulties): StoredNumberInfo {
-    const numbers = this.data[difficulty];
-    const number = numbers[Math.floor(Math.random() * numbers.length)]!;
+    const reducedPool = this.data.filter(value => value.difficulty === difficulty);
+    const number = reducedPool[Math.floor(Math.random() * reducedPool.length)]!;
 
     return {
       number: number.name,
@@ -95,22 +72,13 @@ export class NumberStore {
   }
 
   /**
-   * Returns an entry based on the UUID. Returns a Rust option if it doesn't exist.
-   * @returns The entry or None.
-   */
-  getByID(id: string): Option<NumberInfo> {
-    const data = [...this.data.easy, ...this.data.medium, ...this.data.hard, ...this.data.legendary];
-    const number = data.find(value => value.uuid === id);
-    return Option.from(number);
-  }
-
-  /**
    * Counts how many _unique_ entries the player has guessed for that difficulty
    * in comparison to the data within this store.
    * @returns The unique count of entries.
    */
   countEntriesUnique(difficulty: Difficulties, entries: string[]): number {
-    const filtered = this.data[difficulty].filter((entry) => {
+    const filtered = this.data.filter((entry) => {
+      if (entry.difficulty !== difficulty) return false;
       for (const uuid of entries) {
         if (entry.uuid === uuid) return true;
       }
@@ -126,8 +94,8 @@ export class NumberStore {
    */
   countEntriesTotal(difficulty: Difficulties, entries: string[]): number {
     const filtered = entries.filter((uuid) => {
-      for (const entry of this.data[difficulty]) {
-        if (uuid === entry.uuid) return true;
+      for (const entry of this.data) {
+        if (uuid === entry.uuid && entry.difficulty === difficulty) return true;
       }
       return false;
     });
