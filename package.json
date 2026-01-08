@@ -17,12 +17,18 @@
     "@stylistic/eslint-plugin": "catalog:linting",
     "@types/bun": "catalog:types",
     "@types/node": "catalog:types",
+    "@typescript/native-preview": "catalog:types",
     "eslint": "catalog:linting",
     "eslint-plugin-oxlint": "catalog:linting",
     "jiti": "catalog:linting",
     "oxlint": "catalog:linting",
     "oxlint-tsgolint": "catalog:linting",
-    "rolldown": "catalog:build",
-    "@typescript/native-preview": "catalog:types"
+    "rolldown": "catalog:build"
+  },
+  "dependencies": {
+    "@fg-sparky/client": "workspace:*",
+    "@fg-sparky/server": "workspace:*",
+    "@fg-sparky/utils": "workspace:*",
+    "commander": "catalog:utils"
   }
 }

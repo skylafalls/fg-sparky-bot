@@ -84,6 +84,19 @@ catalogs:
 importers:
 
   .:
+    dependencies:
+      '@fg-sparky/client':
+        specifier: workspace:*
+        version: link:packages/client
+      '@fg-sparky/server':
+        specifier: workspace:*
+        version: link:packages/server
+      '@fg-sparky/utils':
+        specifier: workspace:*
+        version: link:packages/utils
+      commander:
+        specifier: catalog:utils
+        version: 14.0.2
     devDependencies:
       '@stylistic/eslint-plugin':
         specifier: catalog:linting

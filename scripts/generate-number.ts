@@ -1,6 +1,7 @@
+import type { NumberInfo } from "@fg-sparky/server";
+import type { Difficulties } from "@fg-sparky/utils";
 import { Command } from "commander";
 import { copyFile } from "node:fs/promises";
-import type { NumberInfo } from "@fg-sparky/server";
 
 const program = new Command("generate-number");
 const sha512 = new Bun.CryptoHasher("sha512");
@@ -16,7 +17,11 @@ program
 
 program.parse(process.argv);
 
-const options = program.opts();
+const options = program.opts<{
+  file: string;
+  number: string;
+  difficulty: Difficulties;
+}>();
 
 const filePath = String(options.file);
 const numberName = String(options.number);

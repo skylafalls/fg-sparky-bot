@@ -4,6 +4,5 @@
     "source.fixAll.oxc": "explicit"
   },
   "oxc.fixKind": "safe_fix_or_suggestion",
-  "oxc.typeAware": true,
-  "typescript.experimental.useTsgo": true
+  "oxc.typeAware": true
 }
