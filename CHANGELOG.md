@@ -1,6 +1,15 @@
 # changelog
 
-## 1.2.0 - January 6th, 2026
+## 1.2.1 - January 6th, 2026
+oops
+
+### fixes:
+- \[[`c0b6b5a9`](https://github.com/skylafalls/fg-sparky-bot/commit/c0b6b5a91279f8a4bb0925121b2506c5f966b885)] - fix(reload): fix options
+
+### chores:
+- \[[`3601377a`](https://github.com/skylafalls/fg-sparky-bot/commit/3601377a3495ac42267fddbede55526a2e6900cb)] - chore(release): fix changelog
+
+## 1.2.0 - January 8th, 2026
 nevermind again (bruh)
 
 ### features:
