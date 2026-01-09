@@ -4,7 +4,6 @@
 nevermind again (bruh)
 
 ### features:
-- \[[`3c118018`](https://github.com/skylafalls/fg-sparky-bot/commit/3c11801829dee0e8930e558fc011a0b4866bcba2)] - feat(numberdex): new responses for success/fail ([#21](https://github.com/skylafalls/fg-sparky-bot/pull/17))
 - \[[`d71bcb3c`](https://github.com/skylafalls/fg-sparky-bot/commit/d71bcb3c38d8809a21318760f85836cce48cbe91)] - feat(numberdex): extra response types
 - \[[`ef317155`](https://github.com/skylafalls/fg-sparky-bot/commit/ef3171559f3f276f93e73eb9738cc020580817ef)] - feat(bot): add a reload command to reload number stores
 
