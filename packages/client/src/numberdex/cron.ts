@@ -1,9 +1,9 @@
+import type { NumberhumanStore } from "@fg-sparky/server";
 import { Baker, FilePersistenceProvider, Logger } from "@fg-sparky/utils";
 import type { Client } from "discord.js";
 import { setupCallback } from "./handler.ts";
-import type { NumberhumanStore } from "./store.ts";
 
-export const baker: Baker = Baker.create({
+export const NumberdexBaker: Baker = Baker.create({
   logger: Logger,
   persistence: {
     enabled: true,

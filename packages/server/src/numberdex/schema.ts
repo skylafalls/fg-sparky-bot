@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { z, type Rarities, type ZodType } from "@fg-sparky/utils";
+import { z, type Rarities, type Responses, type ZodType } from "@fg-sparky/utils";
 
 export interface NumberhumanInfo {
   uuid: string;
@@ -26,4 +26,16 @@ export const NumberhumanInfo: ZodType<NumberhumanInfo> = z.strictObject({
   baseHP: z.int(),
   baseATK: z.int(),
   ability: z.string().nullable(),
+});
+
+export interface ResponseInfo {
+  uuid: string;
+  value: string;
+  type: Responses;
+}
+
+export const ResponseInfo: ZodType<ResponseInfo> = z.strictObject({
+  uuid: z.uuid(),
+  value: z.string(),
+  type: z.enum(["fail", "success", "flee", "spawn"]),
 });

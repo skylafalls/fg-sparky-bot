@@ -4,7 +4,8 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { joinStringArray, type StoredNumberInfo } from "@fg-sparky/utils" with { type: "comptime" };
+import type { StoredNumberInfo } from "@fg-sparky/utils";
+import { joinStringArray } from "@fg-sparky/utils" with { type: "comptime" };
 import type { Message, OmitPartialGroupDMChannel } from "discord.js";
 
 /**

@@ -4,9 +4,10 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { NumberdexBaker, setupCallback } from "@fg-sparky/server";
 import type { Command } from "@fg-sparky/utils";
 import { ApplicationCommandOptionType, ChannelType, PermissionFlagsBits, type Client, type CommandInteraction } from "discord.js";
+import { NumberdexBaker } from "../numberdex/cron.ts";
+import { setupCallback } from "../numberdex/handler.ts";
 import { Numberhumans } from "../stores.ts";
 
 const Numberdex: Command = {

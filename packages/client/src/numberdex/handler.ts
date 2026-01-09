@@ -1,7 +1,7 @@
-import { getRandomRange, Logger, NUMBERDEX_FAIL_MESSAGES, NUMBERDEX_FLEE_DELAY, type ICron } from "@fg-sparky/utils";
+import { createGuessHandler, type NumberhumanStore } from "@fg-sparky/server";
+import { getRandomRange, Logger, NUMBERDEX_FLEE_DELAY, type ICron } from "@fg-sparky/utils";
 import { ComponentType, TextInputStyle, userMention, type Interaction, type ModalComponentData, type SendableChannels } from "discord.js";
-import { createGuessHandler } from "../handler.ts";
-import type { NumberhumanStore } from "./store.ts";
+import { Responses } from "../stores.ts";
 import { createButtonRow, spawnNumberhuman, updateUserStats } from "./utils.ts";
 
 const createGuessModal = (channelId: string): ModalComponentData => ({
@@ -59,12 +59,13 @@ export function setupCallback(store: NumberhumanStore, job: ICron, channel: Send
               });
               await updateUserStats(interaction, okNumber);
             } else {
-              const failMessage = NUMBERDEX_FAIL_MESSAGES[Math.floor(Math.random() * NUMBERDEX_FAIL_MESSAGES.length)] ?? "yeah, i wished it was **{guess}**, {mention}.";
-              await interaction.reply(failMessage
-                .replaceAll("{guess}", guess)
-                .replaceAll("{mention}", userMention(interaction.user.id))
-                .replaceAll("{correct}", okNumber.name),
-              );
+              const failMessage = Responses.getRandom({
+                type: "fail",
+                correctHuman: okNumber.name,
+                guessedHuman: guess,
+                mentionId: interaction.user.id,
+              }).unwrapOr(`yeah, i wished it was **${guess}**, ${userMention(interaction.user.id)}.`);
+              await interaction.reply(failMessage);
             }
           }
         };

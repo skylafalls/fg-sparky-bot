@@ -29,3 +29,4 @@ export interface StoredNumberInfo {
 
 export type Difficulties = "easy" | "medium" | "hard" | "legendary";
 export type Rarities = "common" | "rare" | "epic";
+export type Responses = "spawn" | "fail" | "success" | "flee";

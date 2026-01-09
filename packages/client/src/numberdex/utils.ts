@@ -4,12 +4,10 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { formatPercent, getRandomRange, joinStringArray, Logger, NUMBERDEX_SPAWN_MESSAGES, NUMBERDEX_SUCCESS_MESSAGES, Result } from "@fg-sparky/utils";
+import { createUser, getUser, NumberhumanData, type NumberhumanInfo, type NumberhumanStore } from "@fg-sparky/server";
+import { formatPercent, getRandomRange, joinStringArray, Logger, Result } from "@fg-sparky/utils";
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType, userMention, type Message, type ModalMessageModalSubmitInteraction, type SendableChannels } from "discord.js";
-import { createUser, getUser } from "../helpers.ts";
-import { NumberhumanData } from "../users/numberhuman.ts";
-import type { NumberhumanInfo } from "./schema";
-import type { NumberhumanStore } from "./store.ts";
+import { Responses } from "../stores.ts";
 
 export function createButtonRow(disabled?: boolean): ActionRowBuilder<ButtonBuilder> {
   const button = ButtonBuilder.from({
@@ -26,14 +24,16 @@ export function createButtonRow(disabled?: boolean): ActionRowBuilder<ButtonBuil
 
 export async function spawnNumberhuman(store: NumberhumanStore, channel: SendableChannels): Promise<Result<[NumberhumanInfo, Message], Error | ReferenceError>> {
   const numberhuman = store.getRandom();
-  const randomSpawnMessage = NUMBERDEX_SPAWN_MESSAGES[Math.floor(Math.random() * NUMBERDEX_SPAWN_MESSAGES.length)];
+  const randomSpawnMessage = Responses.getRandom({
+    type: "spawn",
+  }).unwrapOr("hello");
   try {
     for (const okHuman of numberhuman) {
       return Result.ok([
         okHuman,
         // oxlint-disable-next-line no-await-in-loop: still not a loop
         await channel.send({
-          content: randomSpawnMessage ?? "hello",
+          content: randomSpawnMessage,
           files: [okHuman.image],
           components: [createButtonRow()],
         }),
@@ -55,7 +55,13 @@ export async function updateUserStats(
     bonusATK: getRandomRange(0.95, 1.15),
     bonusHP: getRandomRange(0.95, 1.15),
   });
-  const responseMessage = NUMBERDEX_SUCCESS_MESSAGES[Math.floor(Math.random() * NUMBERDEX_SUCCESS_MESSAGES.length)] ?? "hey, you managed to ~~kidnap~~ catch **{correct}** {mention}!";
+  const responseMessage = Responses
+    .getRandom({
+      type: "success",
+      correctHuman: number.name,
+      mentionId: interaction.user.id,
+    })
+    .unwrapOr(`hey, you managed to ~~kidnap~~ catch **${number.name}** ${userMention(interaction.user.id)}!`);
   const user = await getUser(interaction.user.id, interaction.guildId);
   Logger.debug(`tried looking up user ${interaction.user.id} (found: ${user ? "true" : "false"})`);
 
@@ -67,17 +73,13 @@ export async function updateUserStats(
     user.numberhumans.push(numberhuman);
     if (user.numberhumansGuessedUnique.includes(number.uuid)) {
       await interaction.followUp(joinStringArray([
-        responseMessage
-          .replaceAll("{mention}", userMention(interaction.user.id))
-          .replaceAll("{correct}", number.name),
+        responseMessage,
         `-# bonus attack: ${formatPercent(numberhuman.bonusAtk - 1)}, bonus hp: ${formatPercent(numberhuman.bonusHP - 1)}`,
       ]));
     } else {
       user.numberhumansGuessedUnique.push(number.uuid);
       await interaction.followUp(joinStringArray([
-        responseMessage
-          .replaceAll("{mention}", userMention(interaction.user.id))
-          .replaceAll("{correct}", number.name),
+        responseMessage,
         `-# bonus attack: ${formatPercent(numberhuman.bonusAtk - 1)}, bonus hp: ${formatPercent(numberhuman.bonusHP - 1)}`,
         "woah is that a new numberhuman you caught??",
       ]));
@@ -94,9 +96,7 @@ export async function updateUserStats(
     newUser.numberhumans ??= [];
     newUser.numberhumans.push(numberhuman);
     await interaction.followUp(joinStringArray([
-      responseMessage
-        .replaceAll("{mention}", userMention(interaction.user.id))
-        .replaceAll("{correct}", number.name),
+      responseMessage,
       `i've also created a profile for you with that numberhuman.`,
       `-# bonus attack: ${formatPercent(numberhuman.bonusAtk)}, bonus hp: ${formatPercent(numberhuman.bonusHP)}`,
     ]));
