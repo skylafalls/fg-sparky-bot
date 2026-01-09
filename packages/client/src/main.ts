@@ -58,8 +58,6 @@ try {
   await initClient(client, token);
   await setupCronJobs(client, Numberhumans, NumberdexBaker);
   process.on("beforeExit", async () => {
-    await Numbers.save();
-    await Numberhumans.save();
     await NumberdexBaker.saveState();
   });
 } catch (error) {
