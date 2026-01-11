@@ -1,9 +1,11 @@
 import { UserProfile } from "@fg-sparky/server";
-import { formatPercent, type ServerSlashCommandInteraction } from "@fg-sparky/utils";
+import { formatPercent, joinStringArray, type ServerSlashCommandInteraction } from "@fg-sparky/utils";
 import type { Client } from "discord.js";
 import { Numbers } from "../../stores.ts";
 
 export default async function serverStatisticsDisplay(_: Client, interaction: ServerSlashCommandInteraction): Promise<void> {
+  await interaction.deferReply();
+
   const users = await UserProfile.find({
     where: { guildId: interaction.guildId },
   });
@@ -49,7 +51,7 @@ export default async function serverStatisticsDisplay(_: Client, interaction: Se
     },
   };
 
-  const content = [
+  const content = joinStringArray([
     `# Server statistics for ${thisServer}:`,
     `- users that have played: ${calculatedStatistics.totalUsers}`,
     `- total terminus tokens across the servers: ${calculatedStatistics.totalTokens}`,
@@ -58,7 +60,7 @@ export default async function serverStatisticsDisplay(_: Client, interaction: Se
     `  - medium numbers: ${calculatedStatistics.numbersGuessed.medium.total} (total), ${calculatedStatistics.numbersGuessed.medium.unique} (unique) [${calculatedStatistics.numberPercentages.medium}]`,
     `  - hard numbers: ${calculatedStatistics.numbersGuessed.hard.total} (total), ${calculatedStatistics.numbersGuessed.hard.unique} (unique) [${calculatedStatistics.numberPercentages.hard}]`,
     `  - legendary numbers: ${calculatedStatistics.numbersGuessed.legendary.total} (total), ${calculatedStatistics.numbersGuessed.legendary.unique} (unique) [${calculatedStatistics.numberPercentages.legendary}]`,
-  ];
+  ]);
 
-  await interaction.reply({ content: content.join("\n") });
+  await interaction.reply({ content });
 }
