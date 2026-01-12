@@ -21,6 +21,7 @@ interface FailReponseArgs {
 interface CorrectReponseArgs {
   type: "success";
   correctHuman: string;
+  guessedHuman: string;
   mentionId: string;
 }
 
