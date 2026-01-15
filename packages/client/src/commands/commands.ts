@@ -6,6 +6,7 @@
  */
 import type { Command } from "@fg-sparky/utils";
 import { Poweroff, Restart } from "./bot-management.ts";
+import Gift from "./gift.ts";
 import Guess from "./guess.ts";
 import Hello from "./hello.ts";
 import Numberdex from "./numberdex.ts";
@@ -20,4 +21,5 @@ export const Commands: readonly Command[] = [
   Restart,
   Numberdex,
   Reload,
+  Gift,
 ];

@@ -7,8 +7,8 @@
   "license": "GPL-3.0-or-later",
   "version": "1.2.4",
   "scripts": {
-    "dev": "bun run build && bun run --watch dist/main.js",
-    "build": "bun run scripts/bundle.ts",
+    "dev": "bun run --watch dist/main.js",
+    "build": "pnpm run --filter @fg-sparky/client build",
     "lint": "oxlint . --type-check --type-aware --ignore-path=.gitignore",
     "lint:fix": "oxlint --type-check --type-aware --fix --fix-suggestions . --ignore-path=.gitignore",
     "fmt": "dprint fmt",
