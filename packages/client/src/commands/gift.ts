@@ -25,7 +25,7 @@ const Gift: Command = {
     const amount = interaction.options.getNumber("amount", true);
     const user = interaction.options.getUser("user", true);
     const userInDB = await getUser(user.id, interaction.guildId);
-    const giftingUser = await getUser(user.id, interaction.guildId);
+    const giftingUser = await getUser(interaction.user.id, interaction.guildId);
 
     if (!giftingUser) {
       await interaction.reply({
