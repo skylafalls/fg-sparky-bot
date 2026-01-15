@@ -47,7 +47,7 @@ export class NumberhumanData extends BaseEntity {
   /**
    * The numberhuman's evolution, which applies a strong buff.
    */
-  @Column("integer")
+  @Column("text")
   evolution: EvolutionType = EvolutionType.None;
 
   /**
