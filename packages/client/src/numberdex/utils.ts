@@ -15,6 +15,7 @@ import {
 import {
   EvolutionType,
   formatPercent,
+  getEvolutionBuff,
   getRandomRange,
   joinStringArray,
   Logger,
@@ -23,9 +24,11 @@ import {
 import {
   ActionRowBuilder,
   AttachmentBuilder,
+  bold,
   ButtonBuilder,
   ButtonStyle,
   ComponentType,
+  italic,
   type Message,
   type ModalMessageModalSubmitInteraction,
   type SendableChannels,
@@ -102,6 +105,21 @@ export async function updateUserStats(
       interaction.user.id
     )}!`
   );
+
+  const evolutionMessage =
+    numberhuman.evolution === EvolutionType.None
+      ? null
+      : italic(
+          `heyyy this numberhuman is ${bold(
+            numberhuman.evolution
+          )}! this gives them a ${getEvolutionBuff(
+            numberhuman.evolution,
+            "hp"
+          )} boost to HP and a ${getEvolutionBuff(
+            numberhuman.evolution,
+            "atk"
+          )} boost to their ATK!`
+        );
   const user = await getUser(interaction.user.id, interaction.guildId);
   Logger.debug(
     `tried looking up user ${interaction.user.id} (found: ${
@@ -124,6 +142,7 @@ export async function updateUserStats(
           `-# bonus attack: ${formatPercent(
             numberhuman.bonusAtk - 1
           )}, bonus hp: ${formatPercent(numberhuman.bonusHP - 1)}`,
+          evolutionMessage,
         ])
       );
     } else {
@@ -135,6 +154,7 @@ export async function updateUserStats(
             numberhuman.bonusAtk - 1
           )}, bonus hp: ${formatPercent(numberhuman.bonusHP - 1)}`,
           "woah is that a new numberhuman you caught??",
+          evolutionMessage,
         ])
       );
     }
@@ -156,6 +176,7 @@ export async function updateUserStats(
         `-# bonus attack: ${formatPercent(
           numberhuman.bonusAtk
         )}, bonus hp: ${formatPercent(numberhuman.bonusHP)}`,
+        evolutionMessage,
       ])
     );
     await newUser.save();
