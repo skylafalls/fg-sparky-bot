@@ -8,9 +8,9 @@ import type { Command } from "@fg-sparky/utils";
 import {
   ApplicationCommandOptionType,
   ChannelType,
-  PermissionFlagsBits,
   type Client,
   type CommandInteraction,
+  PermissionFlagsBits,
 } from "discord.js";
 import { NumberdexBaker } from "../numberdex/cron.ts";
 import { setupCallback } from "../numberdex/handler.ts";

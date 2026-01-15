@@ -11,14 +11,14 @@
     "build": "bun run scripts/bundle.ts",
     "lint": "oxlint . --type-check --type-aware --ignore-path=.gitignore",
     "lint:fix": "oxlint --type-check --type-aware --fix --fix-suggestions . --ignore-path=.gitignore",
-    "fmt": "biome format --write .",
+    "fmt": "dprint fmt",
     "typecheck": "tsgo -p tsconfig.json"
   },
   "devDependencies": {
-    "@biomejs/biome": "catalog:linting",
     "@types/bun": "catalog:types",
     "@types/node": "catalog:types",
     "@typescript/native-preview": "catalog:types",
+    "dprint": "catalog:linting",
     "oxlint": "catalog:linting",
     "oxlint-tsgolint": "catalog:linting",
     "rolldown": "catalog:build"

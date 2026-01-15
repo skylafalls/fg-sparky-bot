@@ -4,13 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import {
-  createUser,
-  getUser,
-  NumberhumanData,
-  type NumberhumanInfo,
-  type NumberhumanStore,
-} from "@fg-sparky/server";
+import { createUser, getUser, NumberhumanData, type NumberhumanInfo, type NumberhumanStore } from "@fg-sparky/server";
 import { formatPercent, getRandomRange, joinStringArray, Logger, Result } from "@fg-sparky/utils";
 import {
   ActionRowBuilder,
@@ -18,10 +12,10 @@ import {
   ButtonBuilder,
   ButtonStyle,
   ComponentType,
-  userMention,
   type Message,
   type ModalMessageModalSubmitInteraction,
   type SendableChannels,
+  userMention,
 } from "discord.js";
 import { readFileSync } from "node:fs";
 import { Responses } from "../stores.ts";
@@ -53,8 +47,8 @@ export async function spawnNumberhuman(
         .setName(okHuman.image.slice(okHuman.image.lastIndexOf("/") + 1))
         .setDescription("The numberhuman you have to guess")
         .setSpoiler(
-          okHuman.uuid === "c6e6c334-16cd-479c-bd75-d82d23af50cb" ||
-            okHuman.uuid === "c9c69c3c-3637-49a1-b667-29efd687a518",
+          okHuman.uuid === "c6e6c334-16cd-479c-bd75-d82d23af50cb"
+            || okHuman.uuid === "c9c69c3c-3637-49a1-b667-29efd687a518",
         );
       return Result.ok([
         okHuman,
@@ -104,7 +98,9 @@ export async function updateUserStats(
       await interaction.followUp(
         joinStringArray([
           responseMessage,
-          `-# bonus attack: ${formatPercent(numberhuman.bonusAtk - 1)}, bonus hp: ${formatPercent(numberhuman.bonusHP - 1)}`,
+          `-# bonus attack: ${formatPercent(numberhuman.bonusAtk - 1)}, bonus hp: ${
+            formatPercent(numberhuman.bonusHP - 1)
+          }`,
         ]),
       );
     } else {
@@ -112,7 +108,9 @@ export async function updateUserStats(
       await interaction.followUp(
         joinStringArray([
           responseMessage,
-          `-# bonus attack: ${formatPercent(numberhuman.bonusAtk - 1)}, bonus hp: ${formatPercent(numberhuman.bonusHP - 1)}`,
+          `-# bonus attack: ${formatPercent(numberhuman.bonusAtk - 1)}, bonus hp: ${
+            formatPercent(numberhuman.bonusHP - 1)
+          }`,
           "woah is that a new numberhuman you caught??",
         ]),
       );

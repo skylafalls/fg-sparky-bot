@@ -7,10 +7,10 @@
 import type { Command } from "@fg-sparky/utils";
 import {
   ApplicationCommandOptionType,
-  MessageFlags,
-  PermissionFlagsBits,
   type Client,
   type CommandInteraction,
+  MessageFlags,
+  PermissionFlagsBits,
 } from "discord.js";
 import { Numberhumans, Numbers, Responses } from "../stores.ts";
 

@@ -4,12 +4,12 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { StreakCollection, createGuessHandler, createUser, getUser } from "@fg-sparky/server";
-import { Logger, joinStringArray, type StoredNumberInfo as NumberInfo } from "@fg-sparky/utils";
+import { createGuessHandler, createUser, getUser, StreakCollection } from "@fg-sparky/server";
+import { joinStringArray, Logger, type StoredNumberInfo as NumberInfo } from "@fg-sparky/utils";
 import {
-  Collection,
   type ChatInputCommandInteraction,
   type Client,
+  Collection,
   type Message,
   type OmitPartialGroupDMChannel,
 } from "discord.js";
@@ -127,7 +127,10 @@ export function handleResponse(
       await streakCollection.clear();
 
       const content = `no one guessed in time${number.number ? `, the correct answer was ${number.number}.` : "."}`;
-      await interaction.followUp({ content, allowedMentions: { repliedUser: false } });
+      await interaction.followUp({
+        content,
+        allowedMentions: { repliedUser: false },
+      });
     },
     number.difficulty === "legendary" ? 60000 : 40000,
   );

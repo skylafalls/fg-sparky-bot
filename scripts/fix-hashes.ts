@@ -8,7 +8,7 @@ const numberhumans = NumberhumanInfo.array().parse(
 const fixed = numberhumans.map((value) =>
   Object.assign(value, {
     hashedName: hasher.update(value.name.toLowerCase()).digest("hex"),
-  }),
+  })
 );
 
 await Bun.write("numbers/numberhumans.json", JSON.stringify(fixed, null, 2));

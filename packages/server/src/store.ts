@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { Option, type None, type ZodType } from "@fg-sparky/utils";
+import { type None, Option, type ZodType } from "@fg-sparky/utils";
 
 interface DataStoreEntry {
   uuid: string;

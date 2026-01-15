@@ -5,8 +5,9 @@ export class StreakCollection extends Collection<string, number> {
   appendStreak(id: string, guildId: string): this {
     // just checked if the key exists
 
-    if (this.has(`${id}.${guildId}`))
+    if (this.has(`${id}.${guildId}`)) {
       return this.set(`${id}.${guildId}`, this.get(`${id}.${guildId}`)! + 1);
+    }
     return this.set(`${id}.${guildId}`, 1);
   }
 

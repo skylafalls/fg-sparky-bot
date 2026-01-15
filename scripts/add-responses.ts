@@ -23,9 +23,9 @@ const responses = await Bun.file(file)
           uuid: crypto.randomUUID(),
           type,
           value,
-        }),
+        })
       )
-      .filter((value) => value.value !== ""),
+      .filter((value) => value.value !== "")
   );
 
 responsea.push(...responses);

@@ -1,9 +1,5 @@
 import { UserProfile } from "@fg-sparky/server";
-import {
-  formatPercent,
-  joinStringArray,
-  type ServerSlashCommandInteraction,
-} from "@fg-sparky/utils";
+import { formatPercent, joinStringArray, type ServerSlashCommandInteraction } from "@fg-sparky/utils";
 import type { Client } from "discord.js";
 import { Numbers } from "../../stores.ts";
 
@@ -62,8 +58,8 @@ export default async function serverStatisticsDisplay(
         Numbers.countEntriesUnique("hard", uniqueAcrossUsers) / Numbers.UNIQUE_HARD_ENTRIES,
       ),
       legendary: formatPercent(
-        Numbers.countEntriesUnique("legendary", uniqueAcrossUsers) /
-          Numbers.UNIQUE_LEGENDARY_ENTRIES,
+        Numbers.countEntriesUnique("legendary", uniqueAcrossUsers)
+          / Numbers.UNIQUE_LEGENDARY_ENTRIES,
       ),
     },
   };

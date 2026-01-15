@@ -15,7 +15,7 @@ catalogs:
     bufferutil: ^4.1.0
     discord.js: 14.25.1
   linting:
-    '@biomejs/biome': ^2.3.11
+    dprint: ^0.51.1
     oxlint: ^1.38.0
     oxlint-tsgolint: ^0.10.1
   types:
@@ -38,3 +38,4 @@ onlyBuiltDependencies:
   - bufferutil
   - esbuild
   - sqlite3
+  - dprint

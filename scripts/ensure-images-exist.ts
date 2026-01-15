@@ -1,5 +1,5 @@
-import numbers from "../numbers/numbers.json" with { type: "json" };
 import { NumberInfo } from "@fg-sparky/server";
+import numbers from "../numbers/numbers.json" with { type: "json" };
 
 const entries = await Promise.allSettled(
   numbers

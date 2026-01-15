@@ -24,11 +24,10 @@ const program = new Command()
 
 program.parse(process.argv);
 
-const { token = process.env.DISCORD_TOKEN, loglevel = Number(process.env.LOG_LEVEL ?? 0) } =
-  program.opts<{
-    token?: string;
-    loglevel?: number;
-  }>();
+const { token = process.env.DISCORD_TOKEN, loglevel = Number(process.env.LOG_LEVEL ?? 0) } = program.opts<{
+  token?: string;
+  loglevel?: number;
+}>();
 
 // oxlint-disable-next-line strict-boolean-expressions: need to check if its there
 if (!token) {

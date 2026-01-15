@@ -1,12 +1,12 @@
 import { createGuessHandler, type NumberhumanStore } from "@fg-sparky/server";
-import { getRandomRange, Logger, NUMBERDEX_FLEE_DELAY, type ICron } from "@fg-sparky/utils";
+import { getRandomRange, type ICron, Logger, NUMBERDEX_FLEE_DELAY } from "@fg-sparky/utils";
 import {
   ComponentType,
-  TextInputStyle,
-  userMention,
   type Interaction,
   type ModalComponentData,
   type SendableChannels,
+  TextInputStyle,
+  userMention,
 } from "discord.js";
 import { Responses } from "../stores.ts";
 import { createButtonRow, spawnNumberhuman, updateUserStats } from "./utils.ts";
@@ -65,11 +65,11 @@ export function setupCallback(
             Logger.debug(`User ${interaction.user.displayName} clicked the button`);
             await interaction.showModal(createGuessModal(interaction.channelId));
           } else if (
-            interaction.inGuild() &&
-            interaction.isModalSubmit() &&
-            interaction.isFromMessage() &&
-            interaction.customId === `numberhuman-guess-modal-${interaction.channelId}` &&
-            interaction.message.id === sentMessage.id
+            interaction.inGuild()
+            && interaction.isModalSubmit()
+            && interaction.isFromMessage()
+            && interaction.customId === `numberhuman-guess-modal-${interaction.channelId}`
+            && interaction.message.id === sentMessage.id
           ) {
             Logger.debug(
               `User ${interaction.user.displayName} submitted the numberhuman, verifying it's correct...`,

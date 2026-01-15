@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { Option, type Difficulties, type None, type StoredNumberInfo } from "@fg-sparky/utils";
+import { type Difficulties, type None, Option, type StoredNumberInfo } from "@fg-sparky/utils";
 import { randomDifficulty } from "../helpers.ts";
 import { DataStore } from "../store.ts";
 import { NumberInfo } from "./schema.ts";
@@ -19,10 +19,10 @@ export class NumberStore extends DataStore<NumberInfo> {
 
   get UNIQUE_ENTRIES(): number {
     return (
-      this.UNIQUE_EASY_ENTRIES +
-      this.UNIQUE_MEDIUM_ENTRIES +
-      this.UNIQUE_HARD_ENTRIES +
-      this.UNIQUE_LEGENDARY_ENTRIES
+      this.UNIQUE_EASY_ENTRIES
+      + this.UNIQUE_MEDIUM_ENTRIES
+      + this.UNIQUE_HARD_ENTRIES
+      + this.UNIQUE_LEGENDARY_ENTRIES
     );
   }
 

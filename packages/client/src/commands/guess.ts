@@ -4,14 +4,9 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { Logger, type Command, type Difficulties } from "@fg-sparky/utils";
+import { type Command, type Difficulties, Logger } from "@fg-sparky/utils";
 import { comptime } from "comptime.ts" with { type: "comptime" };
-import {
-  ApplicationCommandOptionType,
-  AttachmentBuilder,
-  type Client,
-  type CommandInteraction,
-} from "discord.js";
+import { ApplicationCommandOptionType, AttachmentBuilder, type Client, type CommandInteraction } from "discord.js";
 import { Numbers } from "../stores.ts";
 import { handleResponse } from "./guess/handler.ts";
 
@@ -27,8 +22,7 @@ const Guess: Command = {
     const difficulty = interaction.options.get("difficulty", true).value as
       | Exclude<Difficulties, "legendary">
       | "random";
-    const number =
-      difficulty === "random" ? Numbers.getRandom() : Numbers.getRandomByDifficulty(difficulty);
+    const number = difficulty === "random" ? Numbers.getRandom() : Numbers.getRandomByDifficulty(difficulty);
     if (number.isNone()) {
       await interaction.reply("couldn't find a random number for you, sorry.");
       return;
@@ -41,18 +35,16 @@ const Guess: Command = {
     // The message that will be sent to the player, specifiying the difficulty,
     // and the amount of time they get to guess it.
     // THere's some special flair for legendary difficulties.
-    const content =
-      unwrappedEntry.difficulty === "legendary"
-        ? `**DIFFICULTY: LEGENDARY**\nGuess the number, you have **60** seconds.`
-        : `Difficulty: ${unwrappedEntry.difficulty}\nGuess the number, you have **40** seconds.`;
+    const content = unwrappedEntry.difficulty === "legendary"
+      ? `**DIFFICULTY: LEGENDARY**\nGuess the number, you have **60** seconds.`
+      : `Difficulty: ${unwrappedEntry.difficulty}\nGuess the number, you have **40** seconds.`;
     const image = new AttachmentBuilder(Buffer.from(await Bun.file(unwrappedEntry.image).bytes()))
       .setName(unwrappedEntry.image.slice(unwrappedEntry.image.lastIndexOf("/") + 1))
       .setSpoiler(unwrappedEntry.uuid === "d828f344-b134-47a1-93c9-56e25d5c9e61");
 
     await interaction.reply({
-      content:
-        content +
-        comptime(
+      content: content
+        + comptime(
           process.env.NODE_ENV === "development"
             ? "\n-# NOTE: you're running on dev, your data probably won't save."
             : "",

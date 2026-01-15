@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { z, type Rarities, type Responses, type ZodType } from "@fg-sparky/utils";
+import { type Rarities, type Responses, z, type ZodType } from "@fg-sparky/utils";
 
 export interface NumberhumanInfo {
   uuid: string;

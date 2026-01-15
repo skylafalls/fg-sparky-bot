@@ -1,10 +1,5 @@
 import { UserProfile } from "@fg-sparky/server";
-import {
-  formatPercent,
-  Logger,
-  ordinalOf,
-  type ServerSlashCommandInteraction,
-} from "@fg-sparky/utils";
+import { formatPercent, Logger, ordinalOf, type ServerSlashCommandInteraction } from "@fg-sparky/utils";
 import type { Client, User as DiscordUser } from "discord.js";
 import { Numbers } from "../../stores.ts";
 
@@ -89,7 +84,8 @@ export async function userLeaderboardDisplay(
   })();
   const content = `\
     # User leaderboard for ${leaderboardHeader}: \n \
-    ${users
+    ${
+    users
       .map((user, index) => {
         // oxlint-disable-next-line array-callback-return: all paths always returns
         if (index > Math.min(displayAmount, 25) - 1) return "no";
@@ -102,18 +98,27 @@ export async function userLeaderboardDisplay(
         })(index);
         switch (leaderboardType) {
           case LeaderboardDisplayType.Tokens: {
-            return `${header} ${position}: ${discordUsers[index]!.displayName} (${user.tokens.toString()} <:terminusfinity:1444859277515690075>)`;
+            return `${header} ${position}: ${
+              discordUsers[index]!.displayName
+            } (${user.tokens.toString()} <:terminusfinity:1444859277515690075>)`;
           }
           case LeaderboardDisplayType.TotalEntries: {
-            return `${header} ${position}: ${discordUsers[index]!.displayName} (${user.guessedEntries.length.toString()} entries)`;
+            return `${header} ${position}: ${
+              discordUsers[index]!.displayName
+            } (${user.guessedEntries.length.toString()} entries)`;
           }
           case LeaderboardDisplayType.UniqueEntries: {
-            return `${header} ${position}: ${discordUsers[index]!.displayName} (${user.uniqueGuessed.length.toString()} entries) [${formatPercent(user.uniqueGuessed.length / Numbers.UNIQUE_ENTRIES)}]`;
+            return `${header} ${position}: ${
+              discordUsers[index]!.displayName
+            } (${user.uniqueGuessed.length.toString()} entries) [${
+              formatPercent(user.uniqueGuessed.length / Numbers.UNIQUE_ENTRIES)
+            }]`;
           }
         }
       })
       .filter((value) => value !== "no")
-      .join("\n")}
+      .join("\n")
+  }
     `;
   await interaction.editReply({ content });
 
@@ -121,21 +126,25 @@ export async function userLeaderboardDisplay(
     Logger.debug("/user-leaderboard: generating extended user reply...");
     const content = `\
     # User leaderboard (cont.): \n \
-    ${users
-      .slice(25)
-      .map((user, index) => {
-        if (index > displayAmount - 25) return "no";
-        const position = ordinalOf(index + 26);
-        // Sometimes an IIFE looks better then chaining ternaries
-        const header = ((index) => {
-          if (index === 0) return "##";
-          if (index === 1) return "###";
-          return "";
-        })(index);
-        return `${header} ${position}: ${discordUsers[index + 25]!.displayName} (${user.tokens.toString()} <:terminusfinity:1444859277515690075>)`;
-      })
-      .filter((value) => value !== "no")
-      .join("\n")}
+    ${
+      users
+        .slice(25)
+        .map((user, index) => {
+          if (index > displayAmount - 25) return "no";
+          const position = ordinalOf(index + 26);
+          // Sometimes an IIFE looks better then chaining ternaries
+          const header = ((index) => {
+            if (index === 0) return "##";
+            if (index === 1) return "###";
+            return "";
+          })(index);
+          return `${header} ${position}: ${
+            discordUsers[index + 25]!.displayName
+          } (${user.tokens.toString()} <:terminusfinity:1444859277515690075>)`;
+        })
+        .filter((value) => value !== "no")
+        .join("\n")
+    }
     `;
 
     await interaction.followUp({ content });

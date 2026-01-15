@@ -1,6 +1,6 @@
 {
   "recommendations": [
-    "biomejs.biome",
+    "dprint.dprint",
     "oxc.oxc-vscode",
     "oven.bun-vscode",
     "aaron-bond.better-comments",

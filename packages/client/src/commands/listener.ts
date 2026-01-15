@@ -4,13 +4,8 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import {
-  CooldownCollection,
-  GuessCooldownCollection,
-  Logger,
-  type Command,
-} from "@fg-sparky/utils";
-import { MessageFlags, type Client, type CommandInteraction } from "discord.js";
+import { type Command, CooldownCollection, GuessCooldownCollection, Logger } from "@fg-sparky/utils";
+import { type Client, type CommandInteraction, MessageFlags } from "discord.js";
 
 const commandCooldowns = new CooldownCollection();
 export const guessCooldowns: GuessCooldownCollection = new GuessCooldownCollection();
@@ -41,7 +36,8 @@ export async function handleSlashCommand(
   Logger.info(`Making sure the command ${interaction.commandName} isn't on cooldown...`);
   if (slashCommand.name === "guess" && guessCooldowns.check(slashCommand, interaction.channelId)) {
     await interaction.reply({
-      content: `Chill sis, the previous guess hasn't finished yet! Please answer correctly or wait for it to time out first.`,
+      content:
+        `Chill sis, the previous guess hasn't finished yet! Please answer correctly or wait for it to time out first.`,
       flags: MessageFlags.Ephemeral,
     });
     return;
