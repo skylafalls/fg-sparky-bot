@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import { getUser } from "@fg-sparky/server";
-import type { Command } from "@fg-sparky/utils";
+import { type Command, Logger } from "@fg-sparky/utils";
 import {
   ApplicationCommandOptionType,
   type Client,
@@ -28,6 +28,9 @@ const Gift: Command = {
     const giftingUser = await getUser(interaction.user.id, interaction.guildId);
 
     if (!giftingUser) {
+      Logger.warn(
+        `user ${interaction.user.displayName} tried gifting but they dont have a profile`
+      );
       await interaction.reply({
         content: `You don't even have a profile, go play FG sparky first!`,
         flags: MessageFlags.Ephemeral,
@@ -36,6 +39,9 @@ const Gift: Command = {
     }
 
     if (giftingUser.tokens < amount) {
+      Logger.warn(
+        `user ${interaction.user.displayName} tried gifting but they dont have enough tokens`
+      );
       await interaction.reply({
         content: `You don't have enough tokens to gift. You currently have ${giftingUser.tokens}.`,
         flags: MessageFlags.Ephemeral,
@@ -44,6 +50,9 @@ const Gift: Command = {
     }
 
     if (!userInDB) {
+      Logger.warn(
+        `user ${interaction.user.displayName} tried gifting to a person that doesnt have a profile`
+      );
       await interaction.reply({
         content: `User ${userMention(
           user.id
@@ -60,6 +69,9 @@ const Gift: Command = {
       "A tax of 5% will be applied. Do you accept?",
     ].join("\n");
 
+    Logger.info(
+      `user ${interaction.user.displayName} wants to gift ${amount} tokens to ${user.id}`
+    );
     await interaction.reply({
       content,
       components: [createButtonRow()],
@@ -67,39 +79,41 @@ const Gift: Command = {
 
     const handler = async (interact: Interaction) => {
       if (
-        interact.id !== "gift-accept-button" &&
-        interact.id !== "gift-reject-button" &&
-        !interact.isButton()
+        interact.isButton() &&
+        (interact.customId === "gift-accept-button" ||
+          interact.customId === "gift-reject-button")
       ) {
-        return;
+        clearTimeout(timeout);
+        if (interact.customId === "gift-accept-button") {
+          Logger.info(`user ${user.id} accepted the gift`);
+          userInDB.tokens += Math.floor(amount * 0.95);
+          giftingUser.tokens -= amount;
+          await userInDB.save();
+          await interaction.editReply({
+            components: [createButtonRow(false)],
+          });
+          await interaction.followUp(
+            // dprint-ignore
+            `${userMention(
+              user.id
+            )} has accepted your gift. I wish you two a happy life together.`
+          );
+        } else {
+          Logger.info(`user ${user.id} declined the gift`);
+          await interaction.editReply({
+            components: [createButtonRow(false)],
+          });
+          await interaction.followUp(
+            `${userMention(user.id)} has dumped your tokens. Sorry about that.`
+          );
+        }
+        client.off("interactionCreate", handler);
       }
-      clearTimeout(timeout);
-      if (interact.id === "gift-accept-button") {
-        userInDB.tokens += Math.floor(amount * 0.95);
-        giftingUser.tokens -= amount;
-        await userInDB.save();
-        await interaction.editReply({
-          components: [createButtonRow(false)],
-        });
-        await interaction.followUp(
-          // dprint-ignore
-          `${userMention(
-            user.id
-          )} has accepted your gift. I wish you two a happy life together.`
-        );
-      } else {
-        await interaction.editReply({
-          components: [createButtonRow(false)],
-        });
-        await interaction.followUp(
-          `${userMention(user.id)} has dumped your tokens. Sorry about that.`
-        );
-      }
-      client.off("interactionCreate", handler);
     };
 
     const timeout = setTimeout(async () => {
       client.off("interactionCreate", handler);
+      Logger.info(`user ${user.id} took too long to accept`);
       await interaction.editReply({
         components: [createButtonRow(false)],
       });
