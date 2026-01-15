@@ -4,7 +4,12 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import type { ChatInputApplicationCommandData, ChatInputCommandInteraction, Client, CommandInteraction } from "discord.js";
+import type {
+  ChatInputApplicationCommandData,
+  ChatInputCommandInteraction,
+  Client,
+  CommandInteraction,
+} from "discord.js";
 
 /**
  * The object structure that represents a slash command.

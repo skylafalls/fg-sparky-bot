@@ -9,12 +9,16 @@ export class GuessCooldownCollection extends Collection<string, boolean> {
    */
   check(_c: Command, channelId: string): boolean {
     if (!this.has(channelId) || !this.get(channelId)) {
-      Logger.debug(`Channel ${channelId} cooldown doesn't exist, creating and applying cooldown...`);
+      Logger.debug(
+        `Channel ${channelId} cooldown doesn't exist, creating and applying cooldown...`,
+      );
       this.set(channelId, true);
       return false;
     }
 
-    Logger.warn(`A player in channel ${channelId} tried to run /guess but the previous guess hasn't finished yet!`);
+    Logger.warn(
+      `A player in channel ${channelId} tried to run /guess but the previous guess hasn't finished yet!`,
+    );
     return true;
   }
 }

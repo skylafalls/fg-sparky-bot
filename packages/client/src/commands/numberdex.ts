@@ -5,7 +5,13 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import type { Command } from "@fg-sparky/utils";
-import { ApplicationCommandOptionType, ChannelType, PermissionFlagsBits, type Client, type CommandInteraction } from "discord.js";
+import {
+  ApplicationCommandOptionType,
+  ChannelType,
+  PermissionFlagsBits,
+  type Client,
+  type CommandInteraction,
+} from "discord.js";
 import { NumberdexBaker } from "../numberdex/cron.ts";
 import { setupCallback } from "../numberdex/handler.ts";
 import { Numberhumans } from "../stores.ts";
@@ -14,7 +20,9 @@ const Numberdex: Command = {
   async run(_client: Client, interaction: CommandInteraction<"raw" | "cached">): Promise<void> {
     if (!interaction.isChatInputCommand()) return;
     if (!interaction.memberPermissions.has("ManageChannels")) {
-      await interaction.reply("you do not have permisison to set which channel fg sparky bot can spawn numberhumans in.");
+      await interaction.reply(
+        "you do not have permisison to set which channel fg sparky bot can spawn numberhumans in.",
+      );
       return;
     }
     switch (interaction.options.getSubcommand(true)) {
@@ -37,17 +45,21 @@ const Numberdex: Command = {
   },
   description: "Numberdex subcommands.",
   name: "numberdex",
-  options: [{
-    name: "add",
-    description: "Adds a channel where the bot will spawn numberhumans.",
-    type: ApplicationCommandOptionType.Subcommand,
-    options: [{
-      name: "channel",
-      description: "The channel.",
-      type: ApplicationCommandOptionType.Channel,
-      required: true,
-    }],
-  }],
+  options: [
+    {
+      name: "add",
+      description: "Adds a channel where the bot will spawn numberhumans.",
+      type: ApplicationCommandOptionType.Subcommand,
+      options: [
+        {
+          name: "channel",
+          description: "The channel.",
+          type: ApplicationCommandOptionType.Channel,
+          required: true,
+        },
+      ],
+    },
+  ],
   defaultMemberPermissions: PermissionFlagsBits.ManageChannels,
 };
 

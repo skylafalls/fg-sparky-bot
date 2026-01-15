@@ -33,40 +33,49 @@ const User: Command = {
   },
   description: "User profile-related commands",
   name: "user",
-  options: [{
-    name: "show",
-    description: "Show information about a user",
-    type: ApplicationCommandOptionType.Subcommand,
-    options: [{
-      name: "user",
-      description: "The user to show the profile of",
-      type: ApplicationCommandOptionType.User,
-      required: true,
-    }],
-  }, {
-    name: "leaderboard",
-    description: "List people in descending order by their stats",
-    type: ApplicationCommandOptionType.Subcommand,
-    options: [{
-      name: "type",
-      description: "Which stat should this show?",
-      type: ApplicationCommandOptionType.String,
-      required: true,
-      choices: [
-        { name: "tokens", value: LeaderboardDisplayType.Tokens },
-        { name: "total-entries", value: LeaderboardDisplayType.TotalEntries },
-        { name: "unique-entries", value: LeaderboardDisplayType.UniqueEntries },
+  options: [
+    {
+      name: "show",
+      description: "Show information about a user",
+      type: ApplicationCommandOptionType.Subcommand,
+      options: [
+        {
+          name: "user",
+          description: "The user to show the profile of",
+          type: ApplicationCommandOptionType.User,
+          required: true,
+        },
       ],
-    }, {
-      name: "amount",
-      description: "The top amount of people to show (defaults to 10)",
-      type: ApplicationCommandOptionType.Number,
-    }],
-  }, {
-    name: "statistics",
-    description: "Show the server's statistics",
-    type: ApplicationCommandOptionType.Subcommand,
-  }],
+    },
+    {
+      name: "leaderboard",
+      description: "List people in descending order by their stats",
+      type: ApplicationCommandOptionType.Subcommand,
+      options: [
+        {
+          name: "type",
+          description: "Which stat should this show?",
+          type: ApplicationCommandOptionType.String,
+          required: true,
+          choices: [
+            { name: "tokens", value: LeaderboardDisplayType.Tokens },
+            { name: "total-entries", value: LeaderboardDisplayType.TotalEntries },
+            { name: "unique-entries", value: LeaderboardDisplayType.UniqueEntries },
+          ],
+        },
+        {
+          name: "amount",
+          description: "The top amount of people to show (defaults to 10)",
+          type: ApplicationCommandOptionType.Number,
+        },
+      ],
+    },
+    {
+      name: "statistics",
+      description: "Show the server's statistics",
+      type: ApplicationCommandOptionType.Subcommand,
+    },
+  ],
 };
 
 export default User;

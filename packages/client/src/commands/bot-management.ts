@@ -31,15 +31,18 @@ export const Restart: Command = {
     }
     await interaction.reply("Restarting...");
     // oxlint-disable-next-line strict-boolean-expressions
-    if (interaction.options.getBoolean("rebuild", false)) await Bun.$`/home/linuxbrew/.linuxbrew/bin/bun run build`;
+    if (interaction.options.getBoolean("rebuild", false))
+      await Bun.$`/home/linuxbrew/.linuxbrew/bin/bun run build`;
     process.exit(0);
   },
   description: "Restarts the bot",
   name: "restart",
-  options: [{
-    name: "rebuild",
-    description: "Also rebuild the code?",
-    required: false,
-    type: ApplicationCommandOptionType.Boolean,
-  }],
+  options: [
+    {
+      name: "rebuild",
+      description: "Also rebuild the code?",
+      required: false,
+      type: ApplicationCommandOptionType.Boolean,
+    },
+  ],
 };

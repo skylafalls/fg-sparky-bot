@@ -46,13 +46,15 @@ export class ResponseStore extends DataStore<ResponseInfo> {
    * @returns The entry.
    */
   getRandom(args: RandomReponseArgs): Option<string> {
-    const responsePool = this.data.filter(value => value.type === args.type);
+    const responsePool = this.data.filter((value) => value.type === args.type);
     const response = responsePool[Math.floor(Math.random() * responsePool.length)];
     // oxlint-disable-next-line no-unsafe-type-assertion
     if (!response) return Option.none as Option<string>;
-    return Option.from(response.value
-      .replaceAll("{mention}", userMention(args.mentionId ?? ""))
-      .replaceAll("{correct}", bold(args.correctHuman ?? ""))
-      .replaceAll("{guess}", bold(args.guessedHuman ?? "")));
+    return Option.from(
+      response.value
+        .replaceAll("{mention}", userMention(args.mentionId ?? ""))
+        .replaceAll("{correct}", bold(args.correctHuman ?? ""))
+        .replaceAll("{guess}", bold(args.guessedHuman ?? "")),
+    );
   }
 }

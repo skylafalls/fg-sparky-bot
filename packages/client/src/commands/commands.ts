@@ -12,4 +12,12 @@ import Numberdex from "./numberdex.ts";
 import Reload from "./reload.ts";
 import User from "./users.ts";
 
-export const Commands: readonly Command[] = [Hello, Guess, User, Poweroff, Restart, Numberdex, Reload];
+export const Commands: readonly Command[] = [
+  Hello,
+  Guess,
+  User,
+  Poweroff,
+  Restart,
+  Numberdex,
+  Reload,
+];

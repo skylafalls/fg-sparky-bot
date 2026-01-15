@@ -4,7 +4,12 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { CooldownCollection, GuessCooldownCollection, Logger, type Command } from "@fg-sparky/utils";
+import {
+  CooldownCollection,
+  GuessCooldownCollection,
+  Logger,
+  type Command,
+} from "@fg-sparky/utils";
 import { MessageFlags, type Client, type CommandInteraction } from "discord.js";
 
 const commandCooldowns = new CooldownCollection();
@@ -16,12 +21,16 @@ export async function handleSlashCommand(
   commands: readonly Command[],
 ): Promise<void> {
   if (!interaction.inGuild()) {
-    Logger.warn(`user ${interaction.user.displayName} tried running command /${interaction.commandName} outside of a discord server`);
-    await interaction.reply("sorry, fg sparky currently doesn't support guesses outside of servers");
+    Logger.warn(
+      `user ${interaction.user.displayName} tried running command /${interaction.commandName} outside of a discord server`,
+    );
+    await interaction.reply(
+      "sorry, fg sparky currently doesn't support guesses outside of servers",
+    );
     return;
   }
   Logger.debug(`Finding command ${interaction.commandName}`);
-  const slashCommand = commands.find(c => c.name === interaction.commandName);
+  const slashCommand = commands.find((c) => c.name === interaction.commandName);
   if (!slashCommand) {
     Logger.error(`User ${interaction.user.username} (${interaction.user.displayName})
       attempted to invoke a nonexistent command (/${interaction.commandName})`);
@@ -40,7 +49,7 @@ export async function handleSlashCommand(
 
   if (slashCommand.name !== "guess") {
     for (const timestamp of commandCooldowns.check(slashCommand, interaction.user.id)) {
-    // oxlint-disable-next-line no-await-in-loop: not a loop (using iterators to unwrap the option)
+      // oxlint-disable-next-line no-await-in-loop: not a loop (using iterators to unwrap the option)
       await interaction.reply({
         content: `Chill man you can't run /${slashCommand.name}, you can try again <t:${timestamp.toString()}:R>.`,
         flags: MessageFlags.Ephemeral,
@@ -50,7 +59,7 @@ export async function handleSlashCommand(
 
   Logger.info(`Running command ${interaction.commandName}`);
   await slashCommand.run(client, interaction);
-};
+}
 
 export function registerCommands(client: Client, commands: readonly Command[]): void {
   client.once("clientReady", async () => {
@@ -64,4 +73,4 @@ export function registerCommands(client: Client, commands: readonly Command[]): 
 
     Logger.info(`${client.user.username} is online`);
   });
-};
+}

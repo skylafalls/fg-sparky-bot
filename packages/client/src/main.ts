@@ -16,19 +16,25 @@ import { Numberhumans, Numbers, Responses } from "./stores.ts";
 const program = new Command()
   .version(packageJson.version)
   .description("FG sparky bot as a cli")
-  .option("-t, --token <token>", "The discord bot token to login with (env variable: DISCORD_TOKEN)")
+  .option(
+    "-t, --token <token>",
+    "The discord bot token to login with (env variable: DISCORD_TOKEN)",
+  )
   .option("-l, --loglevel [loglevel]", "Logging level as a number (env variable: LOG_LEVEL)");
 
 program.parse(process.argv);
 
-const { token = process.env.DISCORD_TOKEN, loglevel = Number(process.env.LOG_LEVEL ?? 0) } = program.opts<{
-  token?: string;
-  loglevel?: number;
-}>();
+const { token = process.env.DISCORD_TOKEN, loglevel = Number(process.env.LOG_LEVEL ?? 0) } =
+  program.opts<{
+    token?: string;
+    loglevel?: number;
+  }>();
 
 // oxlint-disable-next-line strict-boolean-expressions: need to check if its there
 if (!token) {
-  Logger.error(`The bot token must be passed in via the --token / -t flag or the DISCORD_TOKEN environment variable.`);
+  Logger.error(
+    `The bot token must be passed in via the --token / -t flag or the DISCORD_TOKEN environment variable.`,
+  );
   process.exit(1);
 }
 

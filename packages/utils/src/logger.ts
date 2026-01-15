@@ -21,12 +21,18 @@ export const Logger = {
 
   notice(str: string): void {
     if (this.loglevel > 2) return;
-    console.log(`[${loggerFormatter.format(Date.now())}] ${chalk.whiteBright("[NOTICE]")}: %s`, str);
+    console.log(
+      `[${loggerFormatter.format(Date.now())}] ${chalk.whiteBright("[NOTICE]")}: %s`,
+      str,
+    );
   },
 
   warn(str: string): void {
     if (this.loglevel > 3) return;
-    console.warn(`[${loggerFormatter.format(Date.now())}] ${chalk.yellowBright("[WARN]")}: %s`, str);
+    console.warn(
+      `[${loggerFormatter.format(Date.now())}] ${chalk.yellowBright("[WARN]")}: %s`,
+      str,
+    );
   },
 
   error(str: string): void {
@@ -35,10 +41,16 @@ export const Logger = {
   },
 
   crit(str: string): void {
-    console.error(`[${loggerFormatter.format(Date.now())}] ${chalk.magentaBright("[CRIT]")}: %s`, str);
+    console.error(
+      `[${loggerFormatter.format(Date.now())}] ${chalk.magentaBright("[CRIT]")}: %s`,
+      str,
+    );
   },
 
   success(str: string): void {
-    console.log(`[${loggerFormatter.format(Date.now())}] ${chalk.greenBright("[SUCCESS]")}: %s`, str);
+    console.log(
+      `[${loggerFormatter.format(Date.now())}] ${chalk.greenBright("[SUCCESS]")}: %s`,
+      str,
+    );
   },
 };

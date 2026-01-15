@@ -6,7 +6,13 @@
  */
 import { StreakCollection, createGuessHandler, createUser, getUser } from "@fg-sparky/server";
 import { Logger, joinStringArray, type StoredNumberInfo as NumberInfo } from "@fg-sparky/utils";
-import { Collection, type ChatInputCommandInteraction, type Client, type Message, type OmitPartialGroupDMChannel } from "discord.js";
+import {
+  Collection,
+  type ChatInputCommandInteraction,
+  type Client,
+  type Message,
+  type OmitPartialGroupDMChannel,
+} from "discord.js";
 import { guessCooldowns } from "../listener.ts";
 import handleSpecialGuess from "./special-handler.ts";
 
@@ -14,7 +20,11 @@ const streakCollectionCollection = new Collection<string, StreakCollection>();
 const streakTracker = new Collection<string, string>();
 const handlePlayerGuess = createGuessHandler("sha512");
 
-export function handleResponse(client: Client, interaction: ChatInputCommandInteraction, number: NumberInfo): void {
+export function handleResponse(
+  client: Client,
+  interaction: ChatInputCommandInteraction,
+  number: NumberInfo,
+): void {
   const streakCollection = (() => {
     if (streakCollectionCollection.get(interaction.channelId)) {
       return streakCollectionCollection.get(interaction.channelId)!;
@@ -40,12 +50,18 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
         streakTracker.set(interaction.channelId, `${message.author.id}.${message.guildId!}`);
       }
 
-      const gain = streakCollection.getTokenGain(message.author.id, message.guildId!, number.difficulty);
+      const gain = streakCollection.getTokenGain(
+        message.author.id,
+        message.guildId!,
+        number.difficulty,
+      );
 
       // @ts-expect-error: assertion fails for some reason even though the bot can only
       // be installed in a guild
       const user = await getUser(message.author.id, message.guildId);
-      Logger.debug(`tried looking up user ${message.author.id} (found: ${user ? "true" : "false"})`);
+      Logger.debug(
+        `tried looking up user ${message.author.id} (found: ${user ? "true" : "false"})`,
+      );
 
       const currentStreak = streakCollection.get(`${message.author.id}.${message.guildId!}`) ?? 0;
 
@@ -60,18 +76,22 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
           return;
         }
         if (number.uuid === "dd35acbf-4c92-4710-b4ed-7d6f9d4beca5") {
-          await message.reply(joinStringArray([
-            "perhaps, a jet2 holiday may interest you?",
+          await message.reply(
+            joinStringArray([
+              "perhaps, a jet2 holiday may interest you?",
+              "hey you guessed correctly, nice job!",
+              `you also earned ${gain.toString()} tokens and now you have ${user.tokens.toString()} <:terminusfinity:1444859277515690075>!`,
+              currentStreak > 0 ? `-# current streak count: ${currentStreak.toString()}` : "",
+            ]),
+          );
+        }
+        await message.reply(
+          joinStringArray([
             "hey you guessed correctly, nice job!",
             `you also earned ${gain.toString()} tokens and now you have ${user.tokens.toString()} <:terminusfinity:1444859277515690075>!`,
             currentStreak > 0 ? `-# current streak count: ${currentStreak.toString()}` : "",
-          ]));
-        }
-        await message.reply(joinStringArray([
-          "hey you guessed correctly, nice job!",
-          `you also earned ${gain.toString()} tokens and now you have ${user.tokens.toString()} <:terminusfinity:1444859277515690075>!`,
-          currentStreak > 0 ? `-# current streak count: ${currentStreak.toString()}` : "",
-        ]));
+          ]),
+        );
         // and saves.
         await user.save();
       } else {
@@ -84,10 +104,12 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
         // this is a fresh new profile which means it is guaranteed to have zero unique guesses.
         // so we can add it without checking.
         newUser.uniqueGuessed.push(number.uuid);
-        await message.reply(joinStringArray([
-          "hey you guessed correctly, nice job!",
-          `i've also created a profile for you with ${gain.toString()} <:terminusfinity:1444859277515690075> (terminus tokens).`,
-        ]));
+        await message.reply(
+          joinStringArray([
+            "hey you guessed correctly, nice job!",
+            `i've also created a profile for you with ${gain.toString()} <:terminusfinity:1444859277515690075> (terminus tokens).`,
+          ]),
+        );
         await newUser.save();
       }
       Logger.debug(`appending streak for user ${message.author.displayName}`);
@@ -97,15 +119,18 @@ export function handleResponse(client: Client, interaction: ChatInputCommandInte
     }
   };
 
-  const timeout = setTimeout(async () => {
-    Logger.info("user failed to guess in time");
-    client.off("messageCreate", handler);
-    guessCooldowns.set(interaction.channelId, false);
-    await streakCollection.clear();
+  const timeout = setTimeout(
+    async () => {
+      Logger.info("user failed to guess in time");
+      client.off("messageCreate", handler);
+      guessCooldowns.set(interaction.channelId, false);
+      await streakCollection.clear();
 
-    const content = `no one guessed in time${number.number ? `, the correct answer was ${number.number}.` : "."}`;
-    await interaction.followUp({ content, allowedMentions: { repliedUser: false } });
-  }, number.difficulty === "legendary" ? 60000 : 40000);
+      const content = `no one guessed in time${number.number ? `, the correct answer was ${number.number}.` : "."}`;
+      await interaction.followUp({ content, allowedMentions: { repliedUser: false } });
+    },
+    number.difficulty === "legendary" ? 60000 : 40000,
+  );
 
   client.on("messageCreate", handler);
 }

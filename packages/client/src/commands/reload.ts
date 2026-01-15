@@ -5,7 +5,13 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import type { Command } from "@fg-sparky/utils";
-import { ApplicationCommandOptionType, MessageFlags, PermissionFlagsBits, type Client, type CommandInteraction } from "discord.js";
+import {
+  ApplicationCommandOptionType,
+  MessageFlags,
+  PermissionFlagsBits,
+  type Client,
+  type CommandInteraction,
+} from "discord.js";
 import { Numberhumans, Numbers, Responses } from "../stores.ts";
 
 enum ReloadType {
@@ -55,22 +61,28 @@ const Reload: Command = {
   },
   description: "Reloads the bot's internal store",
   name: "reload",
-  options: [{
-    name: "store",
-    description: "The store type to reload.",
-    type: ApplicationCommandOptionType.String,
-    required: true,
-    choices: [{
-      name: "FG Sparky Entries",
-      value: ReloadType.SparkyEntries,
-    }, {
-      name: "Numberhuman Entries",
-      value: ReloadType.Numberhumans,
-    }, {
-      name: "Numberdex Resopnses",
-      value: ReloadType.Reponses,
-    }],
-  }],
+  options: [
+    {
+      name: "store",
+      description: "The store type to reload.",
+      type: ApplicationCommandOptionType.String,
+      required: true,
+      choices: [
+        {
+          name: "FG Sparky Entries",
+          value: ReloadType.SparkyEntries,
+        },
+        {
+          name: "Numberhuman Entries",
+          value: ReloadType.Numberhumans,
+        },
+        {
+          name: "Numberdex Resopnses",
+          value: ReloadType.Reponses,
+        },
+      ],
+    },
+  ],
   defaultMemberPermissions: PermissionFlagsBits.ManageChannels,
 };
 

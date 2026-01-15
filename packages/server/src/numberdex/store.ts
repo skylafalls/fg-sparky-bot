@@ -31,7 +31,7 @@ export class NumberhumanStore extends DataStore<NumberhumanInfo> {
    * @returns The entry.
    */
   getRandomByRarity(rarity: Rarities): Option<NumberhumanInfo> {
-    const filteredData = this.data.filter(value => value.rarity === rarity);
+    const filteredData = this.data.filter((value) => value.rarity === rarity);
     return Option.from(filteredData.at(Math.floor(Math.random() * filteredData.length)));
   }
 

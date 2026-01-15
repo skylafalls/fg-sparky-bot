@@ -13,7 +13,11 @@ export const NumberdexBaker: Baker = Baker.create({
   },
 });
 
-export async function setupCronJobs(client: Client, store: NumberhumanStore, baker: Baker): Promise<void> {
+export async function setupCronJobs(
+  client: Client,
+  store: NumberhumanStore,
+  baker: Baker,
+): Promise<void> {
   await baker.ready();
   const jobs = baker.getAllJobs();
   Logger.info(`re-adding callbacks to cron jobs...`);

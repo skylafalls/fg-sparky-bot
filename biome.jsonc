@@ -1,0 +1,22 @@
+{
+  "$schema": "https://github.com/biomejs/biome/raw/refs/heads/main/packages/@biomejs/biome/configuration_schema.json",
+  "formatter": {
+    "enabled": true,
+    "useEditorconfig": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "files": {
+    "includes": ["packages/**/*.ts", "scripts/*.ts", "*.md", "*.json"]
+  },
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "defaultBranch": "master",
+    "useIgnoreFile": true
+  },
+  "linter": {
+    "enabled": false
+  }
+}

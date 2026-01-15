@@ -1,6 +1,13 @@
 import { createGuessHandler, type NumberhumanStore } from "@fg-sparky/server";
 import { getRandomRange, Logger, NUMBERDEX_FLEE_DELAY, type ICron } from "@fg-sparky/utils";
-import { ComponentType, TextInputStyle, userMention, type Interaction, type ModalComponentData, type SendableChannels } from "discord.js";
+import {
+  ComponentType,
+  TextInputStyle,
+  userMention,
+  type Interaction,
+  type ModalComponentData,
+  type SendableChannels,
+} from "discord.js";
 import { Responses } from "../stores.ts";
 import { createButtonRow, spawnNumberhuman, updateUserStats } from "./utils.ts";
 
@@ -8,27 +15,35 @@ const createGuessModal = (channelId: string): ModalComponentData => ({
   title: "yeah",
   id: channelId,
   customId: `numberhuman-guess-modal-${channelId}`,
-  components: [{
-    id: 0,
-    label: "what's the human's name?",
-    type: ComponentType.Label,
-    // @ts-expect-error: labels are not allowed in text input components
-    component: {
-      customId: `numberhuman-guess-input-${channelId}`,
-      style: TextInputStyle.Short,
-      type: ComponentType.TextInput,
+  components: [
+    {
+      id: 0,
+      label: "what's the human's name?",
+      type: ComponentType.Label,
+      // @ts-expect-error: labels are not allowed in text input components
+      component: {
+        customId: `numberhuman-guess-input-${channelId}`,
+        style: TextInputStyle.Short,
+        type: ComponentType.TextInput,
+      },
     },
-  }],
+  ],
 });
 
 const handlePlayerGuess = createGuessHandler("blake2b512");
 
-export function setupCallback(store: NumberhumanStore, job: ICron, channel: SendableChannels): ICron {
+export function setupCallback(
+  store: NumberhumanStore,
+  job: ICron,
+  channel: SendableChannels,
+): ICron {
   if (/numberdex-channel-[0-9]+/.test(job.name)) {
     Logger.debug(`setting up callback for cron job ${job.name}`);
     job.callback = async () => {
       const timeoutDuration = process.env.NODE_ENV === "development" ? 0 : getRandomRange(0, 1200);
-      Logger.info(`spawning numberhuman in channel ${channel.id} after ${timeoutDuration.toFixed(0)} seconds`);
+      Logger.info(
+        `spawning numberhuman in channel ${channel.id} after ${timeoutDuration.toFixed(0)} seconds`,
+      );
       await Bun.sleep(timeoutDuration * 1000);
       const number = await spawnNumberhuman(store, channel);
       if (number.isOk()) {
@@ -49,12 +64,22 @@ export function setupCallback(store: NumberhumanStore, job: ICron, channel: Send
           if (interaction.isButton() && interaction.message.id === sentMessage.id) {
             Logger.debug(`User ${interaction.user.displayName} clicked the button`);
             await interaction.showModal(createGuessModal(interaction.channelId));
-          } else if (interaction.inGuild() && interaction.isModalSubmit() && interaction.isFromMessage()
-            && interaction.customId === `numberhuman-guess-modal-${interaction.channelId}`
-            && interaction.message.id === sentMessage.id) {
-            Logger.debug(`User ${interaction.user.displayName} submitted the numberhuman, verifying it's correct...`);
-            const guess = interaction.fields.getTextInputValue(`numberhuman-guess-input-${interaction.channelId}`);
-            if (handlePlayerGuess(guess, { number: okNumber.name, hashedNumber: okNumber.hashedName })) {
+          } else if (
+            interaction.inGuild() &&
+            interaction.isModalSubmit() &&
+            interaction.isFromMessage() &&
+            interaction.customId === `numberhuman-guess-modal-${interaction.channelId}` &&
+            interaction.message.id === sentMessage.id
+          ) {
+            Logger.debug(
+              `User ${interaction.user.displayName} submitted the numberhuman, verifying it's correct...`,
+            );
+            const guess = interaction.fields.getTextInputValue(
+              `numberhuman-guess-input-${interaction.channelId}`,
+            );
+            if (
+              handlePlayerGuess(guess, { number: okNumber.name, hashedNumber: okNumber.hashedName })
+            ) {
               client.off("interactionCreate", handler);
               clearTimeout(timeout);
               await interaction.update({
@@ -67,7 +92,9 @@ export function setupCallback(store: NumberhumanStore, job: ICron, channel: Send
                 correctHuman: okNumber.name,
                 guessedHuman: guess,
                 mentionId: interaction.user.id,
-              }).unwrapOr(`yeah, i wished it was **${guess}**, ${userMention(interaction.user.id)}.`);
+              }).unwrapOr(
+                `yeah, i wished it was **${guess}**, ${userMention(interaction.user.id)}.`,
+              );
               await interaction.reply(failMessage);
             }
           }

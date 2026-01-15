@@ -18,23 +18,28 @@ export class NumberStore extends DataStore<NumberInfo> {
   }
 
   get UNIQUE_ENTRIES(): number {
-    return this.UNIQUE_EASY_ENTRIES + this.UNIQUE_MEDIUM_ENTRIES + this.UNIQUE_HARD_ENTRIES + this.UNIQUE_LEGENDARY_ENTRIES;
+    return (
+      this.UNIQUE_EASY_ENTRIES +
+      this.UNIQUE_MEDIUM_ENTRIES +
+      this.UNIQUE_HARD_ENTRIES +
+      this.UNIQUE_LEGENDARY_ENTRIES
+    );
   }
 
   get UNIQUE_EASY_ENTRIES(): number {
-    return this.data.filter(value => value.difficulty === "easy").length;
+    return this.data.filter((value) => value.difficulty === "easy").length;
   }
 
   get UNIQUE_MEDIUM_ENTRIES(): number {
-    return this.data.filter(value => value.difficulty === "medium").length;
+    return this.data.filter((value) => value.difficulty === "medium").length;
   }
 
   get UNIQUE_HARD_ENTRIES(): number {
-    return this.data.filter(value => value.difficulty === "hard").length;
+    return this.data.filter((value) => value.difficulty === "hard").length;
   }
 
   get UNIQUE_LEGENDARY_ENTRIES(): number {
-    return this.data.filter(value => value.difficulty === "legendary").length;
+    return this.data.filter((value) => value.difficulty === "legendary").length;
   }
 
   /**
@@ -59,7 +64,7 @@ export class NumberStore extends DataStore<NumberInfo> {
    * @returns The entry.
    */
   getRandomByDifficulty(difficulty: Difficulties): Option<StoredNumberInfo> {
-    const reducedPool = this.data.filter(value => value.difficulty === difficulty);
+    const reducedPool = this.data.filter((value) => value.difficulty === difficulty);
     const number = reducedPool[Math.floor(Math.random() * reducedPool.length)];
 
     if (!number) return Option.none as None<StoredNumberInfo>;

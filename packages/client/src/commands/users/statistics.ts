@@ -1,9 +1,16 @@
 import { UserProfile } from "@fg-sparky/server";
-import { formatPercent, joinStringArray, type ServerSlashCommandInteraction } from "@fg-sparky/utils";
+import {
+  formatPercent,
+  joinStringArray,
+  type ServerSlashCommandInteraction,
+} from "@fg-sparky/utils";
 import type { Client } from "discord.js";
 import { Numbers } from "../../stores.ts";
 
-export default async function serverStatisticsDisplay(_: Client, interaction: ServerSlashCommandInteraction): Promise<void> {
+export default async function serverStatisticsDisplay(
+  _: Client,
+  interaction: ServerSlashCommandInteraction,
+): Promise<void> {
   await interaction.deferReply();
 
   const users = await UserProfile.find({
@@ -12,14 +19,15 @@ export default async function serverStatisticsDisplay(_: Client, interaction: Se
 
   const thisServer = interaction.guild?.name ?? "(couldn't get name)";
 
-  const uniqueAcrossUsers = users.flatMap(user => user.uniqueGuessed)
+  const uniqueAcrossUsers = users
+    .flatMap((user) => user.uniqueGuessed)
     .filter((value, index, array) => array.indexOf(value) === index);
-  const totalAcrossUsers = users.flatMap(user => user.guessedEntries);
+  const totalAcrossUsers = users.flatMap((user) => user.guessedEntries);
 
   const calculatedStatistics = {
     totalUsers: users.length.toString(),
     totalTokens: users
-      .map(user => user.tokens)
+      .map((user) => user.tokens)
       .reduce((prev, curr) => prev + curr)
       .toString(),
     numbersGuessed: {
@@ -44,10 +52,19 @@ export default async function serverStatisticsDisplay(_: Client, interaction: Se
     },
     numberPercentages: {
       total: formatPercent(uniqueAcrossUsers.length / Numbers.UNIQUE_ENTRIES),
-      easy: formatPercent(Numbers.countEntriesUnique("easy", uniqueAcrossUsers) / Numbers.UNIQUE_EASY_ENTRIES),
-      medium: formatPercent(Numbers.countEntriesUnique("medium", uniqueAcrossUsers) / Numbers.UNIQUE_MEDIUM_ENTRIES),
-      hard: formatPercent(Numbers.countEntriesUnique("hard", uniqueAcrossUsers) / Numbers.UNIQUE_HARD_ENTRIES),
-      legendary: formatPercent(Numbers.countEntriesUnique("legendary", uniqueAcrossUsers) / Numbers.UNIQUE_LEGENDARY_ENTRIES),
+      easy: formatPercent(
+        Numbers.countEntriesUnique("easy", uniqueAcrossUsers) / Numbers.UNIQUE_EASY_ENTRIES,
+      ),
+      medium: formatPercent(
+        Numbers.countEntriesUnique("medium", uniqueAcrossUsers) / Numbers.UNIQUE_MEDIUM_ENTRIES,
+      ),
+      hard: formatPercent(
+        Numbers.countEntriesUnique("hard", uniqueAcrossUsers) / Numbers.UNIQUE_HARD_ENTRIES,
+      ),
+      legendary: formatPercent(
+        Numbers.countEntriesUnique("legendary", uniqueAcrossUsers) /
+          Numbers.UNIQUE_LEGENDARY_ENTRIES,
+      ),
     },
   };
 
