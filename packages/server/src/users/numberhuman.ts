@@ -7,6 +7,21 @@
 import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
 import type { NumberhumanStore } from "../numberdex/store.ts";
 
+export enum EvolutionType {
+  None = 0,
+  Superscaled = 1,
+  Mastered = 2,
+  Endfimidian = 3,
+  Celestial = 4,
+  Eternal = 5,
+  Corrotechnic = 6,
+  Subeuclidean = 7,
+  Zyrolexic = 8,
+  Transcendent = 9,
+  Corrupt = 10,
+  Absolute = 11,
+}
+
 /**
  * This entity represents a numberhuman the player has caught.
  */
@@ -47,7 +62,7 @@ export class NumberhumanData extends BaseEntity {
    * cause I have no idea.
    */
   @Column("integer")
-  evolution = 0;
+  evolution: EvolutionType = EvolutionType.None;
 
   /**
    * Catch ID, incremented on a new catch.
