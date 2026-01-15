@@ -10,6 +10,7 @@ import {
   EvolutionType,
   formatPercent,
   getEvolutionBuff,
+  getRandomInt,
   getRandomRange,
   joinStringArray,
   Logger,
@@ -203,7 +204,7 @@ const EvolutionRarity: [EvolutionType, number][] = [
 
 function randomEvolution(): EvolutionType {
   for (const [evol, rarity] of EvolutionRarity) {
-    const randomInt = Math.floor(getRandomRange(1, rarity));
+    const randomInt = getRandomInt(1, rarity);
     Logger.debug(
       `checking for evolution ${evol} (within a 1 in ${rarity} chance, got ${randomInt})`,
     );

@@ -103,5 +103,12 @@ export function countHumansTotal<
 }
 
 export function getRandomRange(min: number, max: number): number {
-  return Math.random() * (max - min + 1) + min;
+  return Math.random() * (max - min) + min;
+}
+
+export function getRandomInt(min: number, max: number): number {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  // The maximum is inclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
