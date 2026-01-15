@@ -58,11 +58,16 @@ export class NumberhumanData extends BaseEntity {
   level = 0;
 
   /**
-   * The evolution of the numberhuman, please ask Stella what it does,
-   * cause I have no idea.
+   * The numberhuman's evolution, which applies a strong buff.
    */
   @Column("integer")
   evolution: EvolutionType = EvolutionType.None;
+
+  /**
+   * A pair of the applied evolution buffs.
+   */
+  @Column("json")
+  evolutionPair: [number, number] = [1, 1];
 
   /**
    * Catch ID, incremented on a new catch.
@@ -75,7 +80,7 @@ export class NumberhumanData extends BaseEntity {
    */
   totalHP(store: NumberhumanStore): number {
     const baseData = store.get(this.id).expect("the numberhuman should exist");
-    return baseData.baseHP * this.bonusHP;
+    return baseData.baseHP * this.bonusHP * this.evolutionPair[0];
   }
 
   /**
@@ -83,6 +88,6 @@ export class NumberhumanData extends BaseEntity {
    */
   totalAtk(store: NumberhumanStore): number {
     const baseData = store.get(this.id).expect("the numberhuman should exist");
-    return baseData.baseATK * this.bonusAtk;
+    return baseData.baseATK * this.bonusAtk * this.evolutionPair[1];
   }
 }
