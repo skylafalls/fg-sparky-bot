@@ -6,7 +6,7 @@
  */
 
 import type { NumberhumanInfo, NumberhumanStore } from "@fg-sparky/server";
-import { Result } from "@fg-sparky/utils";
+import { joinStringArray, Result } from "@fg-sparky/utils";
 import {
   ActionRowBuilder,
   AttachmentBuilder,
@@ -14,6 +14,7 @@ import {
   ButtonStyle,
   ComponentType,
   type Message,
+  roleMention,
   type SendableChannels,
 } from "discord.js";
 import { Responses } from "../stores.ts";
@@ -36,6 +37,7 @@ export function createButtonRow(
 export async function spawnNumberhuman(
   store: NumberhumanStore,
   channel: SendableChannels,
+  roleId: string | null,
 ): Promise<Result<[NumberhumanInfo, Message], Error | ReferenceError>> {
   const numberhuman = store.getRandom();
   const randomSpawnMessage = Responses.getRandom({
@@ -50,11 +52,12 @@ export async function spawnNumberhuman(
           okHuman.uuid === "c6e6c334-16cd-479c-bd75-d82d23af50cb"
             || okHuman.uuid === "c9c69c3c-3637-49a1-b667-29efd687a518",
         );
+      const content = joinStringArray([randomSpawnMessage, roleId ? `-# ${roleMention(roleId)}` : null]);
       return Result.ok([
         okHuman,
         // oxlint-disable-next-line no-await-in-loop: still not a loop
         await channel.send({
-          content: randomSpawnMessage,
+          content,
           files: [image],
           components: [createButtonRow()],
         }),

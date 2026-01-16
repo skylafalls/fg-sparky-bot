@@ -35,7 +35,7 @@ const Numberdex: Command = {
           // oxlint-disable-next-line eslint/no-empty-function: will be immediately replaced
           async callback(): Promise<void> {},
         });
-        setupCallback(Numberhumans, cron, channel);
+        setupCallback(Numberhumans, cron, channel, pingRole?.id ?? null);
         await interaction.reply(`added channel <#${channel.id}>.`);
         return;
       }

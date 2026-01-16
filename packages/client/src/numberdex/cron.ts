@@ -22,10 +22,11 @@ export async function setupCronJobs(
   const jobs = baker.getAllJobs();
   Logger.info(`re-adding callbacks to cron jobs...`);
   jobs.forEach(async (job, name) => {
-    if (/numberdex-channel-[0-9]+/.test(name)) {
+    if (/^numberdex-channel-[0-9]+(?:-[0-9]+)?$/.test(name)) {
       const channel = await client.channels.fetch(name.slice(name.lastIndexOf("-") + 1));
+      const role = name.split("-").at(-1);
       if (!channel || !channel.isSendable()) return;
-      return setupCallback(store, job, channel);
+      return setupCallback(store, job, channel, channel.id === role ? role : null);
     }
 
     return job;
