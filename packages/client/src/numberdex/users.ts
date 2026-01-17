@@ -8,7 +8,7 @@ import {
   joinStringArray,
   Logger,
 } from "@fg-sparky/utils";
-import { bold, italic, userMention, type ModalMessageModalSubmitInteraction } from "discord.js";
+import { bold, italic, type ModalMessageModalSubmitInteraction, userMention } from "discord.js";
 import { Responses } from "../stores.ts";
 
 export async function updateUserStats(
@@ -37,13 +37,9 @@ export async function updateUserStats(
   const evolutionMessage = numberhuman.evolution === EvolutionType.None
     ? null
     : italic(
-      `heyyy this numberhuman is ${
-        bold(
-          numberhuman.evolution,
-        )
-      }! this gives them a ${getEvolutionBuff(numberhuman.evolution, "hp")}x boost to HP and a ${
-        getEvolutionBuff(numberhuman.evolution, "atk")
-      }x boost to their ATK!`,
+      `heyyy this numberhuman is ${bold(numberhuman.evolution)}! this gives them a ${
+        getEvolutionBuff(numberhuman.evolution, "hp")
+      }x boost to HP and a ${getEvolutionBuff(numberhuman.evolution, "atk")}x boost to their ATK!`,
     );
   const user = await getUser(interaction.user.id, interaction.guildId);
   Logger.debug(
