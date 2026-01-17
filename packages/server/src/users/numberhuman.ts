@@ -6,8 +6,9 @@
  */
 
 import { EvolutionType, getEvolutionBuff } from "@fg-sparky/utils";
-import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import type { NumberhumanStore } from "../numberdex/store.ts";
+import { UserProfile } from "./user-profile.ts";
 
 /**
  * This entity represents a numberhuman the player has caught.
@@ -15,9 +16,15 @@ import type { NumberhumanStore } from "../numberdex/store.ts";
 @Entity({ name: "numberhuman" })
 export class NumberhumanData extends BaseEntity {
   /**
-   * The UUID for the numberhuman.
+   * Catch ID, incremented on a new catch.
    */
-  @PrimaryColumn("text")
+  @PrimaryGeneratedColumn("increment")
+  catchId = 0;
+
+  /**
+   * The UUID of the numberhuman type.
+   */
+  @Column("text")
   id = "";
 
   /**
@@ -51,10 +58,10 @@ export class NumberhumanData extends BaseEntity {
   evolution: EvolutionType = EvolutionType.None;
 
   /**
-   * Catch ID, incremented on a new catch.
+   * The user that caught this.
    */
-  @Column("integer")
-  catchId = 0;
+  @ManyToOne(() => UserProfile, (user: UserProfile) => user.numberhumans)
+  caughtBy: UserProfile | undefined;
 
   /**
    * The total HP of the numberhuman (total HP * bonus HP)
