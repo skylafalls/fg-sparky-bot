@@ -61,8 +61,7 @@ export class NumberhumanData extends BaseEntity {
    * The user that caught this.
    */
   @ManyToOne(() => UserProfile, (user: UserProfile) => user.numberhumans)
-  // @ts-expect-error: cannot initialize as it will break relations
-  caughtBy: UserProfile;
+  caughtBy: UserProfile | undefined;
 
   /**
    * The total HP of the numberhuman (total HP * bonus HP)

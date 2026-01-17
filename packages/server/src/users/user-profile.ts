@@ -64,6 +64,5 @@ export class UserProfile extends BaseEntity {
    * Array of numberhumans the player has caught.
    */
   @OneToMany(() => NumberhumanData, (numberhuman: NumberhumanData) => numberhuman.caughtBy)
-  // @ts-expect-error: trying to add an initializer will make relations not work properly
-  numberhumans: NumberhumanData[];
+  numberhumans: NumberhumanData[] | undefined;
 }
