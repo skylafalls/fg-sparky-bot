@@ -1,30 +1,31 @@
 import { NumberhumanData, UserProfile } from "@fg-sparky/server";
-import { formatAdd, getEvolutionBuff, type ServerSlashCommandInteraction } from "@fg-sparky/utils";
-import type { Client, User } from "discord.js";
+import type { ServerSlashCommandInteraction } from "@fg-sparky/utils";
+import { chatInputApplicationCommandMention, italic, type Client, type User } from "discord.js";
 import { Numberhumans } from "../../stores.ts";
+
+function capitalize<T extends string>(val: T): Capitalize<T> {
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+  return `${val.charAt(0).toUpperCase()}${val.slice(1)}` as Capitalize<T>;
+}
+
+const slashCommandMention = chatInputApplicationCommandMention("numberdex show-humans", process.env.NODE_ENV === "development" ? "1454578425414291613" : "1452067362458308820");
 
 function createCollectionMessage(user: User, page: number, numberhumans: NumberhumanData[]): string {
   const header = [
     `# Numberhuman collection for ${user.displayName} (${user.username})`,
-    `Switch pages by running /numberdex show-humans again.`,
+    `Switch pages by running ${slashCommandMention} again.`,
   ];
 
   console.log(numberhumans);
 
   const body = numberhumans.map(value => {
     const humanInStore = Numberhumans.get(value.id).expect("should not be undefined");
-    const evolutionHPBonus = getEvolutionBuff(value.evolution, "hp");
-    const evolutionATKBonus = getEvolutionBuff(value.evolution, "atk");
-    const HPString = `${humanInStore.baseHP}, ${formatAdd(value.bonusHP * 100)}%, ×${evolutionHPBonus.toFixed(1)} = ${
-      value.totalHP(Numberhumans).toFixed(2)
-    }`;
-    const ATKString = `${humanInStore.baseATK}, ${formatAdd(value.bonusAtk * 100)}%, ×${
-      evolutionATKBonus.toFixed(1)
-    } = ${value.totalHP(Numberhumans).toFixed(2)}`;
-    return [
-      `#${value.catchId}: Lv. ${value.level}, "${humanInStore.name}"`,
-      `-# HP: ${HPString}, ATK: ${ATKString}`,
-    ].join("\n");
+    const totalHP = value.totalHP(Numberhumans).toFixed(2);
+    const totalAtk = value.totalAtk(Numberhumans).toFixed(2);
+    const evolution = capitalize(value.evolution);
+    return `#${value.catchId}: Lv. ${value.level}, ${
+      evolution === "None" ? "" : italic(`${evolution} `)
+    }"${humanInStore.name}" (HP: ${totalHP}, ATK: ${totalAtk})`;
   });
 
   return `${header.join("\n")}\n\n${body.slice((page - 1) * 10, page * 10).join("\n")}`;
