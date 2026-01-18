@@ -29,6 +29,10 @@ export function formatPercent(number: number, precision = 1): string {
   return `${(number * 100).toFixed(precision)}%`;
 }
 
+export function formatAdd(number: number, precision = 1): string {
+  return `${number < 0 ? "" : "+"}${number.toFixed(precision)}`;
+}
+
 /**
  * Takes an array of strings and joins them together with a different string.
  * Useful for proper formatting.

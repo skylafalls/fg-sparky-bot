@@ -16,7 +16,7 @@ export async function updateUserStats(
   number: NumberhumanInfo,
   guessed: string,
 ): Promise<void> {
-  const numberhuman = await createNumberhuman({
+  const numberhuman = createNumberhuman({
     base: number,
     bonusATK: getRandomRange(0.95, 1.15),
     bonusHP: getRandomRange(0.95, 1.15),
@@ -37,13 +37,9 @@ export async function updateUserStats(
   const evolutionMessage = numberhuman.evolution === EvolutionType.None
     ? null
     : italic(
-      `heyyy this numberhuman is ${
-        bold(
-          numberhuman.evolution,
-        )
-      }! this gives them a ${getEvolutionBuff(numberhuman.evolution, "hp")}x boost to HP and a ${
-        getEvolutionBuff(numberhuman.evolution, "atk")
-      }x boost to their ATK!`,
+      `heyyy this numberhuman is ${bold(numberhuman.evolution)}! this gives them a ${
+        getEvolutionBuff(numberhuman.evolution, "hp")
+      }x boost to HP and a ${getEvolutionBuff(numberhuman.evolution, "atk")}x boost to their ATK!`,
     );
   const user = await getUser(interaction.user.id, interaction.guildId);
   Logger.debug(
@@ -141,13 +137,13 @@ function randomEvolution(): EvolutionType {
   return EvolutionType.None;
 }
 
-async function createNumberhuman(
+function createNumberhuman(
   options: NumberhumanCreationOptions,
-): Promise<NumberhumanData> {
+): NumberhumanData {
   const newHuman = new NumberhumanData();
   newHuman.bonusAtk = options.bonusATK;
   newHuman.bonusHP = options.bonusHP;
   newHuman.id = options.base.uuid;
   newHuman.evolution = randomEvolution();
-  return await newHuman.save();
+  return newHuman;
 }
