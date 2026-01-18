@@ -13,7 +13,7 @@ import {
   type Interaction,
   type InteractionResponse,
   MessageFlags,
-  userMention
+  userMention,
 } from "discord.js";
 import { createButtonRow } from "./gift/buttons.ts";
 
@@ -59,7 +59,7 @@ const Gift: Command = {
           amount < 0
             ? "negative tokens silly. Are you trying to rob them?"
             : "nothing silly, don't even call it a gift."
-          }`,
+        }`,
         flags: MessageFlags.Ephemeral,
       });
       return;
