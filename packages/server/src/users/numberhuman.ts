@@ -60,7 +60,7 @@ export class NumberhumanData extends BaseEntity {
   /**
    * The user that caught this.
    */
-  @ManyToOne(() => UserProfile, (user: UserProfile) => user.numberhumans)
+  @ManyToOne(() => UserProfile)
   caughtBy: UserProfile | undefined;
 
   /**

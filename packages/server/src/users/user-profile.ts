@@ -4,8 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
-import { NumberhumanData } from "./numberhuman.ts";
+import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
 
 /**
  * This is a person's user profile.
@@ -63,6 +62,6 @@ export class UserProfile extends BaseEntity {
   /**
    * Array of numberhumans the player has caught.
    */
-  @OneToMany(() => NumberhumanData, (numberhuman: NumberhumanData) => numberhuman.caughtBy)
-  numberhumans: NumberhumanData[] | undefined;
+  // @OneToMany("NumberhumanData", (numberhuman: NumberhumanData) => numberhuman.caughtBy)
+  // numberhumans: NumberhumanData[] | undefined;
 }

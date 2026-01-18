@@ -56,8 +56,7 @@ export async function updateUserStats(
     );
     // update the player stats first...
     user.numberhumansGuessed.push(number.uuid);
-    user.numberhumans ??= [];
-    user.numberhumans.push(numberhuman);
+    numberhuman.caughtBy = user;
     if (user.numberhumansGuessedUnique.includes(number.uuid)) {
       await interaction.followUp(
         joinStringArray([
@@ -82,6 +81,7 @@ export async function updateUserStats(
       );
     }
     // and saves.
+    await numberhuman.save();
     await user.save();
   } else {
     Logger.info(`user not found, creating user and adding the numberhuman`);
@@ -90,8 +90,7 @@ export async function updateUserStats(
     // this is a fresh new profile which means it is guaranteed to have zero unique guesses.
     // so we can add it without checking.
     newUser.numberhumansGuessedUnique.push(number.uuid);
-    newUser.numberhumans ??= [];
-    newUser.numberhumans.push(numberhuman);
+    numberhuman.caughtBy = newUser;
     await interaction.followUp(
       joinStringArray([
         responseMessage,
@@ -104,6 +103,7 @@ export async function updateUserStats(
         evolutionMessage,
       ]),
     );
+    await numberhuman.save();
     await newUser.save();
   }
 }
