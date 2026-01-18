@@ -24,7 +24,7 @@ const Numberdex: Command = {
     if (!interaction.isChatInputCommand()) return;
     if (!interaction.memberPermissions.has("ManageChannels")) {
       await interaction.reply(
-        "you do not have permisison to set which channel fg sparky bot can spawn numberhumans in.",
+        "you do not have permissison to set which channel fg sparky bot can spawn numberhumans in.",
       );
       return;
     }

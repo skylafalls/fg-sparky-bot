@@ -162,7 +162,7 @@ export async function userLeaderboardDisplay(
         })(index);
         const template = `${header} ${position}: ${discordUsers[index]!.displayName}`;
         if (user instanceof NumberhumanData) {
-          // above condition is alwasy true when someone wants to see the best numberhumans
+          // above condition is always true when someone wants to see the best numberhumans
           // and always false otherwise (see getProfilesByType)
           const numberInStore = Numberhumans.get(user.id)
             .expect("for the numberhuman to exist");

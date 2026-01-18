@@ -3,35 +3,35 @@ import { bold, userMention } from "discord.js";
 import { DataStore } from "../store.ts";
 import { ResponseInfo } from "./schema.ts";
 
-interface SpawnReponseArgs {
+interface SpawnResponseArgs {
   type: "spawn";
   correctHuman?: string;
   guessedHuman?: string;
   mentionId?: string;
 }
 
-interface FleeReponseArgs {
+interface FleeResponseArgs {
   type: "flee";
   correctHuman?: string;
   guessedHuman?: string;
   mentionId?: string;
 }
 
-interface FailReponseArgs {
+interface FailResponseArgs {
   type: "fail";
   correctHuman: string;
   guessedHuman: string;
   mentionId: string;
 }
 
-interface CorrectReponseArgs {
+interface CorrectResponseArgs {
   type: "success";
   correctHuman: string;
   guessedHuman: string;
   mentionId: string;
 }
 
-type RandomReponseArgs = CorrectReponseArgs | FailReponseArgs | FleeReponseArgs | SpawnReponseArgs;
+type RandomResponseArgs = CorrectResponseArgs | FailResponseArgs | FleeResponseArgs | SpawnResponseArgs;
 
 export class ResponseStore extends DataStore<ResponseInfo> {
   /**
@@ -45,7 +45,7 @@ export class ResponseStore extends DataStore<ResponseInfo> {
    * Returns a random response based on the type, replacing the templated values.
    * @returns The entry.
    */
-  getRandom(args: RandomReponseArgs): Option<string> {
+  getRandom(args: RandomResponseArgs): Option<string> {
     const responsePool = this.data.filter((value) => value.type === args.type);
     const response = responsePool[Math.floor(Math.random() * responsePool.length)];
     // oxlint-disable-next-line no-unsafe-type-assertion

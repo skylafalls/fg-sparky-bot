@@ -32,7 +32,7 @@ const Guess: Command = {
       `Player requested for number of difficulty ${difficulty}, which has an id of ${unwrappedEntry.uuid}`,
     );
 
-    // The message that will be sent to the player, specifiying the difficulty,
+    // The message that will be sent to the player, specifying the difficulty,
     // and the amount of time they get to guess it.
     // THere's some special flair for legendary difficulties.
     const content = unwrappedEntry.difficulty === "legendary"

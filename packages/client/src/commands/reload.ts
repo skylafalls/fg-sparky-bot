@@ -17,14 +17,14 @@ import { Numberhumans, Numbers, Responses } from "../stores.ts";
 enum ReloadType {
   SparkyEntries = "sparky-entries",
   Numberhumans = "numberhumans",
-  Reponses = "responses",
+  Responses = "responses",
 }
 
 const Reload: Command = {
   async run(_client: Client, interaction: CommandInteraction<"raw" | "cached">): Promise<void> {
     if (!interaction.isChatInputCommand()) return;
     if (!interaction.memberPermissions.has("ManageChannels")) {
-      await interaction.reply("you do not have permisison to reload commands.");
+      await interaction.reply("you do not have permissison to reload commands.");
       return;
     }
     // oxlint-disable-next-line no-unsafe-type-assertion: see the options below
@@ -45,7 +45,7 @@ const Reload: Command = {
         });
         break;
       }
-      case ReloadType.Reponses: {
+      case ReloadType.Responses: {
         await Responses.reload();
         await interaction.reply({
           content: "reloaded responses store.",
@@ -77,8 +77,8 @@ const Reload: Command = {
           value: ReloadType.Numberhumans,
         },
         {
-          name: "Numberdex Resopnses",
-          value: ReloadType.Reponses,
+          name: "Numberdex Responses",
+          value: ReloadType.Responses,
         },
       ],
     },

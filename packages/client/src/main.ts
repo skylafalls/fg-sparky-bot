@@ -67,7 +67,7 @@ try {
   });
 } catch (error) {
   if (!Error.isError(error)) throw error;
-  Logger.error(`Failed to initalize bot client: ${error.message}`);
+  Logger.error(`Failed to initialize bot client: ${error.message}`);
   Logger.error(error.stack ?? "No stack trace available");
   process.exit(1);
 }

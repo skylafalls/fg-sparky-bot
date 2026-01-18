@@ -971,9 +971,9 @@
   },
   {
     "uuid": "d3bf8818-7c6e-412f-9db6-fa5ea76d15b9",
-    "name": "Positive:Negative Point",
+    "name": "Positive/Negative Point",
     "rarity": "common",
-    "hashedName": "5f256fe452b4e5b7cc6152b34290b714d96b558b05acc5bcf8a725aa36036ebb4981f3d1696c198b7a7bfd3673a2893ce73a5bb8cc2223dd6080ae6f9ed7979c",
+    "hashedName": "3aed6434119188dbbe89ac7a5e2bf843bb77a03061553fd4591df86dc701eda54207aa6d2b580bc53218b4e974ce46236648b8bd878e034fbb6fe288759d6684",
     "image": "numbers/humans/common/d3bf8818-7c6e-412f-9db6-fa5ea76d15b9.webp",
     "baseHP": 100,
     "baseATK": 100,
