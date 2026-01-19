@@ -1,6 +1,6 @@
 import { NumberhumanData, UserProfile } from "@fg-sparky/server";
 import { EvolutionType, formatPercent, Logger, ordinalOf, type ServerSlashCommandInteraction } from "@fg-sparky/utils";
-import { italic, type Client, type User as DiscordUser } from "discord.js";
+import { type Client, italic, type User as DiscordUser } from "discord.js";
 import { Numberhumans, Numbers } from "../../stores.ts";
 
 export enum LeaderboardDisplayType {
@@ -88,7 +88,7 @@ async function getProfilesByType(
         select: ["id", "bestStreak"],
         where: { guildId },
         take: amount,
-      })
+      });
     }
   }
 }

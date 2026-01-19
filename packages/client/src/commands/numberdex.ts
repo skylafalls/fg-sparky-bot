@@ -11,7 +11,7 @@ import {
   ChannelType,
   type Client,
   type CommandInteraction,
-  MessageFlags
+  MessageFlags,
 } from "discord.js";
 import { NumberdexBaker } from "../numberdex/cron.ts";
 import { setupCallback } from "../numberdex/handler.ts";
