@@ -11,8 +11,7 @@ import {
   ChannelType,
   type Client,
   type CommandInteraction,
-  MessageFlags,
-  PermissionFlagsBits,
+  MessageFlags
 } from "discord.js";
 import { NumberdexBaker } from "../numberdex/cron.ts";
 import { setupCallback } from "../numberdex/handler.ts";
@@ -96,7 +95,6 @@ const Numberdex: Command = {
       ],
     },
   ],
-  defaultMemberPermissions: PermissionFlagsBits.ManageChannels,
 };
 
 export default Numberdex;
