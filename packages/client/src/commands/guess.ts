@@ -5,10 +5,13 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import { type Command, type Difficulties, Logger } from "@fg-sparky/utils";
-import { comptime } from "comptime.ts" with { type: "comptime" };
 import { ApplicationCommandOptionType, AttachmentBuilder, type Client, type CommandInteraction } from "discord.js";
 import { Numbers } from "../stores.ts";
 import { handleResponse } from "./guess/handler.ts";
+
+const devMessage = process.env.NODE_ENV === "development"
+  ? "\n-# NOTE: you're running on dev, your data probably won't save."
+  : "";
 
 const Guess: Command = {
   async run(client: Client, interaction: CommandInteraction<"raw" | "cached">): Promise<void> {
@@ -43,12 +46,7 @@ const Guess: Command = {
       .setSpoiler(unwrappedEntry.uuid === "d828f344-b134-47a1-93c9-56e25d5c9e61");
 
     await interaction.reply({
-      content: content
-        + comptime(
-          process.env.NODE_ENV === "development"
-            ? "\n-# NOTE: you're running on dev, your data probably won't save."
-            : "",
-        ),
+      content: content + devMessage,
       files: [image],
     });
 

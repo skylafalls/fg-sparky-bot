@@ -15,9 +15,5 @@
     "bufferutil": "catalog:discord",
     "commander": "catalog:utils",
     "discord.js": "catalog:discord"
-  },
-  "devDependencies": {
-    "comptime.ts": "catalog:utils",
-    "vite": "catalog:build"
   }
 }

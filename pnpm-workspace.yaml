@@ -3,9 +3,7 @@ packages:
 
 catalogs:
   build:
-    comptime.ts: ^0.8.0
     rolldown: 1.0.0-beta.60
-    vite: ^8.0.0-beta.2
   db:
     better-sqlite3: ^12.5.0
     reflect-metadata: ^0.2.2
@@ -29,7 +27,6 @@ catalogs:
     '@sapphire/result': ^2.8.0
     chalk: ^5.6.2
     commander: ^14.0.2
-    comptime.ts: ^0.8.0
     cronbake: ^0.4.0
 
 minimumReleaseAge: 720

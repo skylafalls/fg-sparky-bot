@@ -1,4 +1,3 @@
-import { comptime } from "comptime.ts/vite";
 import { defineConfig, type RolldownOptions } from "rolldown";
 
 const config: RolldownOptions = defineConfig({
@@ -19,7 +18,6 @@ const config: RolldownOptions = defineConfig({
   },
   tsconfig: "../../tsconfig.json",
   platform: "node",
-  plugins: [comptime()],
 });
 
 export default config;
