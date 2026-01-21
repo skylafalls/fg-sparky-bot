@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { getUser } from "#utils/helpers.ts";
+import { getUser } from "#db";
 import { Logger } from "#utils/logger.ts";
 import type { Command } from "#utils/types.ts";
 import {

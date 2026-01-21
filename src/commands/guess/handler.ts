@@ -4,10 +4,10 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
+import { createUser, getUser } from "#db";
 import { StreakCollection } from "#fg-sparky/streaks.ts";
 import { joinStringArray } from "#utils/formatter.ts";
 import { createGuessHandler } from "#utils/guess-handler.ts";
-import { createUser, getUser } from "#utils/helpers.ts";
 import { Logger } from "#utils/logger.ts";
 import type { StoredNumberInfo } from "#utils/types.ts";
 import {

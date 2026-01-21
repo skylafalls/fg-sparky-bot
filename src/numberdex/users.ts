@@ -1,10 +1,9 @@
-import { NumberhumanData } from "#db";
+import { createNumberhuman, createUser, getUser } from "#db";
 import { Responses } from "#stores";
 import type { NumberhumanInfo } from "#stores-types";
 import { formatPercent, joinStringArray } from "#utils/formatter.ts";
-import { createUser, getUser } from "#utils/helpers.ts";
 import { Logger } from "#utils/logger.ts";
-import { getRandomInt, getRandomRange } from "#utils/numbers.ts";
+import { getRandomRange } from "#utils/numbers.ts";
 import { bold, italic, userMention, type ModalMessageModalSubmitInteraction } from "discord.js";
 import { EvolutionType, getEvolutionBuff } from "./evolutions.ts";
 
@@ -93,46 +92,3 @@ export async function updateUserStats(
   }
 }
 
-interface NumberhumanCreationOptions {
-  base: NumberhumanInfo;
-  bonusHP: number;
-  bonusATK: number;
-}
-
-const EvolutionRarity: [EvolutionType, number][] = [
-  [EvolutionType.Absolute, 500],
-  [EvolutionType.Corrupt, 400],
-  [EvolutionType.Transcendent, 300],
-  [EvolutionType.Zyrolexic, 200],
-  [EvolutionType.Subeuclidean, 175],
-  [EvolutionType.Corrotechnic, 125],
-  [EvolutionType.Eternal, 90],
-  [EvolutionType.Celestial, 48],
-  [EvolutionType.Endfimidian, 25],
-  [EvolutionType.Mastered, 16],
-  [EvolutionType.Superscaled, 8],
-  [EvolutionType.None, 1],
-];
-
-function randomEvolution(): EvolutionType {
-  for (const [evol, rarity] of EvolutionRarity) {
-    const randomInt = getRandomInt(1, rarity);
-    Logger.debug(
-      `checking for evolution ${evol} (within a 1 in ${rarity} chance, got ${randomInt})`,
-    );
-    if (randomInt === rarity) return evol;
-  }
-  Logger.debug("couldn't get any");
-  return EvolutionType.None;
-}
-
-function createNumberhuman(
-  options: NumberhumanCreationOptions,
-): NumberhumanData {
-  const newHuman = new NumberhumanData();
-  newHuman.bonusAtk = options.bonusATK;
-  newHuman.bonusHP = options.bonusHP;
-  newHuman.id = options.base.uuid;
-  newHuman.evolution = randomEvolution();
-  return newHuman;
-}
