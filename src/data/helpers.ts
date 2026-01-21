@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import type { Difficulties, Rarities } from "@fg-sparky/utils";
-import { UserProfile } from "./users/user-profile.ts";
+import { UserProfile } from "../db/user-profile.ts";
 
 export function randomDifficulty(): Difficulties {
   if (Math.random() * 60 < 1) return "legendary";

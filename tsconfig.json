@@ -31,7 +31,10 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "paths": {
-      "#utils/*.ts": ["./src/utils/*.ts"]
+      "#utils": ["./src/utils/index.ts"],
+      "#stores": ["./src/stores.ts"],
+      "#stores-types": ["./src/stores/index.ts"],
+      "#numberdex/*": ["./src/numberdex/*"]
     }
   },
   "include": ["**/*.ts"]

@@ -5,9 +5,9 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { EvolutionType, getEvolutionBuff } from "@fg-sparky/utils";
+import { EvolutionType, getEvolutionBuff } from "#numberdex/evolutions.ts";
+import type { NumberhumanStore } from "#stores-types";
 import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import type { NumberhumanStore } from "../numberdex/store.ts";
 import { UserProfile } from "./user-profile.ts";
 
 /**

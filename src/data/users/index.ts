@@ -1,3 +1,4 @@
-export { UsersDB } from "./db.ts";
-export { NumberhumanData } from "./numberhuman.ts";
-export { UserProfile } from "./user-profile.ts";
+export { NumberhumanData } from "../../db/numberhuman.ts";
+export { UserProfile } from "../../db/user-profile.ts";
+export { UsersDB } from "../../db/users-db.ts";
+
