@@ -1,5 +1,78 @@
 # changelog
 
+## 1.3.0 - January 21st, 2026
+
+jk here's v1.3 (previous release should be considered v1.3.0-beta.2, i fucked up the releases)
+
+### notable changes:
+
+- [#31](https://github.com/skylafalls/fg-sparky-bot/pull/31) - when catching a numberhuman, there is a small chance for it to also gain an "evolution",
+  which provides a significant buff to the numberhuman's stats.
+- [#30](https://github.com/skylafalls/fg-sparky-bot/pull/30) - you can now gift other players your terminus tokens. this doesn't work for cross-server gifting.
+- [#34](https://github.com/skylafalls/fg-sparky-bot/pull/34) - the internal structure for numberhumans has been fixed,
+  but this comes at the cost of losing your existing numberhumans that had stats.
+  it wasn't fully fuctional anyways but, sorry.
+- [#33](https://github.com/skylafalls/fg-sparky-bot/pull/33) - because of the above changes, you can now view your
+  collection of numberhumans that you have caught. you cannot view numberhumans that do not have an ATK/HP
+  bonus since those had no proper internal data structure before v0.14.0.
+  - run /numberdex show-humans to see the numberhumans you have caught.
+- [#37](https://github.com/skylafalls/fg-sparky-bot/pull/37) - several bugs that existed in /gift was fixed. mainly:
+  - you can no longer gift decimal, negative, or zero tokens
+  - you cannot accept/reject gifts if you aren't the one receiving them.
+- \[[`e4b9db52`](https://github.com/skylafalls/fg-sparky-bot/commit/e4b9db521d223fde1cf7f36d374690bb91972c9f)] - the `/user show` subcommand now displays information in a prettier way.
+  it also shows more useful information related to numberdex/fg sparky.
+- \[[`cf8b3d4b`](https://github.com/skylafalls/fg-sparky-bot/commit/cf8b3d4b357ec8050e36590e0e8a4b7181b8782a)] - there is additional leaderboard types related to numberdex.
+  you can now see who has the best numberhuman and the highest guessing streaks.
+
+### BREAKING CHANGES:
+
+- \[[`a6d61849`](https://github.com/skylafalls/fg-sparky-bot/commit/a6d6184939c6180310cdbce54ac1396baeef458f)] - fix(users)!: fix internal schema for user profiles/numberhumans ([#34](https://github.com/skylafalls/fg-sparky-bot/pull/34))
+
+### features:
+
+- \[[`9a7e7e0e`](https://github.com/skylafalls/fg-sparky-bot/commit/9a7e7e0ecfe2bac0a83c0610528aab8ac8281462)] - feat(numberdex): add numberhuman evolutions ([#31](https://github.com/skylafalls/fg-sparky-bot/pull/31))
+- \[[`a891f38f`](https://github.com/skylafalls/fg-sparky-bot/commit/a891f38f6daab09a166ad186db439761b2ae7211)] - feat(users): allow users to gift tokens ([#30](https://github.com/skylafalls/fg-sparky-bot/pull/30))
+- \[[`b5590534`](https://github.com/skylafalls/fg-sparky-bot/commit/b5590534218e4c7dd1d40eef524de1ef42bed9f4)] - feat(bot): show the version running in the status
+- \[[`7430150c`](https://github.com/skylafalls/fg-sparky-bot/commit/7430150c8d66bdb44ee8f25bb429bd35944a65c1)] - feat(bot): improve some responses
+- \[[`4988dab8`](https://github.com/skylafalls/fg-sparky-bot/commit/4988dab8d11409578dd3844e2e256bf21f67c261)] - feat(users): let people view their numberhuman collections
+- \[[`e4b9db52`](https://github.com/skylafalls/fg-sparky-bot/commit/e4b9db521d223fde1cf7f36d374690bb91972c9f)] - feat(user/show): prettify the informations shown
+- \[[`cf8b3d4b`](https://github.com/skylafalls/fg-sparky-bot/commit/cf8b3d4b357ec8050e36590e0e8a4b7181b8782a)] - feat(user/lb): add additional leaaderboard types
+- \[[`6ca32f00`](https://github.com/skylafalls/fg-sparky-bot/commit/6ca32f00161ee0a3af1d6cd722eab54bc9779ad7)] - feat(bot): also show the current commit hash in the status
+
+### refactors:
+
+- \[[`39fe839b`](https://github.com/skylafalls/fg-sparky-bot/commit/39fe839bb17c9bedf275d451a04dcd303d75c113)] - refactor(numberdex): separate catch responder to separate file
+- \[[`4f934b44`](https://github.com/skylafalls/fg-sparky-bot/commit/4f934b44b4a3f095473b57feae1bf91e05d2d93e)] - refactor(build): remove comptime.ts
+
+### fixes:
+
+- \[[`dfb28a57`](https://github.com/skylafalls/fg-sparky-bot/commit/dfb28a576404cd86ef0bb581a4b1df6e75ecf87d)] - fix(utils): allow nullish strings in joinStringArray
+- \[[`ef9c59ed`](https://github.com/skylafalls/fg-sparky-bot/commit/ef9c59ed3e746e8de70c875cfa0a058388d4eb4e)] - fix(numberdex): actually spoiler
+- \[[`1dc1cf67`](https://github.com/skylafalls/fg-sparky-bot/commit/1dc1cf675ef8af1d0bcae084dbbd1a8137486a06)] - fix(lint): check on type not save
+- \[[`811ebd6d`](https://github.com/skylafalls/fg-sparky-bot/commit/811ebd6dceb0f21f313b52b2eabd965854b63a73)] - fix(numberdex): spoiler some sensitive numbers
+- \[[`2fccb5e1`](https://github.com/skylafalls/fg-sparky-bot/commit/2fccb5e1275f61f47954ec8017f59f789c7098e5)] - fix(numberdex): fix all numberhuman hashes
+- \[[`bc858617`](https://github.com/skylafalls/fg-sparky-bot/commit/bc8586170ec4c4524cce4141b1c87a0a14922750)] - fix(build): improve build scripts
+- \[[`3df7780b`](https://github.com/skylafalls/fg-sparky-bot/commit/3df7780bcdffd1c474a03e93e9f76655007b051c)] - fix(numberdex): remove the one-to-many relationship side
+- \[[`653915f4`](https://github.com/skylafalls/fg-sparky-bot/commit/653915f42c6334f488710a9e46eef98fb9273d3f)] - fix(gifts): various fixes to gifting ([#37](https://github.com/skylafalls/fg-sparky-bot/pull/37))
+- \[[`e72b3a5c`](https://github.com/skylafalls/fg-sparky-bot/commit/e72b3a5c9714b98a7d9495cf723c02d60bd2bc43)] - fix(numberdex/reply): fix inconsistent replies
+- \[[`52030e73`](https://github.com/skylafalls/fg-sparky-bot/commit/52030e73d56c53c5cbb21c08e2aa3f8487cc718b)] - fix(misc): fix some typos
+- \[[`914255f9`](https://github.com/skylafalls/fg-sparky-bot/commit/914255f9428349c0cc037cb62fb69c84428a0e38)] - fix(cmds): actually fix the permissions
+- \[[`cd108795`](https://github.com/skylafalls/fg-sparky-bot/commit/cd108795388597d663d429f979dccd8adcf7c77d)] - fix(numbedex/show-humans): remove Manage Channel permission requirement
+- \[[`5360dd26`](https://github.com/skylafalls/fg-sparky-bot/commit/5360dd26ab77b2222ea9a489181d5f1dcc841067)] - fix(user/show): defer response time to avoid interaction delays
+
+### chores:
+
+- \[[`35359593`](https://github.com/skylafalls/fg-sparky-bot/commit/35359593416f0fa85eeb2bb0c30576e9feaebc42)] - chore(deps): update recently added deps
+- \[[`44b3b1b0`](https://github.com/skylafalls/fg-sparky-bot/commit/44b3b1b0254e91c1256e3ec80dce9b4d833e4095)] - chore(fmt): use dprint instead
+- \[[`56d7b84d`](https://github.com/skylafalls/fg-sparky-bot/commit/56d7b84dee7d2a9bf5bf548d6d9f1630b693adb0)] - chore(fmt): replace stylistic eslint with biome ([#29](https://github.com/skylafalls/fg-sparky-bot/pull/29))
+- \[[`3f51f803`](https://github.com/skylafalls/fg-sparky-bot/commit/3f51f80336a1861ecb303b24543edd586d82606d)] - chore(numberdex): add more numberhumans
+- \[[`2f5d4da6`](https://github.com/skylafalls/fg-sparky-bot/commit/2f5d4da60297cd721b3b4173bdb1cc1856123458)] - chore(numberdex/responses): add a lot more responses
+- \[[`1180e9a1`](https://github.com/skylafalls/fg-sparky-bot/commit/1180e9a1e0719b56184b8f75b2bb714ec8c2f260)] - chore(deps): update type-related deps
+- \[[`bac257fa`](https://github.com/skylafalls/fg-sparky-bot/commit/bac257fad64af0dbfa2cf907cfc1311d95d726c0)] - chore(fmt): format stuff
+- \[[`2a51a6cd`](https://github.com/skylafalls/fg-sparky-bot/commit/2a51a6cd989bafa679d31e973d1eaced88dae03e)] - chore(deps): remove better-sqlite3
+- \[[`1f951b5e`](https://github.com/skylafalls/fg-sparky-bot/commit/1f951b5e145a1a8f3f18b16853b4cc06e6e732e6)] - chore(misc): fix formatting
+- \[[`2096a392`](https://github.com/skylafalls/fg-sparky-bot/commit/2096a3925260671d63a9a4fefc065d35b2a03120)] - chore(meta): add more commits to ignore
+
 ## 2.0.0-beta.1 - January 18th, 2026
 
 no v1.3.0 i guess
