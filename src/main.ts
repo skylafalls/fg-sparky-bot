@@ -4,14 +4,14 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { UsersDB } from "@fg-sparky/server";
-import { Logger } from "@fg-sparky/utils";
+import { UsersDB } from "#db";
+import { NumberdexBaker, setupCronJobs } from "#numberdex/cron.ts";
+import { Numberhumans, Numbers, Responses } from "#stores";
+import { Logger } from "#utils/logger.ts";
 import { Command } from "commander";
 import { Client } from "discord.js";
 import packageJson from "../package.json" with { type: "json" };
 import { initClient } from "./index.ts";
-import { NumberdexBaker, setupCronJobs } from "./numberdex/cron.ts";
-import { Numberhumans, Numbers, Responses } from "./stores.ts";
 
 const program = new Command()
   .version(packageJson.version)

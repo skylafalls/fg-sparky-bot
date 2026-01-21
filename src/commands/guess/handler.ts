@@ -4,8 +4,12 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { createGuessHandler, createUser, getUser, StreakCollection } from "@fg-sparky/server";
-import { joinStringArray, Logger, type StoredNumberInfo as NumberInfo } from "@fg-sparky/utils";
+import { StreakCollection } from "#fg-sparky/streaks.ts";
+import { joinStringArray } from "#utils/formatter.ts";
+import { createGuessHandler } from "#utils/guess-handler.ts";
+import { createUser, getUser } from "#utils/helpers.ts";
+import { Logger } from "#utils/logger.ts";
+import type { StoredNumberInfo } from "#utils/types.ts";
 import {
   type ChatInputCommandInteraction,
   type Client,
@@ -23,7 +27,7 @@ const handlePlayerGuess = createGuessHandler("sha512");
 export function handleResponse(
   client: Client,
   interaction: ChatInputCommandInteraction,
-  number: NumberInfo,
+  number: StoredNumberInfo,
 ): void {
   const streakCollection = (() => {
     if (streakCollectionCollection.get(interaction.channelId)) {
@@ -98,7 +102,7 @@ export function handleResponse(
         Logger.info(`user not found, creating user and adding tokens`);
         // @ts-expect-error: assertion fails for some reason even though the bot can only
         // be installed in a guild
-        const newUser = await createUser(message.author.id, message.guildId);
+        const newUser = createUser(message.author.id, message.guildId);
         newUser.tokens += gain;
         newUser.guessedEntries.push(number.uuid);
         // this is a fresh new profile which means it is guaranteed to have zero unique guesses.

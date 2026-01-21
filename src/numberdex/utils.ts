@@ -5,8 +5,8 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import type { NumberhumanInfo, NumberhumanStore } from "@fg-sparky/server";
-import { Result } from "@fg-sparky/utils";
+import type { NumberhumanInfo, NumberhumanStore } from "#stores-types";
+import { Result } from "@sapphire/result";
 import {
   ActionRowBuilder,
   AttachmentBuilder,

@@ -1,5 +1,7 @@
-import { Collection, getGainFromDifficulty, Logger } from "@fg-sparky/utils";
-import { getUser } from "./helpers.ts";
+import { UserProfile } from "#db";
+import { Logger } from "#utils/logger.ts";
+import { getGainFromDifficulty } from "#utils/numbers.ts";
+import { Collection } from "discord.js";
 
 export class StreakCollection extends Collection<string, number> {
   appendStreak(id: string, guildId: string): this {
@@ -30,7 +32,10 @@ export class StreakCollection extends Collection<string, number> {
     Logger.info("saving player's best streaks into database");
     await Promise.all(
       this.map(async (streak, id) => {
-        const user = await getUser(id.split(".")[0]!, id.split(".")[1]!);
+        const user = await UserProfile.findOneBy({
+          id: id.split(".")[0]!,
+          guildId: id.split(".")[1]!,
+        });
         if (!user) return;
 
         user.bestStreak = Math.max(user.bestStreak, streak);

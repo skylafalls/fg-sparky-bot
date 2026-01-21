@@ -4,7 +4,8 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { type Command, type Difficulties, Logger } from "@fg-sparky/utils";
+import { Logger } from "#utils/logger.ts";
+import type { Command, Difficulties } from "#utils/types.ts";
 import { ApplicationCommandOptionType, AttachmentBuilder, type Client, type CommandInteraction } from "discord.js";
 import { Numbers } from "../stores.ts";
 import { handleResponse } from "./guess/handler.ts";

@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import type { Command } from "@fg-sparky/utils";
+import type { Command } from "#utils/types.ts";
 import { Poweroff, Restart } from "./bot-management.ts";
 import Gift from "./gift.ts";
 import Guess from "./guess.ts";

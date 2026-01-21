@@ -4,7 +4,8 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { Logger, loginFormatter } from "@fg-sparky/utils";
+import { loginFormatter } from "#utils/formatter.ts";
+import { Logger } from "#utils/logger.ts";
 import { ActivityType, type Client, type Interaction } from "discord.js";
 import { execSync } from "node:child_process";
 import packageJson from "../package.json" with { type: "json" };

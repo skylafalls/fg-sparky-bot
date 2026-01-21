@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import type { Command } from "@fg-sparky/utils";
+import type { Command } from "#utils/types.ts";
 import { ApplicationCommandOptionType, type Client, type CommandInteraction } from "discord.js";
 import { LeaderboardDisplayType, userLeaderboardDisplay } from "./users/leaderboard.ts";
 import userShow from "./users/show.ts";

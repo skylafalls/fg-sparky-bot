@@ -1,15 +1,12 @@
-import { createUser, getUser, NumberhumanData, type NumberhumanInfo } from "@fg-sparky/server";
-import {
-  EvolutionType,
-  formatPercent,
-  getEvolutionBuff,
-  getRandomInt,
-  getRandomRange,
-  joinStringArray,
-  Logger,
-} from "@fg-sparky/utils";
-import { bold, italic, type ModalMessageModalSubmitInteraction, userMention } from "discord.js";
-import { Responses } from "../stores.ts";
+import { NumberhumanData } from "#db";
+import { Responses } from "#stores";
+import type { NumberhumanInfo } from "#stores-types";
+import { formatPercent, joinStringArray } from "#utils/formatter.ts";
+import { createUser, getUser } from "#utils/helpers.ts";
+import { Logger } from "#utils/logger.ts";
+import { getRandomInt, getRandomRange } from "#utils/numbers.ts";
+import { bold, italic, userMention, type ModalMessageModalSubmitInteraction } from "discord.js";
+import { EvolutionType, getEvolutionBuff } from "./evolutions.ts";
 
 export async function updateUserStats(
   interaction: ModalMessageModalSubmitInteraction<"cached" | "raw">,
@@ -77,7 +74,7 @@ export async function updateUserStats(
     await user.save();
   } else {
     Logger.info(`user not found, creating user and adding the numberhuman`);
-    const newUser = await createUser(interaction.user.id, interaction.guildId);
+    const newUser = createUser(interaction.user.id, interaction.guildId);
     newUser.numberhumansGuessed.push(number.uuid);
     // this is a fresh new profile which means it is guaranteed to have zero unique guesses.
     // so we can add it without checking.

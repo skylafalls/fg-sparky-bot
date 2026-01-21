@@ -4,7 +4,8 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { joinStringArray, type StoredNumberInfo } from "@fg-sparky/utils";
+import { joinStringArray } from "#utils/formatter.ts";
+import type { StoredNumberInfo } from "#utils/types.ts";
 import type { Message, OmitPartialGroupDMChannel } from "discord.js";
 
 /**

@@ -4,10 +4,10 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
+import { Logger } from "#utils/logger.ts";
+import type { Command } from "#utils/types.ts";
 import { Option } from "@sapphire/result";
 import { Collection } from "discord.js";
-import { Logger } from "../logger.ts";
-import type { Command } from "../types.ts";
 
 export class CooldownCollection extends Collection<string, Collection<string, number>> {
   /**

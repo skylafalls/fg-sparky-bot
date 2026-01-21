@@ -1,7 +1,10 @@
-import { getUser, NumberhumanData } from "@fg-sparky/server";
-import { EvolutionType, formatPercent, joinStringArray, type ServerSlashCommandInteraction } from "@fg-sparky/utils";
+import { NumberhumanData } from "#db";
+import { EvolutionType } from "#numberdex/evolutions.ts";
+import { Numberhumans, Numbers } from "#stores";
+import { formatPercent, joinStringArray } from "#utils/formatter.ts";
+import { getUser } from "#utils/helpers.ts";
+import type { ServerSlashCommandInteraction } from "#utils/types.ts";
 import { bold, chatInputApplicationCommandMention, type Client } from "discord.js";
-import { Numberhumans, Numbers } from "../../stores.ts";
 
 const slashCommandMention = chatInputApplicationCommandMention(
   "numberdex show-humans",

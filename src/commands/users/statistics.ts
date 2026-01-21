@@ -1,7 +1,8 @@
-import { UserProfile } from "@fg-sparky/server";
-import { formatPercent, joinStringArray, type ServerSlashCommandInteraction } from "@fg-sparky/utils";
+import { UserProfile } from "#db";
+import { Numbers } from "#stores";
+import { formatPercent, joinStringArray } from "#utils/formatter.ts";
+import type { ServerSlashCommandInteraction } from "#utils/types.ts";
 import type { Client } from "discord.js";
-import { Numbers } from "../../stores.ts";
 
 export default async function serverStatisticsDisplay(
   _: Client,

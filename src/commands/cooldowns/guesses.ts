@@ -1,6 +1,6 @@
+import { Logger } from "#utils/logger.ts";
+import type { Command } from "#utils/types.ts";
 import { Collection } from "discord.js";
-import { Logger } from "../logger.ts";
-import type { Command } from "../types.ts";
 
 export class GuessCooldownCollection extends Collection<string, boolean> {
   /**

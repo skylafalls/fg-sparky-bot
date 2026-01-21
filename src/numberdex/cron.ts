@@ -1,5 +1,6 @@
-import type { NumberhumanStore } from "@fg-sparky/server";
-import { Baker, FilePersistenceProvider, Logger } from "@fg-sparky/utils";
+import type { NumberhumanStore } from "#stores-types";
+import { Logger } from "#utils/logger.ts";
+import { Baker, FilePersistenceProvider } from "cronbake";
 import type { Client } from "discord.js";
 import { setupCallback } from "./handler.ts";
 

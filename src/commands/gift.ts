@@ -4,8 +4,9 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { getUser } from "@fg-sparky/server";
-import { type Command, Logger } from "@fg-sparky/utils";
+import { getUser } from "#utils/helpers.ts";
+import { Logger } from "#utils/logger.ts";
+import type { Command } from "#utils/types.ts";
 import {
   ApplicationCommandOptionType,
   type Client,

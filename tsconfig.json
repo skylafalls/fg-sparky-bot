@@ -31,10 +31,12 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "paths": {
-      "#utils": ["./src/utils/index.ts"],
       "#stores": ["./src/stores.ts"],
       "#stores-types": ["./src/stores/index.ts"],
-      "#numberdex/*": ["./src/numberdex/*"]
+      "#db": ["./src/db/index.ts"],
+      "#utils/*": ["./src/utils/*"],
+      "#numberdex/*": ["./src/numberdex/*"],
+      "#fg-sparky/*": ["./src/sparky/*"]
     }
   },
   "include": ["**/*.ts"]

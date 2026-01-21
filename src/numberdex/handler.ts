@@ -1,5 +1,10 @@
-import { createGuessHandler, type NumberhumanStore } from "@fg-sparky/server";
-import { getRandomRange, type ICron, Logger, NUMBERDEX_FLEE_DELAY } from "@fg-sparky/utils";
+import { Responses } from "#stores";
+import type { NumberhumanStore } from "#stores-types";
+import { NUMBERDEX_FLEE_DELAY } from "#utils/constants.ts";
+import { createGuessHandler } from "#utils/guess-handler.ts";
+import { Logger } from "#utils/logger.ts";
+import { getRandomRange } from "#utils/numbers.ts";
+import type { ICron } from "cronbake";
 import {
   ComponentType,
   type Interaction,
@@ -8,7 +13,6 @@ import {
   TextInputStyle,
   userMention,
 } from "discord.js";
-import { Responses } from "../stores.ts";
 import { updateUserStats } from "./users.ts";
 import { createButtonRow, spawnNumberhuman } from "./utils.ts";
 

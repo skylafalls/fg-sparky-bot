@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { Logger } from "@fg-sparky/utils";
+import { Logger } from "#utils/logger.ts";
 import type { Client } from "discord.js";
 import { Commands } from "./commands/commands.ts";
 import { registerCommands } from "./commands/listener.ts";

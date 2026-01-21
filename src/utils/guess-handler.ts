@@ -1,4 +1,4 @@
-import { Logger } from "@fg-sparky/utils";
+import { Logger } from "./logger.ts";
 
 export interface GuessObject {
   number: string | null;

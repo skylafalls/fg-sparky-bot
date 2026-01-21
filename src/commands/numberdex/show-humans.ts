@@ -1,7 +1,7 @@
-import { NumberhumanData, UserProfile } from "@fg-sparky/server";
-import type { ServerSlashCommandInteraction } from "@fg-sparky/utils";
+import { NumberhumanData, UserProfile } from "#db";
+import { Numberhumans } from "#stores";
+import type { ServerSlashCommandInteraction } from "#utils/types.ts";
 import { chatInputApplicationCommandMention, type Client, italic, type User } from "discord.js";
-import { Numberhumans } from "../../stores.ts";
 
 function capitalize<T extends string>(val: T): Capitalize<T> {
   // oxlint-disable-next-line typescript/no-unsafe-type-assertion
