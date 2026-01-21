@@ -6,10 +6,13 @@
  */
 import { Logger, loginFormatter } from "@fg-sparky/utils";
 import { ActivityType, type Client, type Interaction } from "discord.js";
+import { execSync } from "node:child_process";
 import packageJson from "../package.json" with { type: "json" };
 import { Commands } from "./commands/commands.ts";
 import { handleSlashCommand } from "./commands/listener.ts";
 import { NumberdexBaker } from "./numberdex/cron.ts";
+
+const currentHash = () => execSync("git rev-parse --short HEAD").toString().trim();
 
 export function registerHandlers(client: Client): void {
   client.once("clientReady", (client: Client<true>) => {
@@ -20,7 +23,7 @@ export function registerHandlers(client: Client): void {
     Logger.info(`Setting status`);
     client.user.setActivity({
       name: "custom-status",
-      state: `currently running on v${packageJson.version}`,
+      state: `currently running on v${packageJson.version}+${currentHash()}`,
       type: ActivityType.Custom,
     });
   });
