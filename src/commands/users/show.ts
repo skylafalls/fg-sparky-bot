@@ -1,4 +1,4 @@
-import { NumberhumanData, getUser } from "#db";
+import { getUser, NumberhumanData } from "#db";
 import { EvolutionType } from "#numberdex/evolutions.ts";
 import { Numberhumans, Numbers } from "#stores";
 import { formatPercent, joinStringArray } from "#utils/formatter.ts";

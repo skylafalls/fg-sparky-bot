@@ -12,7 +12,7 @@ import { getRandomInt } from "#utils/numbers.ts";
 import { NumberhumanData } from "./numberhuman.ts";
 import { UserProfile } from "./user-profile.ts";
 
- async export function getUser(id: string, guildId: string): Promise<UserProfile | null> {
+export async function getUser(id: string, guildId: string): Promise<UserProfile | null> {
   return UserProfile.findOneBy({
     id,
     guildId,

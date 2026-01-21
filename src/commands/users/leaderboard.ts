@@ -5,7 +5,7 @@ import { formatPercent } from "#utils/formatter.ts";
 import { Logger } from "#utils/logger.ts";
 import { ordinalOf } from "#utils/numbers.ts";
 import type { ServerSlashCommandInteraction } from "#utils/types.ts";
-import { italic, type Client, type User as DiscordUser } from "discord.js";
+import { type Client, italic, type User as DiscordUser } from "discord.js";
 
 export enum LeaderboardDisplayType {
   Tokens = "tokens",

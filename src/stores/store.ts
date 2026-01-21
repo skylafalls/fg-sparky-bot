@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { Option, type None } from "@sapphire/result";
+import { type None, Option } from "@sapphire/result";
 import type { ZodType } from "zod";
 
 interface DataStoreEntry {

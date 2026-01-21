@@ -4,7 +4,7 @@ import type { NumberhumanInfo } from "#stores-types";
 import { formatPercent, joinStringArray } from "#utils/formatter.ts";
 import { Logger } from "#utils/logger.ts";
 import { getRandomRange } from "#utils/numbers.ts";
-import { bold, italic, userMention, type ModalMessageModalSubmitInteraction } from "discord.js";
+import { bold, italic, type ModalMessageModalSubmitInteraction, userMention } from "discord.js";
 import { EvolutionType, getEvolutionBuff } from "./evolutions.ts";
 
 export async function updateUserStats(
@@ -91,4 +91,3 @@ export async function updateUserStats(
     await newUser.save();
   }
 }
-

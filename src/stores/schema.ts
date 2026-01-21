@@ -41,7 +41,6 @@ export const ResponseInfo: ZodType<ResponseInfo> = z.strictObject({
   type: z.enum(["fail", "success", "flee", "spawn"]),
 });
 
-
 export interface NumberInfo {
   uuid: string;
   image: string;

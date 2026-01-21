@@ -6,7 +6,7 @@
  */
 import { randomDifficulty } from "#utils/randoms.ts";
 import type { Difficulties, StoredNumberInfo } from "#utils/types.ts";
-import { Option, type None } from "@sapphire/result";
+import { type None, Option } from "@sapphire/result";
 import { NumberInfo } from "./schema.ts";
 import { DataStore } from "./store.ts";
 
