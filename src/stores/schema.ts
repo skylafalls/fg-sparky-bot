@@ -4,7 +4,7 @@
  * Copyright (C) 2025 Skylafalls
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import type { Difficulties, Rarities, Responses } from "#utils";
+import type { Difficulties, Rarities, Responses } from "#utils/types.ts";
 import { z, type ZodType } from "zod";
 
 export interface NumberhumanInfo {
