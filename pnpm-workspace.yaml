@@ -30,7 +30,6 @@ catalogs:
 minimumReleaseAge: 720
 
 onlyBuiltDependencies:
-  - better-sqlite
   - bufferutil
   - esbuild
   - sqlite3
