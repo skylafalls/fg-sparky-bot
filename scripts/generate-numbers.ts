@@ -1,5 +1,5 @@
-import { NumberInfo as NumberInfoSchema } from "@fg-sparky/server";
-import type { Difficulties } from "@fg-sparky/utils";
+import { NumberInfo as NumberInfoSchema } from "#stores-types";
+import type { Difficulties } from "#utils/types";
 import { Command } from "commander";
 import { copyFile, readdir } from "node:fs/promises";
 

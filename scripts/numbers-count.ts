@@ -1,4 +1,4 @@
-import { NumberInfo } from "@fg-sparky/server";
+import { NumberInfo } from "#stores-types";
 import numbersJson from "../numbers/numbers.json" with { type: "json" };
 
 const parsedEntries = numbersJson.map((entry) => NumberInfo.parse(entry));

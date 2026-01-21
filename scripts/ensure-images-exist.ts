@@ -1,4 +1,4 @@
-import { NumberInfo } from "@fg-sparky/server";
+import { NumberInfo } from "#stores-types";
 import numbers from "../numbers/numbers.json" with { type: "json" };
 
 const entries = await Promise.allSettled(

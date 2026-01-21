@@ -1,4 +1,4 @@
-import { ResponseInfo } from "@fg-sparky/server";
+import { ResponseInfo } from "#stores-types";
 import { Command } from "commander";
 import responsea from "../numbers/responses.json" with { type: "json" };
 
