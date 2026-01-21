@@ -1,5 +1,5 @@
-import { NumberInfo } from "@fg-sparky/server";
-import type { Difficulties } from "@fg-sparky/utils";
+import { NumberInfo } from "#stores-types";
+import type { Difficulties } from "#utils/types.ts";
 import { Command } from "commander";
 import { copyFile } from "node:fs/promises";
 

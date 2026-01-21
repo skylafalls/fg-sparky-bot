@@ -1,4 +1,4 @@
-import { NumberhumanInfo } from "@fg-sparky/server";
+import { NumberhumanInfo } from "#stores-types";
 
 const hasher = new Bun.CryptoHasher("blake2b512");
 const numberhumans = NumberhumanInfo.array().parse(

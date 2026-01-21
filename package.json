@@ -16,6 +16,19 @@
     "fmt": "dprint fmt",
     "typecheck": "tsgo -p tsconfig.json"
   },
+  "dependencies": {
+    "commander": "catalog:utils",
+    "bufferutil": "catalog:discord",
+    "discord.js": "catalog:discord",
+    "reflect-metadata": "catalog:db",
+    "sqlite3": "catalog:db",
+    "typeorm": "catalog:db",
+    "@sapphire/discord.js-utilities": "catalog:discord",
+    "@sapphire/result": "catalog:utils",
+    "chalk": "catalog:utils",
+    "cronbake": "catalog:utils",
+    "zod": "catalog:types"
+  },
   "devDependencies": {
     "@types/bun": "catalog:types",
     "@types/node": "catalog:types",
@@ -24,11 +37,5 @@
     "oxlint": "catalog:linting",
     "oxlint-tsgolint": "catalog:linting",
     "rolldown": "catalog:build"
-  },
-  "dependencies": {
-    "@fg-sparky/client": "workspace:*",
-    "@fg-sparky/server": "workspace:*",
-    "@fg-sparky/utils": "workspace:*",
-    "commander": "catalog:utils"
   }
 }
