@@ -7,8 +7,8 @@
 import { Logger } from "#utils/logger";
 import type { Command } from "#utils/types.ts";
 import { type Client, type CommandInteraction, MessageFlags } from "discord.js";
-import { GuessCooldownCollection } from "./cooldowns/guesses";
-import { CooldownCollection } from "./cooldowns/normal";
+import { GuessCooldownCollection } from "./cooldowns/guesses.ts";
+import { CooldownCollection } from "./cooldowns/normal.ts";
 
 const commandCooldowns = new CooldownCollection();
 export const guessCooldowns: GuessCooldownCollection = new GuessCooldownCollection();
