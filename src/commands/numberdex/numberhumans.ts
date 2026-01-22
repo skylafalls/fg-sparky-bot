@@ -19,16 +19,16 @@ export async function getNumberhumansBy(
       },
     },
     order: {
-      catchId: "DESC",
+      catchId: "ASC",
     },
   });
 
   switch (sorting) {
     case NumberhumanSortingOrder.ByHealth: {
-      return numberhumans.toSorted((a, b) => a.totalHP(store) - b.totalHP(store));
+      return numberhumans.toSorted((a, b) => b.totalHP(store) - a.totalHP(store));
     }
     case NumberhumanSortingOrder.ByAttack: {
-      return numberhumans.toSorted((a, b) => a.totalAtk(store) - b.totalAtk(store));
+      return numberhumans.toSorted((a, b) => b.totalAtk(store) - a.totalAtk(store));
     }
     case NumberhumanSortingOrder.ByCatchId: {
       // already sorted
@@ -36,10 +36,10 @@ export async function getNumberhumansBy(
     }
     case NumberhumanSortingOrder.ByEvolution: {
       return numberhumans
-        .toSorted((a, b) => EvolutionIntegerMap[a.evolution] - EvolutionIntegerMap[b.evolution]);
+        .toSorted((a, b) => EvolutionIntegerMap[b.evolution] - EvolutionIntegerMap[a.evolution]);
     }
     case NumberhumanSortingOrder.ByLevel: {
-      return numberhumans.toSorted((a, b) => a.level - b.level);
+      return numberhumans.toSorted((a, b) => b.level - a.level);
     }
   }
 }
