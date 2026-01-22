@@ -28,6 +28,21 @@ export const EvolutionMap: Record<EvolutionType, [number, number]> = {
   [EvolutionType.Absolute]: [7, 7],
 };
 
+export const EvolutionIntegerMap: Record<EvolutionType, number> = {
+  [EvolutionType.None]: 1,
+  [EvolutionType.Superscaled]: 2,
+  [EvolutionType.Mastered]: 3,
+  [EvolutionType.Endfimidian]: 4,
+  [EvolutionType.Celestial]: 5,
+  [EvolutionType.Eternal]: 6,
+  [EvolutionType.Corrotechnic]: 7,
+  [EvolutionType.Subeuclidean]: 8,
+  [EvolutionType.Zyrolexic]: 9,
+  [EvolutionType.Transcendent]: 10,
+  [EvolutionType.Corrupt]: 11,
+  [EvolutionType.Absolute]: 12,
+};
+
 export function getEvolutionBuff(
   evolution: EvolutionType,
   type: "hp" | "atk",
