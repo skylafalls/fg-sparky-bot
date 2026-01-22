@@ -18,6 +18,7 @@ import { NumberdexBaker } from "../numberdex/cron.ts";
 import { setupCallback } from "../numberdex/handler.ts";
 import { Numberhumans } from "../stores.ts";
 import numberdexShowHumans from "./numberdex/show-humans.ts";
+import { NumberhumanSortingOrder } from "./numberdex/sorting.ts";
 
 const Numberdex: Command = {
   async run(_client: Client, interaction: CommandInteraction<"raw" | "cached">): Promise<void> {
@@ -63,6 +64,9 @@ const Numberdex: Command = {
         const user = interaction.options.getUser("user", true);
         const pageNumber = interaction.options.getInteger("page", true);
         const dbUser = await getUser(user.id, interaction.guildId);
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion: should be fine
+        const sortingOrder = interaction.options.getString("sorting") as NumberhumanSortingOrder | null
+          ?? NumberhumanSortingOrder.ByCatchId;
         if (dbUser === null) {
           await interaction.reply({
             content: "sorry that user doesn't exist within the database",
@@ -70,7 +74,7 @@ const Numberdex: Command = {
           });
           return;
         }
-        await numberdexShowHumans(client, interaction, user, pageNumber);
+        await numberdexShowHumans(interaction, user, pageNumber, sortingOrder);
         return;
       }
       default: {
@@ -123,6 +127,33 @@ const Numberdex: Command = {
           description: "The page number",
           type: ApplicationCommandOptionType.Integer,
           required: true,
+        },
+        {
+          name: "sorting",
+          description: "Sort the list by a specific type",
+          type: ApplicationCommandOptionType.String,
+          choices: [
+            {
+              name: NumberhumanSortingOrder.ByAttack,
+              value: NumberhumanSortingOrder.ByAttack,
+            },
+            {
+              name: NumberhumanSortingOrder.ByHealth,
+              value: NumberhumanSortingOrder.ByHealth,
+            },
+            {
+              name: NumberhumanSortingOrder.ByCatchId,
+              value: NumberhumanSortingOrder.ByCatchId,
+            },
+            {
+              name: NumberhumanSortingOrder.ByEvolution,
+              value: NumberhumanSortingOrder.ByEvolution,
+            },
+            {
+              name: NumberhumanSortingOrder.ByLevel,
+              value: NumberhumanSortingOrder.ByLevel,
+            },
+          ],
         },
       ],
     },
