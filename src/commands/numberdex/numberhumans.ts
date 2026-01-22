@@ -1,4 +1,5 @@
 import { NumberhumanData, type UserProfile } from "#db";
+import { EvolutionIntegerMap } from "#numberdex/evolutions.ts";
 import type { NumberhumanStore } from "#stores-types";
 import { NumberhumanSortingOrder } from "./sorting.ts";
 
@@ -34,11 +35,8 @@ export async function getNumberhumansBy(
       return numberhumans;
     }
     case NumberhumanSortingOrder.ByEvolution: {
-      return numberhumans.toSorted((a, b) => {
-        if (a.evolution > b.evolution) return 1;
-        if (a.evolution < b.evolution) return -1;
-        return 0;
-      });
+      return numberhumans
+        .toSorted((a, b) => EvolutionIntegerMap[a.evolution] - EvolutionIntegerMap[b.evolution]);
     }
     case NumberhumanSortingOrder.ByLevel: {
       return numberhumans.toSorted((a, b) => a.level - b.level);
