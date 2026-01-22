@@ -51,12 +51,12 @@ const Numberdex: Command = {
         }
         const channel = interaction.options.getChannel("channel", true, [ChannelType.GuildText]);
         if (NumberdexBaker.getJobNames().includes(`numberdex-channel-${channel.id}`)) {
+          NumberdexBaker.destroy(`numberdex-channel-${channel.id}`);
+          await interaction.reply(`removed channel ${channelMention(channel.id)}`);
+        } else {
           await interaction.reply(
             `numberhumans aren't spawning in ${channelMention(channel.id)} in the first place!`,
           );
-        } else {
-          NumberdexBaker.destroy(`numberdex-channel-${channel.id}`);
-          await interaction.reply(`removed channel ${channelMention(channel.id)}`);
         }
         return;
       }
