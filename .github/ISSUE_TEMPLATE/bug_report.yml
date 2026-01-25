@@ -1,0 +1,76 @@
+name: Bug Report
+description: Form for reporting an issue with thebot.
+title: "bug: "
+type: bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Well uh, thank you for taking time to report a bug.
+  - type: checkboxes
+    attributes:
+      label: "Validation checks:"
+      description: "Please make sure you've already done these things:"
+      options:
+      - label: I have searched for existing issues and didn't find anything that matched my problem.
+        required: true
+      - label: I can consistenly reproduce it when I follow the steps I listed below.
+        required: true
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug description
+      description: What _exactly_ is the issue here?
+      placeholder: Numberdex isn't saving the numberhumans to my profile, but only in a specific server.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Reproduction steps
+      description: How can we recreate this bug consistenyl?
+      placeholder: |
+        1. setup numberdex in a server
+        2. wait for the bot to spawn a numberhuman
+        3. catch a numberhuman, inputting the correct name
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: What did you expect it to do? What should have the bot done?
+      placeholder: |
+        The bot was supposed to create a profile only once and save the numberhuman I've caught.
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: What actually happened?
+      placeholder: |
+        The bot kept repeatadly re-creating my user profile and never saved the numberhuman.
+        Further more, it wouldn't load my profile, thinking it never existed.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Can you add screenshots to show the issue that's happening?
+      placeholder: |
+        image 1
+        image 2
+        description of image
+    validations:
+      required: false
+  - type: textarea
+    id: extra-context
+    attributes:
+      label: Additional context
+      description: What other relevant information do you have that could help?
+      placeholder: |
+        It seems to only occur within this person's server and not mines.
+    validations:
+      required: false

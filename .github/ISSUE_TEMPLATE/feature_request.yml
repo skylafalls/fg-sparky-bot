@@ -1,0 +1,98 @@
+name: Feature Request
+description: Suggest a feature I should add here.
+title: "feat: "
+type: feature
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Hey thanks for suggesting a feature to the bot. Please be descriptive with what you want.
+  - type: checkboxes
+    attributes:
+      label: "Validation checks:"
+      description: "Please make sure you've already done these things:"
+      options:
+      - label: I have searched for existing requests and didn't find anything that matched what i wanted.
+        required: true
+      - label: It is related to Fictional Googology.
+        required: true
+      - label: It is something that people would actually use and would find useful.
+        required: true
+      - label: I understand this feature request may be denied if it's unreasonable to implement.
+        required: true
+  - type: textarea
+    id: current-issue
+    attributes:
+      label: Current issue
+      description: What is the current problem, if any?
+      placeholder: |
+        The FG Expansion Spreadsheet is currently bloated and hard to look through.
+        It also has pretty bad styling and I would appreciate a way to quickly find a number
+        based on some criteria like the name, the index, the level, or the symbol.
+    validations:
+      required: false
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Description of the feature
+      description: A detailed description of your proposal.
+      placeholder: |
+        I propose a group of `/lookup` commands that will return information on the number based on
+        what the user requested for, such as:
+        - the index itself
+        - description of the number
+        - where it is on the spreadsheet
+        - the BBN level, and other scaling information
+        - its attributes and milestones
+        - where to find the source
+        - ...and more useful details people might want to know
+
+        It will also have additional subcommands like `/lookup index` and `/lookup source` to find the numbers
+        based on eg. the abmetric index or the video information.
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Example API
+      description: Please provide some example usage or mockup that shows your proposal being used.
+      placeholder: |
+        - `/lookup abmetric index:21.66` -> Returns The Null Constant by The Entrinal Pantiliol, showing the path,
+          the timegate status, description of the video and entry, the source, and other details.
+        - `/lookup bbn-level level:8` -> Returns a list of entries in BBN Level 8, sorted by its ID.
+        - `/lookup milestones type:primoridal` -> Returns a list of entries that is a "primordial" milestone.
+        - `/lookup attributes timegated:True former-timegate:True` -> Returns a list of formerly and currently
+          timegated entries.
+    validations:
+      required: true
+  - type: textarea
+    id: why-add
+    attributes:
+      label: Why?
+      description: How would it be useful to users of this bot?
+      placeholder: |
+        It will make it easier to find information about a specific number, like its symbol and name for
+        number lists, and scaling information for rulers.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative solutions
+      description: What other solutions could we consider?
+      placeholder: |
+        Possibly alternative ways of looking up the number could include:
+        - Searching on the spreadsheet itself (somewhat clunky)
+        - A small website that can lookup the number entry?
+    validations:
+      required: true
+  - type: textarea
+    id: extra-context
+    attributes:
+      label: Additional context
+      description: What other relevant information do you have that could help, like other people's requests?
+      placeholder: |
+        I have personally found many times where I needed to lookup an entry while I'm counting in
+        the larger number lists, and this command would make it easier for me.
+    validations:
+      required: false
